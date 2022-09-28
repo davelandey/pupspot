@@ -4,9 +4,9 @@ const express = require("express");
 const cors = require("cors");
 
 const app = express();
-const mongoose = require('mongoose')
+const mongoose = require("mongoose");
 
-mongoose.connect(process.env.DATABASEURL)
+mongoose.connect(process.env.DATABASEURL);
 const db = mongoose.connection;
 
 app.use(cors());
@@ -21,7 +21,17 @@ app.use(express.json());
 // app.use("/user", userController);
 // app.use("/movie", movieController); //<--- New Coders
 
-
 app.listen(process.env.PORT, function () {
-    console.log(`listening on port: ${process.env.PORT}`);
+  console.log(`listening on port: ${process.env.PORT}`);
 });
+
+// DELETE THIS EDIT
+
+
+// Dave was here.
+
+//This is Elena's comment!
+
+//EMILY - I will delete this later...
+
+
