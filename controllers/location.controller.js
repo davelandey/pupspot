@@ -40,4 +40,63 @@ router.post("/add", async (req, res) => {
   }
 });
 
+//GET:
+router.get("/", async (req, res) => {
+  try {
+    const location = await Location.find();
+    res.json({ location: location });
+  } catch (error) {
+    res.json({ message: error.message });
+  }
+});
+
+//delete
+router.delete("/:id", async (req, res) => {
+  console.log(req.params);
+  try {
+    const deletedLocation = await Location.deleteOne({ _id: req.params.id });
+    res.json({
+      message:
+        deletedLocation.deletedCount > 0
+          ? "location removed"
+          : "location not found",
+
+      deletedLocation: deletedLocation,
+    });
+  } catch (error) {
+    res.json({ message: error.message });
+  }
+});
+
+//update
+router.patch("/update/:id", async (req, res) => {
+  console.log(req.params);
+  try {
+    const filter = { _id: req.params.id };
+    const dataToReplace = req.body.location;
+    const returnOptions = {
+      returnOriginal: false,
+    };
+    const location = await Location.findOneAndUpdate(
+      filter,
+      dataToReplace,
+      returnOptions
+    );
+
+    res.json({ message: "location updated", location: location });
+  } catch (error) {
+    res.json({ message: error.message });
+  }
+});
+
+//get
+router.get("/:id", async (req, res) => {
+  try {
+    const location = await Location.findById(req.params.id);
+    res.json({ location: location });
+  } catch (error) {
+    res.json({ message: error.message });
+  }
+});
+
 module.exports = router;
