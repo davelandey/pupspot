@@ -13,12 +13,12 @@ app.use(cors());
 // app.use(express.json());
 
 //! insert controller variables here
-
+const userController = require("./controllers/user.controller")
 db.once("open", () => console.log("Connected to the DB"));
 
 app.use(express.json());
 
-// app.use("/user", userController);
+app.use("/user", userController);
 // app.use("/movie", movieController); //<--- New Coders
 
 app.listen(process.env.PORT, function () {
