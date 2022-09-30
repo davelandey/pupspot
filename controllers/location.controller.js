@@ -1,10 +1,9 @@
 const router = require("express").Router();
-const validateSession = require("../middleware/validate-session");
+// const validateSession = require("../middleware/validate-session");
 const Location = require("../models/location.model");
 
 router.post("/add", async (req, res) => {
-  res.json({ message: "location" });
-
+  // res.json({ message: "location" });
   const {
     latitude,
     longitude,
@@ -19,7 +18,6 @@ router.post("/add", async (req, res) => {
     website,
     disable,
   } = req.body.location;
-
   const location = new Location({
     latitude,
     longitude,
@@ -34,7 +32,6 @@ router.post("/add", async (req, res) => {
     website,
     disable,
   });
-
   try {
     const newLocation = await location.save();
     res.json({ location: newLocation });
