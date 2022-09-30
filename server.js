@@ -9,31 +9,23 @@ const mongoose = require("mongoose");
 mongoose.connect(process.env.DATABASEURL);
 const db = mongoose.connection;
 
-app.use(cors());
-// app.use(express.json());
-
-//! insert controller variables here
-
+const locationController = require("./controllers/location.controller");
+const petProfileController = require("./controllers/petProfile.controller");
+const userController = require("./controllers/user.controller")
 const messageController = require("./controllers/message.controller");
+
+app.use(cors());
 
 db.once("open", () => console.log("Connected to the DB"));
 
 app.use(express.json());
 
 app.use("/message", messageController);
-// app.use("/movie", movieController); //<--- New Coders
+app.use("/user", userController);
+app.use("/location", locationController);
+app.use("/petProfile", petProfileController);
+
 
 app.listen(process.env.PORT, function () {
   console.log(`listening on port: ${process.env.PORT}`);
 });
-
-// DELETE THIS EDIT
-
-
-// Dave was here.
-
-//This is Elena's comment!
-
-//EMILY - I will delete this later...
-
-
