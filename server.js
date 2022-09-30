@@ -14,11 +14,13 @@ app.use(cors());
 
 //! insert controller variables here
 
+const messageController = require("./controllers/message.controller");
+
 db.once("open", () => console.log("Connected to the DB"));
 
 app.use(express.json());
 
-// app.use("/user", userController);
+app.use("/message", messageController);
 // app.use("/movie", movieController); //<--- New Coders
 
 app.listen(process.env.PORT, function () {
