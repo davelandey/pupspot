@@ -90,7 +90,7 @@ router.patch("/update/:id", async (req, res)=>{
         const updatedUserInfo = req.body.user;
         const returnOptions ={returnOriginal: false};
     
-//! How do I make this function work for all of the updates?
+
     const user = await User.findOneAndUpdate(
         filter,
         updatedUserInfo,
