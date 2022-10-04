@@ -1,9 +1,17 @@
 const router = require("express").Router();
 const validateSession = require("../middleware/validate-session");
 const Location = require("../models/location.model");
+
 // !if req.user.admin ===false then return res.json message - not admin
 router.post("/add", validateSession, async (req, res) => {
   // res.json({ message: "location" });
+
+// const SeedData = require("../assets/seed.data.json");
+
+//!search accessability for non members by zip code
+
+router.post("/add", async (req, res) => {
+
   const {
     latitude,
     longitude,
@@ -52,10 +60,11 @@ router.get("/", validateSession, async (req, res) => {
 });
 
 //delete
+
 //! Add in admin verification in order to have access to delete
 //see user.controller from Rob's movie example
+
 router.delete("/:id", async (req, res) => {
-  console.log(req.params);
   try {
     const deletedLocation = await Location.deleteOne({ _id: req.params.id });
     res.json({
@@ -103,5 +112,15 @@ router.get("/:id", validateSession, async (req, res) => {
     res.json({ message: error.message });
   }
 });
+
+//SEED
+// router.get("/insertAll", async (req, res) => {
+//   try {
+//     const insertedLocation = await Location.insertMany(SeedData);
+//     res.json({ Location: insertedLocation });
+//   } catch (error) {
+//     res.json({ message: error.message });
+//   }
+// });
 
 module.exports = router;
