@@ -1,10 +1,13 @@
 const mongoose = require("mongoose");
 
 const MessageSchema = new mongoose.Schema({
- locationId:{
+  locationId:{
     type: String,
     required: true,
-    unique: true,
+  },
+  userId:{
+    type: String,
+    required: true,
   },
   userName: {
      type: String,

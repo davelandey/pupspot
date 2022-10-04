@@ -7,7 +7,6 @@ const UserSchema = new mongoose.Schema({
   },
   firstName:{
     type: String,
-    required: true,
   },
   lastName:{
     type: String,
@@ -15,7 +14,7 @@ const UserSchema = new mongoose.Schema({
   userName:{
     type: String,
     required: true,
-    unique: true,
+    // unique: true,
   },
   password:{
     type: String,
@@ -24,7 +23,7 @@ const UserSchema = new mongoose.Schema({
   privacySettings:{
     type: String,
     required: true,
-    default: "private",
+    default: "public",
   },
   profilePic: {
     type: String,

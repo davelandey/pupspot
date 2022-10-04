@@ -1,11 +1,17 @@
 const router = require("express").Router();
-// const validateSession = require("../middleware/validate-session");
+const validateSession = require("../middleware/validate-session");
 const Location = require("../models/location.model");
+
+// !if req.user.admin ===false then return res.json message - not admin
+router.post("/add", validateSession, async (req, res) => {
+  // res.json({ message: "location" });
+
 // const SeedData = require("../assets/seed.data.json");
 
 //!search accessability for non members by zip code
 
 router.post("/add", async (req, res) => {
+
   const {
     latitude,
     longitude,
@@ -33,6 +39,7 @@ router.post("/add", async (req, res) => {
     phone,
     website,
     disable,
+    userId: req.user._id,
   });
   try {
     const newLocation = await location.save();
@@ -43,7 +50,7 @@ router.post("/add", async (req, res) => {
 });
 
 //GET:
-router.get("/", async (req, res) => {
+router.get("/", validateSession, async (req, res) => {
   try {
     const location = await Location.find();
     res.json({ location: location });
@@ -53,7 +60,10 @@ router.get("/", async (req, res) => {
 });
 
 //delete
-//!Admin access do delete example user - movie...
+
+//! Add in admin verification in order to have access to delete
+//see user.controller from Rob's movie example
+
 router.delete("/:id", async (req, res) => {
   try {
     const deletedLocation = await Location.deleteOne({ _id: req.params.id });
@@ -71,7 +81,9 @@ router.delete("/:id", async (req, res) => {
 });
 
 //update
-router.patch("/update/:id", async (req, res) => {
+//! Add in admin verification in order to have access to delete
+//see user.controller from Rob's movie example
+router.patch("/update/:id", validateSession, async (req, res) => {
   console.log(req.params);
   try {
     const filter = { _id: req.params.id };
@@ -92,7 +104,7 @@ router.patch("/update/:id", async (req, res) => {
 });
 
 //get
-router.get("/:id", async (req, res) => {
+router.get("/:id", validateSession, async (req, res) => {
   try {
     const location = await Location.findById(req.params.id);
     res.json({ location: location });

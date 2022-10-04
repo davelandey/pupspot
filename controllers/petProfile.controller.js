@@ -1,13 +1,13 @@
 const router = require("express").Router();
-// const validateSession = require("../middleware/validate-session");
+const validateSession = require("../middleware/validate-session.js")
 const PetProfile = require("../models/petProfile.model");
-
-router.post("/add", async (req, res) => {
-  const { userid, dogName, breed, age, dogPic, dogBio, disable } =
+// !Use validate session (req.user.id) - maybe add in userName
+router.post("/add", validateSession, async (req, res) => {
+  const { userId, dogName, breed, age, dogPic, dogBio, disable } =
     req.body.petProfile;
 
   const petProfile = new PetProfile({
-    userid,
+    userId: req.user._id,
     dogName,
     breed,
     age,
@@ -25,7 +25,8 @@ router.post("/add", async (req, res) => {
 });
 
 //GET:
-router.get("/", async (req, res) => {
+// !User specific pet/s
+router.get("/", validateSession, async (req, res) => {
   try {
     const petProfile = await PetProfile.find();
     res.json({ petProfile: petProfile });
@@ -34,12 +35,23 @@ router.get("/", async (req, res) => {
   }
 });
 
+//! Searching by zip codes - suggestion:
+// This link is helpful:https://stackoverflow.com/questions/8303900/mongodb-mongoose-findmany-find-all-documents-with-ids-listed-in-array
+// const user = await User.findById(id).select("_id, zipcode")
+// let user =[{_id: "", zipcode:""}]
+//Map through this, using a function 
+// const userId = user.map()
+
 //delete
-router.delete("/:id", async (req, res) => {
+//! Add in admin verification in order to have access to delete
+//see user.controller from Rob's movie example
+// ! Ensure someone is the owner before deleting
+router.delete("/:id", validateSession, async (req, res) => {
   console.log(req.params);
   try {
     const deletedPetProfile = await PetProfile.deleteOne({
       _id: req.params.id,
+      userId: req.user._id,
     });
     res.json({
       message:
@@ -55,10 +67,11 @@ router.delete("/:id", async (req, res) => {
 });
 
 //update
-router.patch("/update/:id", async (req, res) => {
+router.patch("/update/:id", validateSession, async (req, res) => {
   console.log(req.params);
   try {
-    const filter = { _id: req.params.id };
+    const filter = { _id: req.params.id,
+    userId: req.user._id };
     const dataToReplace = req.body.petProfile;
     const returnOptions = {
       returnOriginal: false,
@@ -76,7 +89,7 @@ router.patch("/update/:id", async (req, res) => {
 });
 
 //get
-router.get("/:id", async (req, res) => {
+router.get("/:id", validateSession, async (req, res) => {
   try {
     const petProfile = await PetProfile.findById(req.params.id);
     res.json({ petProfile: petProfile });
