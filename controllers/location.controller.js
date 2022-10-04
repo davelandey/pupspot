@@ -10,8 +10,6 @@ router.post("/add", validateSession, async (req, res) => {
 
 //!search accessability for non members by zip code
 
-router.post("/add", async (req, res) => {
-
   const {
     latitude,
     longitude,
