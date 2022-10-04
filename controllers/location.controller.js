@@ -1,9 +1,11 @@
 const router = require("express").Router();
 // const validateSession = require("../middleware/validate-session");
 const Location = require("../models/location.model");
+// const SeedData = require("../assets/seed.data.json");
+
+//!search accessability for non members by zip code
 
 router.post("/add", async (req, res) => {
-  // res.json({ message: "location" });
   const {
     latitude,
     longitude,
@@ -51,8 +53,8 @@ router.get("/", async (req, res) => {
 });
 
 //delete
+//!Admin access do delete example user - movie...
 router.delete("/:id", async (req, res) => {
-  console.log(req.params);
   try {
     const deletedLocation = await Location.deleteOne({ _id: req.params.id });
     res.json({
@@ -98,5 +100,15 @@ router.get("/:id", async (req, res) => {
     res.json({ message: error.message });
   }
 });
+
+//SEED
+// router.get("/insertAll", async (req, res) => {
+//   try {
+//     const insertedLocation = await Location.insertMany(SeedData);
+//     res.json({ Location: insertedLocation });
+//   } catch (error) {
+//     res.json({ message: error.message });
+//   }
+// });
 
 module.exports = router;
