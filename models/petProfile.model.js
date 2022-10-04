@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const PetProfileSchema = new mongoose.Schema({
-  userid: {
+  userId: {
     type: String,
     required: true,
     unique: true,

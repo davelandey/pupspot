@@ -1,19 +1,23 @@
 const router = require("express").Router();
-const { rawListeners } = require("../models/message.model");
 const Message = require("../models/message.model");
+const validateSession = require("../middleware/validate-session.js")
 
 //* <<<<<<< ADDING A MESSAGE >>>>>>>>>>
 
-router.post("/add" , async (req, res) => {
+router.post("/add/:locationId", validateSession, async (req, res) => {
    // res.json({message: "This is a post from message controller!"})
    // console.log(req.body)
 
-   const {locationId, userName, body, timeStamp, disable} = req.body.message;
+  //  **Validate session will replace userName below - once this is in, can remove this (req.user.userName)
+   const {locationId, userName, userId, body, timeStamp, disable} = req.body.message;
 
    const message = new Message({
       //locationId change to req.location._id once location is up and running
-      locationId,
-      userName,
+      // locationId: req.location._id,
+      locationId: req.params.locationId,
+      // locationId: req.query.locationId,
+      userName: req.user.userName,
+      userId: req.user._id,
       body,
       timeStamp,
       disable,
@@ -23,16 +27,16 @@ router.post("/add" , async (req, res) => {
       const newMessage = await message.save();
       res.json({ message: newMessage });
     } catch (error) {
-      res.json({ message: error.message });
+      res.json({ message: error });
     }
   
   });
 
-  //* <<<<<<< GETTING ALL MESSAGES >>>>>>>>>>
-
-  router.get("/", async (req, res) => {
+//* <<<<<<< GETTING ALL MESSAGES BASED ON LOCATION >>>>>>>>>>
+//!Add filtering here for location messages - filter option (req.params.locationId)
+  router.get("/:locationId", validateSession, async (req, res) => {
    try {
-     const message = await Message.find();
+     const message = await Message.find({locationId: req.params.locationId});
      res.json({ message: message });
    } catch (error) {
      res.json({ message: error.message });
@@ -41,6 +45,8 @@ router.post("/add" , async (req, res) => {
 
   //* <<<<<<< DELETING A MESSAGE >>>>>>>>>>
 
+//! Add in admin verification in order to have access to delete
+//see user.controller from Rob's movie example
   router.delete("/:id", async (req, res) => {
    console.log(req.params);
    try {
@@ -65,7 +71,7 @@ router.post("/add" , async (req, res) => {
 
 //! We will also need to connect this to the userName OWNER connected with the message
 //Users can only edit their own messages
-router.patch("/update/:id", async (req, res) => {
+router.patch("/update/:id", validateSession, async (req, res) => {
    console.log(req.params);
    try {
      const filter = { _id: req.params.id };
@@ -73,6 +79,7 @@ router.patch("/update/:id", async (req, res) => {
      const returnOptions = {
        returnOriginal: false,
      };
+    //  *Owner ID = req.user.user-ID, this goes in filter - best to use this as it is constant
      const message = await Message.findOneAndUpdate(
        filter,
        dataToReplace,
@@ -83,6 +90,9 @@ router.patch("/update/:id", async (req, res) => {
      res.json({ message: error.message });
    }
  });
+
+
+  
 
 
 module.exports = router;

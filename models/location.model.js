@@ -39,6 +39,9 @@ const LocationSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
+  userId: {
+    type: String,
+  }
 });
 
 module.exports = mongoose.model("Location", LocationSchema);

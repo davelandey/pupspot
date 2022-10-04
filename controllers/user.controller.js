@@ -2,6 +2,7 @@ const router = require("express").Router();
 const User = require("../models/user.model");
 const bcrypt = require('bcrypt');
 const jwt = require("jsonwebtoken");
+const validateSession = require("../middleware/validate-session.js")
 
 router.post("/signup", async (req, res) => {
 //   res.json({ message: "This is a post from signup controller!" });
@@ -16,7 +17,7 @@ const {
 const user = new User({
     firstName: firstName,
     userName: userName,
-    password: bcrypt.hashSync(req.body.user.password, 10),
+    password: bcrypt.hashSync(password, 10),
     zipcode: zipcode,
     email: email,
   });
@@ -67,23 +68,7 @@ router.post("/login", async (req, res) => {
   }
 });
 
-router.patch("/update/:id", async (req, res)=>{
-    // res.json({message: "You are about to edit your profile!"})
-    // const{
-    //   admin,
-    //   firstName,
-    //   lastName,
-    //   userName,
-    //   password,
-    //   privacySettings,
-    //   profilePic,
-    //   humanBio,
-    //   zipcode,
-    //   email,
-    //   disable
-    // } =req.body.user;
-    //Will need to onKeystroke check if username is unique - if we want to do this
-    //Another option would be to not display/disbale a user from editing it
+router.patch("/update/:id", validateSession, async (req, res)=>{
 
     try{
         const filter = {_id: req.params.id};
@@ -105,11 +90,14 @@ router.patch("/update/:id", async (req, res)=>{
   });
    
 
-router.patch("/delete", async (req, res)=>{
+router.patch("/delete", validateSession, async (req, res)=>{
     res.json({message: "You are about to delete your profile - well, disable, unless you are admin"})
 
 
 } )
+
+ //? STRETCH GOAL: Create a route for filtering by location (zip code) 
+  //See Handy Links, Geonames.org for Rob's resources
 
 module.exports = router;
 
