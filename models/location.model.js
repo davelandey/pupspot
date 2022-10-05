@@ -23,7 +23,7 @@ const LocationSchema = new mongoose.Schema({
     type: String,
   },
   zipcode: {
-    type: Number,
+    type: String,
   },
   placeBio: {
     type: String,
