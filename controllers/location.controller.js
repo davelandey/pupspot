@@ -1,12 +1,12 @@
 const router = require("express").Router();
 const validateSession = require("../middleware/validate-session");
 const Location = require("../models/location.model");
+const SeedData = require("../assets/test.location.seed.data.json")
 
 // !if req.user.admin ===false then return res.json message - not admin
 router.post("/add", validateSession, async (req, res) => {
   // res.json({ message: "location" });
 
-// const SeedData = require("../assets/seed.data.json");
 
 //!search accessability for non members by zip code
 
@@ -111,14 +111,14 @@ router.get("/:id", validateSession, async (req, res) => {
   }
 });
 
-//SEED
-// router.get("/insertAll", async (req, res) => {
-//   try {
-//     const insertedLocation = await Location.insertMany(SeedData);
-//     res.json({ Location: insertedLocation });
-//   } catch (error) {
-//     res.json({ message: error.message });
-//   }
-// });
+// SEED
+router.get("/insertAll", async (req, res) => {
+  try {
+    const insertedLocation = await Location.insertMany(SeedData);
+    res.json({ Location: insertedLocation });
+  } catch (error) {
+    res.json({ message: error.message });
+  }
+});
 
 module.exports = router;

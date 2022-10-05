@@ -1,0 +1,49 @@
+{
+    "location": [
+        {
+            "latitude": 44.5133620273294,
+            "longitude": -73.2678652593858,
+            "locationCategory": "Dog park",
+            "locationName": "Starr farm",
+            "streetAddress": "1 Sunset Cliff Rd",
+            "city": "Burlington",
+            "state": "VT",
+            "zipcode": "05408",
+            "hoursOfOperation": [
+                {
+                    "day": "Monday"
+                },
+                {
+                    "hours": "9 - 5"
+                }
+            ],
+            "placebio": "A cool place, in the NNE - with two fenced in play areas for small and big dogs. ",
+            "phone": "1802888888",
+            "website": "https://www.google.com/maps/place/Starr+Farm+Dog+Park/@44.5133888,-73.2700325,17z/data=!4m12!1m6!3m5!1s0x4cca6f8aa3383a6f:0xf10c6076a2e01493!2sStarr+Farm+Dog+Park!8m2!3d44.513385!4d-73.2678438!3m4!1s0x4cca6f8aa3383a6f:0xf10c6076a2e01493!8m2!3d44.513385!4d-73.2678438?hl=en",
+            "disable": false
+        },
+        {
+            "latitude": 44.4603663686511,
+            "longitude": -73.2332931023865,
+            "locationCategory": "Dog park",
+            "locationName": "Oakledge Park",
+            "streetAddress": "11 Flynn Ave",
+            "city": "Burlington",
+            "state": "VT",
+            "zipcode": "05401",
+            "hoursOfOperation": [
+                {
+                    "day": "Monday"
+                },
+                {
+                    "hours": "9 - 5"
+                }
+            ],
+            "placebio": "Leashed dogs welcome, nice for swimming!",
+            "phone": "1802888888",
+            "website": "https://enjoyburlington.com/place/oakledge-park-2/",
+            "disable": false
+        }
+    ]
+}
+
