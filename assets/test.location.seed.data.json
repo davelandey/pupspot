@@ -1,6 +1,6 @@
-{
-    "location": [
+[
         {
+            "_id": "633f0ec66cdcdbe4bfaac0bb",
             "latitude": 44.5133620273294,
             "longitude": -73.2678652593858,
             "locationCategory": "Dog park",
@@ -23,6 +23,7 @@
             "disable": false
         },
         {
+            "_id": "633f114b80203ee5b3d19cf1",
             "latitude": 44.4603663686511,
             "longitude": -73.2332931023865,
             "locationCategory": "Dog park",
@@ -45,5 +46,4 @@
             "disable": false
         }
     ]
-}
 
