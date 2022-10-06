@@ -1,6 +1,6 @@
 import './App.css';
 import { Routes, Route, NavLink } from "react-router-dom";
-import Header from './components/Header';
+import Header from './components/Header/Header';
 import Navbar from './components/Navbar';
 import Signup from './components/Signup';
 import Login from './components/Login';
@@ -8,15 +8,15 @@ import Footer from './components/Footer';
 import Map from './components/Map';
 import Profile from './components/Profile';
 
+
 function App() {
   return (
     <div className="App">
-      <p className="pupSpot-text">PupSpot</p>
+      <Header />
       <h1>Heading 1</h1>
       <h2>Heading 2</h2>
       <h3>Heading 3</h3>
  
-      <Header />
       <Navbar />
       <Login />
       <Signup />

@@ -1,0 +1,45 @@
+.header-bar{
+    background-color: #0077B6;
+}
+
+.headerCol1{
+    align-self: center;
+}
+
+.pupSpot-text{
+    text-align: left;
+    line-height:2.5em;
+    padding: none;
+    margin: none;  
+    background-color: blueviolet;
+
+}
+
+.hydrant{
+    line-height:2.5em;
+    width: 6rem;
+    border: 0.1rem solid black;
+    border-radius: 6%;
+    align-content: center;
+    align-items: center;
+    align-self: center;
+    background-color: orange;
+}
+
+.hydrant:hover{
+    width: 6.2em;
+}
+
+.pupSpot-text:hover{
+    text-shadow: 2px 2px 4px white;
+}
+
+.headerTagLine{
+text-align: center;
+padding: none;
+margin: none;
+background-color: brown;
+}
+.headerTagLine:hover{
+    font-style:oblique;
+}
