@@ -112,9 +112,10 @@ router.get("/:id", validateSession, async (req, res) => {
 });
 
 // SEED
-router.get("/insertAll", async (req, res) => {
+router.get("/insertAll", validateSession, async (req, res) => {
+  // res.json({message: "Your insertAll endpoint is working"})
   try {
-    const insertedLocation = await Location.insertMany(SeedData);
+    const insertedLocation = await Location.insertMany({SeedData});
     res.json({ Location: insertedLocation });
   } catch (error) {
     res.json({ message: error.message });
