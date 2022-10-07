@@ -1,25 +1,24 @@
 import "./App.css";
 import { Routes, Route, NavLink } from "react-router-dom";
-import Header from "./components/Header";
-import Signup from "./components/Signup";
-import Login from "./components/Login";
-import Footer from "./components/Footer";
-import Map from "./components/Map";
-import Profile from "./components/Profile";
-import NavbarComponent from "./components/NavbarComponent";
+import Header from "./components/Header/Header";
+import Signup from "./components/Signup/Signup";
+import Login from "./components/Login/Login";
+import Footer from "./components/Footer/Footer";
+import Map from "./components/Map/Map";
+import Profile from "./components/Profile/Profile";
+import NavbarComponent from "./components/NavbarComponent/NavbarComponent";
 import "bootstrap/dist/css/bootstrap.min.css";
-
 
 function App() {
   return (
     <div className="App">
+      <Header />
       <NavbarComponent />
       <p className="pupSpot-text">PupSpot</p>
       <h1>Heading 1</h1>
       <h2>Heading 2</h2>
       <h3>Heading 3</h3>
 
-      <Header />
       <Login />
       <Signup />
       <Profile />

@@ -36,23 +36,3 @@ h3 {
   font-family: "Raleway", sans-serif;
   font-weight: 200;
 }
-
-/* -----FOOTER----- */
-
-.footer {
-  padding: 1rem;
-  color: white;
-  background-color: #3a5a40;
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  height: auto;
-}
-
-.signUpLink {
-  text-decoration: none;
-  font-weight: bold;
-}
-
-.copyright {
-}

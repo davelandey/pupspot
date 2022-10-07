@@ -1,6 +1,7 @@
 import React from "react";
-import Signup from "./Signup.jsx";
+// import Signup from "./Signup.jsx";
 import { Col, Row, Container } from "reactstrap";
+import "./Footer.css";
 
 const Footer = (props) => {
   //Current year for copywrite:
