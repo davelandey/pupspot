@@ -25,7 +25,7 @@ function App() {
         <Route path="/restaurants" element={<Map />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
-        {/* <Route path="/profile" element={<Profile/>}/> */}
+        <Route path="/profile" element={<Profile/>}/>
       </Routes>
     </div>
   );

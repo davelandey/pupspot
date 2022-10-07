@@ -10,7 +10,7 @@ const Profile = (props) => {
       <>
     <Container className="profilePage">
       {/* One row, across page */}
-      <Row>
+      <Row >
         {/* Column one */}
     <Col
       className="bg-light border"
@@ -41,9 +41,10 @@ const Profile = (props) => {
     <Col
       className="bg-light border"
       xxl ="4"
+      style={{overflow: "scroll", height: "500px" }}
     >
       <Form>
-  <FormGroup>
+  <FormGroup className="FormGroup">
     <Label for="exampleEmail">
       Email
     </Label>
