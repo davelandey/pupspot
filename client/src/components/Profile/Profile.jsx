@@ -1,4 +1,9 @@
+import "./Profile.css"
+
+
+
 const Profile = (props) => {
+
     return ( 
     <>
     <h1>Your info, here. Profile page. </h1>
