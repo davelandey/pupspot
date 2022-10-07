@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const validateSession = require("../middleware/validate-session");
 const Location = require("../models/location.model");
-const SeedData = require("../assets/test.location.seed.data.json")
+const SeedData = require("../assets/location.seed.data.json")
 
 // !if req.user.admin ===false then return res.json message - not admin
 router.post("/add", validateSession, async (req, res) => {
@@ -101,6 +101,17 @@ router.patch("/update/:id", validateSession, async (req, res) => {
   }
 });
 
+// SEED
+router.get("/insertAll", validateSession, async (req, res) => {
+  // res.json({message: "Your insertAll endpoint is working"})
+  try {
+    const insertedLocation = await Location.insertMany(SeedData);
+    res.json({ Location: insertedLocation });
+  } catch (error) {
+    res.json({ message: error });
+  }
+});
+
 //get
 router.get("/:id", validateSession, async (req, res) => {
   try {
@@ -111,15 +122,5 @@ router.get("/:id", validateSession, async (req, res) => {
   }
 });
 
-// SEED
-router.get("/insertAll", validateSession, async (req, res) => {
-  // res.json({message: "Your insertAll endpoint is working"})
-  try {
-    const insertedLocation = await Location.insertMany({SeedData});
-    res.json({ Location: insertedLocation });
-  } catch (error) {
-    res.json({ message: error.message });
-  }
-});
 
 module.exports = router;

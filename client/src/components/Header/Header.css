@@ -1,0 +1,52 @@
+.header-bar{
+    background-color: #0077B6;
+}
+
+.headerCol1{
+    align-self: center;
+}
+
+.pupSpot-text{
+    text-align: left;
+    line-height:2.5em;
+    padding: none;
+    margin: none;  
+}
+
+.hydrant{
+    line-height:2.5em;
+    width: 15vw;
+    /* border: 0.1rem solid black; */
+    border-radius: 6%;
+    align-content: center;
+    align-items: center;
+    align-self: center;
+    margin: none;
+    align-self: left
+    ;
+}
+
+.hydrant:hover{
+    animation-name: hydrantSpin;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-delay: 1ms;
+} 
+
+ @keyframes hydrantSpin {
+    from {transform: rotatez(0deg)}
+    to {transform: rotateZ(360deg)}
+}  
+
+.pupSpot-text:hover{
+    text-shadow: 2px 2px 4px white;
+}
+
+.headerTagLine{
+text-align: center;
+padding: none;
+margin: none;
+}
+.headerTagLine:hover{
+    font-style:oblique;
+}

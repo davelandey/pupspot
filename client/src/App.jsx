@@ -9,6 +9,7 @@ import Profile from "./components/Profile";
 import NavbarComponent from "./components/NavbarComponent";
 import "bootstrap/dist/css/bootstrap.min.css";
 
+
 function App() {
   return (
     <div className="App">
