@@ -5,6 +5,7 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Input,
     FormGroup, } from 'reactstrap';
 import { NavLink } from "react-router-dom";
 
+
 const Login = (args) => {
     const [modal, setModal] = useState(false);
     const [backdrop, setBackdrop] = useState(true);
@@ -28,7 +29,8 @@ const Login = (args) => {
     <>
     <Button onClick={toggle} >
               {" "}
-              <NavLink className="login-button" to={"/login"}>Login</NavLink>
+              {/* Removed from below: to={"/login"} */}
+              <NavLink className="login-button" >Login</NavLink>
             </Button>
 
 
@@ -52,6 +54,7 @@ const Login = (args) => {
           </Button>
         </ModalFooter>
       </Modal>
+
 
 
 
