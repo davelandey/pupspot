@@ -66,27 +66,26 @@ const NavbarComponent = (args) => {
                   </NavLink>
                 </DropdownItem>
               </DropdownMenu>
+              {/* Trying to add settings tab to navbar - maybe float right? Will need a different route/path*/}
+              {/* <DropdownToggle nav caret>
+                Settings
+              </DropdownToggle>
+              <DropdownMenu left>
+                <DropdownItem>
+                  <NavLink
+                    activeClassName="active"
+                    className="nav-link"
+                    to={"/profile"}
+                  >
+          
+                    User Profile
+                  </NavLink> */}
             </UncontrolledDropdown>
-            <NavItem>
-              <NavLink
-                activeClassName="active"
-                className="nav-link"
-                to={"/profile"}
-              >
-                Profile
-              </NavLink>
-            </NavItem>
           </Nav>
 
-          {/* <NavbarText> */}
-
+          <NavbarText>
             <Login />
-            {/* <Button >
-              {" "}
-              <NavLink className="login-button" to={"/login"}>Login</NavLink>
-            </Button> */}
-          {/* </NavbarText> */}
-
+          </NavbarText>
         </Collapse>
       </Navbar>
     </div>
