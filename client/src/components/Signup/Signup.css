@@ -1,0 +1,12 @@
+.signup {
+  margin: 10vh;
+}
+
+.submitButton {
+  background-color: #3a5a40 !important;
+}
+
+/* work on bold? */
+.signUpForm {
+  font-weight: bold;
+}
