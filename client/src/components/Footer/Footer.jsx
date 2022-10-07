@@ -1,9 +1,13 @@
 import React from "react";
-// import Signup from "./Signup.jsx";
 import { Col, Row, Container } from "reactstrap";
 import "./Footer.css";
+import { NavLink } from "react-router-dom";
 
 const Footer = (props) => {
+  let activeStyle = { textDecoration: "none", color: "white" };
+
+  //!WHAT COLOR?
+  let inActiveStyle = { textDecoration: "none", color: "white" };
   //Current year for copywrite:
   const currentYear = new Date().getFullYear();
   const yearTxt = currentYear === 2022 ? "2022" : "2022 - " + currentYear;
@@ -15,11 +19,14 @@ const Footer = (props) => {
           <Col className="copyright"> PupSpot © {yearTxt}</Col>
           <Col className="mid"></Col>
 
-          <Col className="signUpLink">
-            {" "}
-            <a style={{ textDecoration: "none", color: "white" }} href="Signup">
-              <span style={{ fontWeight: "bold" }}>SIGNUP</span>
-            </a>
+          <Col>
+            <NavLink
+              className="signUpLink"
+              to={"/signup"}
+              style={({ isActive }) => (isActive ? activeStyle : inActiveStyle)}
+            >
+              SIGNUP
+            </NavLink>
           </Col>
         </Row>
       </Container>

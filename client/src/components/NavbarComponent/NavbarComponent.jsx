@@ -14,7 +14,6 @@ import {
   NavbarText,
   Button,
 } from "reactstrap";
-
 import "./navbar.css";
 import Login from "../Login/Login";
 
@@ -78,6 +77,7 @@ const NavbarComponent = (args) => {
               </NavLink>
             </NavItem>
           </Nav>
+
           {/* <NavbarText> */}
 
             <Login />
@@ -86,6 +86,7 @@ const NavbarComponent = (args) => {
               <NavLink className="login-button" to={"/login"}>Login</NavLink>
             </Button> */}
           {/* </NavbarText> */}
+
         </Collapse>
       </Navbar>
     </div>
