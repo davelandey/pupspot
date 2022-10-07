@@ -5,7 +5,7 @@ import Signup from "./components/Signup/Signup";
 import Login from "./components/Login/Login";
 import Footer from "./components/Footer/Footer";
 import Map from "./components/Map/Map";
-import Profile from "./components/Profile/Profile";
+import Profile from "./components/Profile/ProfilePage";
 import NavbarComponent from "./components/NavbarComponent/NavbarComponent";
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -14,6 +14,7 @@ function App() {
     <div className="App">
       <Header />
       <NavbarComponent />
+
 
       <Footer />
 
@@ -24,6 +25,7 @@ function App() {
         <Route path="/restaurants" element={<Map />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+        {/* <Route path="/profile" element={<Profile/>}/> */}
       </Routes>
     </div>
   );

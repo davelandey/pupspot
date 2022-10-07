@@ -15,6 +15,7 @@ import {
   Button,
 } from "reactstrap";
 import "./navbar.css";
+import Login from "../Login/Login";
 
 const NavbarComponent = (args) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -76,14 +77,16 @@ const NavbarComponent = (args) => {
               </NavLink>
             </NavItem>
           </Nav>
-          <NavbarText>
-            <Button>
+
+          {/* <NavbarText> */}
+
+            <Login />
+            {/* <Button >
               {" "}
-              <NavLink className="login-button" to={"/login"}>
-                Login
-              </NavLink>
-            </Button>
-          </NavbarText>
+              <NavLink className="login-button" to={"/login"}>Login</NavLink>
+            </Button> */}
+          {/* </NavbarText> */}
+
         </Collapse>
       </Navbar>
     </div>
