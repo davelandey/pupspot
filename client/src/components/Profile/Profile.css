@@ -3,8 +3,8 @@ Container{
 }
 
 .profilePage{
-    /* width: 100%; */
-    height: 80% !important;
+    width: 100% !important;
+    height: 50% !important;
     align-content: center;
     background-color: green;
     padding: none;

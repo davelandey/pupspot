@@ -14,8 +14,7 @@ function App() {
     <div className="App">
       <Header />
       <NavbarComponent />
-
-
+      {/* <Profile/> */}
       <Footer />
 
       <Routes>
@@ -26,7 +25,7 @@ function App() {
         {/* Removed because of duplicate login button issue. Will delete once we understand more about how data will be collected in form. */}
         {/* <Route path="/login" element={<Login />} /> */}
         <Route path="/signup" element={<Signup />} />
-        <Route path="/profile" element={<Profile/>}/>
+        <Route path="/user-profile" element={<Profile/>}/>
       </Routes>
     </div>
   );
