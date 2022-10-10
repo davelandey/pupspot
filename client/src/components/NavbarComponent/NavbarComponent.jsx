@@ -13,14 +13,23 @@ import {
   DropdownItem,
   NavbarText,
   Button,
+  Modal,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
 } from "reactstrap";
 import "./navbar.css";
 import Login from "../Login/Login";
+import Profile from "../Profile/ProfilePage";
+import { FiSettings } from "react-icons/fi";
 
 const NavbarComponent = (args) => {
   const [isOpen, setIsOpen] = useState(false);
-
   const toggle = () => setIsOpen(!isOpen);
+
+  const [modal, setModal] = useState(false);
+  const toggleUserProfile = () => setModal(!modal);
+
   return (
     <div>
       <Navbar color="light" light expand="md">
@@ -66,20 +75,59 @@ const NavbarComponent = (args) => {
                   </NavLink>
                 </DropdownItem>
               </DropdownMenu>
-              {/* Trying to add settings tab to navbar - maybe float right? Will need a different route/path*/}
-              {/* <DropdownToggle nav caret>
-                Settings
+            </UncontrolledDropdown>
+            <UncontrolledDropdown nav inNavbar>
+              <DropdownToggle nav caret>
+                <FiSettings /> Settings
               </DropdownToggle>
               <DropdownMenu left>
+                <DropdownItem>
+                  <Button color="danger" onClick={toggleUserProfile}>
+                    User Profile
+                  </Button>
+                  <Modal isOpen={modal} toggle={toggleUserProfile}  size="xl" style = {{width: "80%", height:"90%", overflow: "scroll"}} >
+                    <ModalHeader toggle={toggleUserProfile}>
+                      User Profile
+                    </ModalHeader>
+                    <ModalBody id="user-profile-modal">
+                      <Profile />
+                    </ModalBody>
+                    <ModalFooter>
+                      <Button color="primary" onClick={toggleUserProfile}>
+                        Submit
+                      </Button>{" "}
+                      <Button color="secondary" onClick={toggleUserProfile}>
+                        Cancel
+                      </Button>
+                    </ModalFooter>
+                  </Modal>
+                  {/* <NavLink
+                    activeClassName="active"
+                    className="nav-link"
+                    to={"/user-profile"}
+                  >
+                      User Profile
+                  </NavLink> */}
+                </DropdownItem>
                 <DropdownItem>
                   <NavLink
                     activeClassName="active"
                     className="nav-link"
-                    to={"/profile"}
+                    to={"/pet-profile"}
                   >
-          
-                    User Profile
-                  </NavLink> */}
+                    Pet Profile
+                  </NavLink>
+                </DropdownItem>
+                <DropdownItem>
+                  <NavLink
+                    activeClassName="active"
+                    className="nav-link"
+                    to={"/privacy-policy"}
+                  >
+                    Privacy policy
+                  </NavLink>
+                </DropdownItem>
+              </DropdownMenu>
             </UncontrolledDropdown>
           </Nav>
 
