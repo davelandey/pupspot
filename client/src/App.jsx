@@ -10,6 +10,19 @@ import NavbarComponent from "./components/NavbarComponent/NavbarComponent";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
+
+//fetching JSON restaurant data
+const [locationData, setLocationtData] = useState([]);
+useEffect((e) => {
+  async function getData() {
+    let response = await fetch("https://yelpington-server-ebilodeau.herokuapp.com/");
+    let locationData = await response.json();
+    setLocationData(locationData);
+  }
+  getData();
+}, []);
+
+
   return (
     <div className="App">
       <Header />
