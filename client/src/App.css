@@ -42,6 +42,7 @@ h3 {
 /* -----COLOR THEME----- */
 /* https://www.freecodecamp.org/news/how-to-easily-create-themes-with-css-variables-2d0f4cfa5b9a/ */
 :root {  
+  /* colors */
   --blue: #0077B6;  
   --green: #3A5A40;  
   --yellow: #FFB703;  
