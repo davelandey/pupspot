@@ -10,21 +10,34 @@ import NavbarComponent from "./components/NavbarComponent/NavbarComponent";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useState, useEffect } from "react";
 import React from "react";
+import {Endpoints} from "./components/Routes/Endpoints";
+import { RouteFetch } from "./components/Routes";
 
 function App() {
+  const [locations, setLocations] = useState([]);
 
-//fetching JSON restaurant data
-const [locationData, setLocationData] = useState([]);
-useEffect((e) => {
-  async function getData() {
-    let response = await fetch("https://pupspot-2022.herokuapp.com/");
-    let locationData = await response.json();
-    setLocationData(locationData);
-  }
-  getData();
-}, []);
+  const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNDU4NTU2NjIxY2U0MTFkNDZjMDQ3ZCIsImlhdCI6MTY2NTUwMzQ4NiwiZXhwIjoxNjY1NTg5ODg2fQ.QpIms398MGB6Hxdhmjysrkc6pvUpf9m0Zv3GAVVV2tE"
+  const fetchLocations = async () => {
+    
+    console.log("getall locations");
 
-console.log(locationData)
+    try {
+      RouteFetch.get(Endpoints.location.getall, callback);
+
+      function callback(data) {
+        setLocations(data.location);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchLocations();
+  }, []);
+
+console.log(locations)
+
 
   return (
     <div className="App">
