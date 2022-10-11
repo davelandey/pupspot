@@ -13,10 +13,12 @@ const Signup = (props) => {
           <Col className="signUpFormCol">
             {" "}
             <Form>
+<div className="signup-header">
+
+              <h3>SIGN UP</h3>
+</div>
+
               <FormGroup>
-                <Label for="Username">
-                  <h3>Username</h3>
-                </Label>
                 <Input
                   id="Username"
                   name="Username"
@@ -25,9 +27,7 @@ const Signup = (props) => {
                 />
               </FormGroup>
               <FormGroup>
-                <Label for="Email">
-                  <h3>Email</h3>
-                </Label>
+          
                 <Input
                   id="Email"
                   name="email"
@@ -36,13 +36,11 @@ const Signup = (props) => {
                 />
               </FormGroup>
               <FormGroup>
-                <Label for="Password">
-                  <h3>Password</h3>
-                </Label>
+           
                 <Input
                   id="Password"
                   name="password"
-                  placeholder="password"
+                  placeholder="Password"
                   type="password"
                 />
               </FormGroup>
