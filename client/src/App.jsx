@@ -8,6 +8,7 @@ import Map from "./components/Map/Map";
 import Profile from "./components/Profile/ProfilePage";
 import NavbarComponent from "./components/NavbarComponent/NavbarComponent";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { MapContainer, TileLayer, useMap } from 'react-leaflet'
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <Header />
       <NavbarComponent />
       {/* <Profile/> */}
+
       <Footer />
 
       <Routes>
