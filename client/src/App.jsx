@@ -8,20 +8,23 @@ import Map from "./components/Map/Map";
 import Profile from "./components/Profile/ProfilePage";
 import NavbarComponent from "./components/NavbarComponent/NavbarComponent";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { useState, useEffect } from "react";
+import React from "react";
 
 function App() {
 
 //fetching JSON restaurant data
-const [locationData, setLocationtData] = useState([]);
+const [locationData, setLocationData] = useState([]);
 useEffect((e) => {
   async function getData() {
-    let response = await fetch("https://yelpington-server-ebilodeau.herokuapp.com/");
+    let response = await fetch("https://pupspot-2022.herokuapp.com/");
     let locationData = await response.json();
     setLocationData(locationData);
   }
   getData();
 }, []);
 
+console.log(locationData)
 
   return (
     <div className="App">
