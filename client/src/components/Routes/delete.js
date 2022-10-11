@@ -1,12 +1,17 @@
-export async function Get(endpoint, callback, token){
+//Not sure if this is correct
+//Still async function still needs to be put in a JSX file
+
+export async function Delete(endpoint, body, callback, token){
+
+    let bodyObject = JSON.stringify(body);
 
     let myHeaders = new Headers();
     myHeaders.append("Authorization", token);
 
     const requestOptions = {
-      method: "GET",
+      method: "DELETE",
       headers: myHeaders,
-      //no body needs to be sent in a GET
+      body: bodyObject,
     };
 
     try {

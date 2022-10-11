@@ -16,7 +16,8 @@ import { RouteFetch } from "./components/Routes";
 function App() {
   const [locations, setLocations] = useState([]);
 
-  const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNDU4NTU2NjIxY2U0MTFkNDZjMDQ3ZCIsImlhdCI6MTY2NTUwMzQ4NiwiZXhwIjoxNjY1NTg5ODg2fQ.QpIms398MGB6Hxdhmjysrkc6pvUpf9m0Zv3GAVVV2tE"
+  // const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNDU4NTU2NjIxY2U0MTFkNDZjMDQ3ZCIsImlhdCI6MTY2NTUwMzQ4NiwiZXhwIjoxNjY1NTg5ODg2fQ.QpIms398MGB6Hxdhmjysrkc6pvUpf9m0Zv3GAVVV2tE"
+
   const fetchLocations = async () => {
     
     console.log("getall locations");

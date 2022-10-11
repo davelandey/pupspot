@@ -12,6 +12,8 @@ import {
 } from "reactstrap";
 import { NavLink } from "react-router-dom";
 import "./login.css";
+import {RouteFetch} from "../Routes"
+import { Endpoints } from "../Routes/Endpoints";
 
 const Login = (args) => {
   const [modal, setModal] = useState(false);
@@ -31,7 +33,26 @@ const Login = (args) => {
     setKeyboard(e.currentTarget.checked);
   };
 
-  return (
+//*-----LOGIN POSTING DATA------
+const [userData, setUserData] = useState("");
+
+async function handleSubmit(event) { 
+console.log("post login")
+
+try {
+  RouteFetch.post(Endpoints.user.login, callback);
+
+  function callback(data) {
+    setUserData(data.user);
+  }
+} catch (error) {
+  console.error(error);
+}
+};
+
+
+
+return (
     <>
       <Button onClick={toggle}>
         {" "}
@@ -39,7 +60,7 @@ const Login = (args) => {
         <NavLink className="login-button">Login</NavLink>
       </Button>
 
-      <Form>
+      <Form onSubmit={handleSubmit}>
         <Modal
           isOpen={modal}
           toggle={toggle}

@@ -22,8 +22,8 @@ if(token) {
         const data = await response.json();
 
         //just send back the data, instead of data.token
-        console.log(data.token);
-        callback(data.token);
+        console.log(data);
+        callback(data);
     } catch (error) {
         console.error(error);
     }
