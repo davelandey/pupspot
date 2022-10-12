@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { Container, Row, Col } from "reactstrap";
-import MovieCreate from "./MovieCreate";
-import MovieTable from "./MovieTable";
-import MovieEdit from "./MovieEdit";
+import PetProfilePage from "./PetProfilePage";
+import PetProfileCard from "./PetProfileCard";
+import PetProfileEdit from "./PetProfileEdit";
 import { Endpoints } from "../Endpoints";
 
 function PetProfileIndex(props) {
-  const [movies, setMovies] = useState([]);
+  const [pets, setPets] = useState([]);
   const [updateActive, setUpdateActive] = useState(false);
-  const [movieToUpdate, setMovieToUpdate] = useState({});
+  const [petToUpdate, setPetToUpdate] = useState({});
 
-  const editUpdateMovie = (movie) => {
-    setMovieToUpdate(movie);
-    console.log(movie);
+  const editUpdatePet = (pet) => {
+    setPetToUpdate(pet);
+    console.log(pet);
   };
 
   const updateOn = () => {
@@ -23,9 +23,9 @@ function PetProfileIndex(props) {
     setUpdateActive(false);
   };
 
-  const fetchMovies = async () => {
-    // TODO fetch all the movies
-    console.log("getall movies");
+  const fetchPets = async () => {
+    // TODO fetch all the pets
+    console.log("getall pets");
     let myHeaders = new Headers();
     myHeaders.append("Authorization", props.token);
 
@@ -35,40 +35,40 @@ function PetProfileIndex(props) {
     }
 
     try {
-      const response = await fetch(Endpoints.movie.getall, requestOptions);
+      const response = await fetch(Endpoints.pet.getall, requestOptions);
       const data = await response.json();
-      console.log(data.movie);
-      setMovies(data.movie);
+      console.log(data.pet);
+      setPets(data.pet);
     } catch (error) {
       console.error(error);
     }
   };
 
   useEffect(() => {
-    fetchMovies();
+    fetchPets();
   }, []);
 
   return (
     <Container>
       <Row>
         <Col md="3">
-          <MovieCreate fetchMovies={fetchMovies} token={props.token} />
+          <PetProfilePage fetchPets={fetchPets} token={props.token} />
         </Col>
         <Col md="9">
-          <MovieTable
-            movies={movies}
-            fetchMovies={fetchMovies}
+          <PetProfileCard
+            pets={pets}
+            fetchPets={fetchPets}
             token={props.token}
-            editUpdateMovie={editUpdateMovie}
+            editUpdatePet={editUpdatePet}
             updateOn={updateOn}
           />
         </Col>
         {updateActive ? (
-          <MovieEdit
-            movieToUpdate={movieToUpdate}
+          <PetProfileEdit
+            petToUpdate={petToUpdate}
             updateOff={updateOff}
             token={props.token}
-            fetchMovies={fetchMovies}
+            fetchPets={fetchPets}
           />
         ) : null}
       </Row>
@@ -76,4 +76,4 @@ function PetProfileIndex(props) {
   );
 }
 
-export default MovieIndex;
+export default PetProfileIndex;
