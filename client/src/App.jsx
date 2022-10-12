@@ -1,7 +1,6 @@
 import "./App.css";
 import { Routes, Route, NavLink } from "react-router-dom";
 import Header from "./components/Header/Header";
-
 import Signup from "./components/Auth/Signup/Signup";
 import Login from "./components/Auth/Login/Login";
 
@@ -14,16 +13,13 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 import { useState, useEffect } from "react";
 import React from "react";
-import {Endpoints} from "./components/Routes/Endpoints";
+import { Endpoints } from "./components/Routes/Endpoints";
 import { RouteFetch } from "./components/Routes";
 import Auth from "./components/Auth/Auth";
 
-
-
 function App() {
-
-//*----TOKEN----
-const [sessionToken, setSessionToken] = useState("");
+  //*----TOKEN----
+  const [sessionToken, setSessionToken] = useState("");
 
   useEffect(() => {
     if (localStorage.getItem("token")) {
@@ -42,7 +38,6 @@ const [sessionToken, setSessionToken] = useState("");
     console.log(newToken);
   };
 
-
   const protectedViews = () => {
     return localStorage.getItem("token") === sessionToken ? (
       <Map token={sessionToken} />
@@ -56,7 +51,6 @@ const [sessionToken, setSessionToken] = useState("");
   // const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNDU4NTU2NjIxY2U0MTFkNDZjMDQ3ZCIsImlhdCI6MTY2NTUwMzQ4NiwiZXhwIjoxNjY1NTg5ODg2fQ.QpIms398MGB6Hxdhmjysrkc6pvUpf9m0Zv3GAVVV2tE"
 
   const fetchLocations = async () => {
-    
     console.log("getall locations");
 
     try {
@@ -74,8 +68,7 @@ const [sessionToken, setSessionToken] = useState("");
     // fetchLocations();
   }, []);
 
-console.log(locations)
-
+  console.log(locations);
 
   return (
     <div className="App">
@@ -85,7 +78,6 @@ console.log(locations)
       {/* <Profile/> */}
 
       <Footer />
-
 
       <Footer />
       <Routes>
@@ -99,8 +91,12 @@ console.log(locations)
       </Routes>
     </div>
   );
-  {/* Removed because of duplicate login button issue. Will delete once we understand more about how data will be collected in form. */}
-  {/* <Route path="/login" element={<Login />} /> */}
+  {
+    /* Removed because of duplicate login button issue. Will delete once we understand more about how data will be collected in form. */
+  }
+  {
+    /* <Route path="/login" element={<Login />} /> */
+  }
 }
 
 export default App;
