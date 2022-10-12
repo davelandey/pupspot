@@ -50,7 +50,7 @@ const NavbarComponent = (props) => {
               <DropdownToggle nav caret>
                 Locations
               </DropdownToggle>
-              <DropdownMenu right>
+              <DropdownMenu left>
                 <DropdownItem>
                   <NavLink
                     activeClassName="active"

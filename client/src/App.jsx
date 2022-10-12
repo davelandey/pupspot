@@ -75,7 +75,7 @@ function App() {
 
       <NavbarComponent sessionToken={sessionToken} clearToken={clearToken} updateToken={updateToken} />
       {/* <Profile/> */}
-
+      <Map />
       <Footer />
 
       <Footer />
