@@ -19,11 +19,11 @@ import {
   ModalFooter,
 } from "reactstrap";
 import "./navbar.css";
-import Login from "../Login/Login";
+import Login from "../Auth/Login/Login";
 import Profile from "../Profile/ProfilePage";
 import { FiSettings } from "react-icons/fi";
 
-const NavbarComponent = (args) => {
+const NavbarComponent = (props) => {
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
 
@@ -132,7 +132,7 @@ const NavbarComponent = (args) => {
           </Nav>
 
           <NavbarText>
-            <Login />
+            <Login updateToken={props.updateToken} />
           </NavbarText>
         </Collapse>
       </Navbar>

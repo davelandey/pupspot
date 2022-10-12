@@ -1,5 +1,5 @@
 export async function Post(endpoint, body, callback, token) {
-
+console.log("post.js")
     let bodyObject = JSON.stringify(body);
 
 

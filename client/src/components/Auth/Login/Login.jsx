@@ -6,16 +6,16 @@ import {
   ModalBody,
   ModalFooter,
   Input,
-  Label,
   Form,
   FormGroup,
 } from "reactstrap";
 import { NavLink } from "react-router-dom";
 import "./login.css";
-import {RouteFetch} from "../Routes"
-import { Endpoints } from "../Routes/Endpoints";
+import { RouteFetch } from "../../Routes";
+import { Endpoints } from "../../Routes/Endpoints";
 
-const Login = (args) => {
+const Login = (props) => {
+  // Modal Stuff
   const [modal, setModal] = useState(false);
   const [backdrop, setBackdrop] = useState(true);
   const [keyboard, setKeyboard] = useState(true);
@@ -33,26 +33,33 @@ const Login = (args) => {
     setKeyboard(e.currentTarget.checked);
   };
 
-//*-----LOGIN POSTING DATA------
-const [userData, setUserData] = useState("");
+  //*-----LOGIN POSTING DATA------
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
 
-async function handleSubmit(event) { 
-console.log("post login")
+  async function handleSubmit(event) {
+    event.preventDefault();
+    console.log("post login");
 
-try {
-  RouteFetch.post(Endpoints.user.login, callback);
+    let body = {
+      user: {
+        username: username,
+        password: password,
+      },
+    };
+  
 
-  function callback(data) {
-    setUserData(data.user);
+    try {
+     await RouteFetch.post(Endpoints.user.login, body, (data) =>
+        props.updateToken(data.token)
+        // close the modal
+     );
+    } catch (error) {
+      console.error(error);
+    }
   }
-} catch (error) {
-  console.error(error);
-}
-};
 
-
-
-return (
+  return (
     <>
       <Button onClick={toggle}>
         {" "}
@@ -67,7 +74,6 @@ return (
           backdrop={"static"}
           keyboard={false}
           centered={true}
-          {...args}
         >
           <ModalHeader className="modal-header" toggle={toggle}>
             <span className="modal-header-text">
@@ -77,6 +83,9 @@ return (
           <ModalBody>
             <FormGroup>
               <Input
+                onChange={(event) => {
+                  setUsername(event.target.value);
+                }}
                 id="Username"
                 name="Username"
                 placeholder="Username"
@@ -86,13 +95,16 @@ return (
 
             <FormGroup>
               <Input
+                onChange={(event) => {
+                  setPassword(event.target.value);
+                }}
                 id="Password"
                 name="password"
                 placeholder="Password"
                 type="password"
               />
               <div className="btn-container">
-                <Button onClick={toggle} className="submitButton">
+                <Button onClick={handleSubmit} type="submit" className="submitButton">
                   Submit
                 </Button>
               </div>
