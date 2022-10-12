@@ -76,7 +76,7 @@ function App() {
 
       <NavbarComponent updateToken={updateToken} />
       {/* <Profile/> */}
-
+      <Map />
       <Footer />
 
       <Footer />
