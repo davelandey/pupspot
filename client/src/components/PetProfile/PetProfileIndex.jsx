@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Container, Row, Col } from "reactstrap";
-import MovieCreate from "./MovieCreate";
-import MovieTable from "./MovieTable";
-import MovieEdit from "./MovieEdit";
+// import MovieCreate from "./MovieCreate";
+// import MovieTable from "./MovieTable";
+import PetProfileEdit from "./PetProfileEdit";
 import { Endpoints } from "../Endpoints";
 
 function PetProfileIndex(props) {
@@ -32,7 +32,7 @@ function PetProfileIndex(props) {
     const requestOptions = {
       method: "GET",
       headers: myHeaders,
-    }
+    };
 
     try {
       const response = await fetch(Endpoints.movie.getall, requestOptions);

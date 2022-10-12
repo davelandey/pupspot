@@ -7,6 +7,13 @@ export const Endpoints = {
   },
   location: {
     getall: `${APIURL}/location/`,
-  
+  },
+  petProfile: {
+    getall: `${APIURL}/petProfile/movie`,
+    getById: `${APIURL}/petProfile/:id`,
+    //EDIT DELETE FUNCTION?
+    delete: `${APIURL}/petProfile/:id`,
+    create: `${APIURL}/petProfile/add`,
+    update: `${APIURL}/petProfile/update/:id`,
   },
 };

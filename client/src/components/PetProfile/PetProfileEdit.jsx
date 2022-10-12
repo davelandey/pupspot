@@ -10,69 +10,83 @@ import {
   Button,
 } from "reactstrap";
 
-const MovieEdit = (props) => {
-  const [editMovieTitle, setEditMovieTitle] = useState(
-    props.movieToUpdate.movieTitle
-  );
-  const [editYear, setEditYear] = useState(props.movieToUpdate.movieYear);
-  const [editRating, setEditRating] = useState(props.movieToUpdate.rating);
+const PetProfileEdit = (props) => {
+  // PET NAME:
+  const [editPetName, setEditPetName] = useState(props.petToUpdate.petName);
+  // PET AGE:
+  const [editAge, setEditAge] = useState(props.petToUpdate.petAge);
+  //BREED
+  const [editBreed, setEditBreed] = useState(props.petToUpdate.breed);
+  //BIO
+  const [editBio, setEditBio] = useState(props.petToUpdate.bio);
+  //DOGPIC
+  const [editPetPic, setEditPetPic] = useState(props.petToUpdate.petPic);
 
   const updateCurrent = (event) => {
     event.preventDefault();
-
-    // TODO Update fetch
-    // TODO after update fetch the movies again and run the updateOff()
-    // props.fetchMovies()
-    // props.updateOff()
   };
 
   return (
     <Modal isOpen={true}>
-      <ModalHeader>Log a Movie</ModalHeader>
+      <ModalHeader>Edit Your Pet Profile!</ModalHeader>
       <ModalBody>
         <Form onSubmit={updateCurrent}>
+          {/* NAME */}
           <FormGroup>
-            <Label htmlFor="result">Edit Movie Title:</Label>
+            <Label htmlFor="pet-name">Edit Pet Name:</Label>
             <Input
-              name="result"
-              value={editMovieTitle}
-              onChange={(e) => setEditMovieTitle(e.target.value)}
+              name="pet-name"
+              value={editPetName}
+              onChange={(e) => setEditPetName(e.target.value)}
             />
           </FormGroup>
+          {/* AGE */}
           <FormGroup>
-            <Label htmlFor="description">Edit Movie Year:</Label>
+            <Label htmlFor="pet-age">Edit Pet Age:</Label>
             <Input
-              name="description"
-              value={editYear}
-              onChange={(e) => setEditYear(e.target.value)}
+              name="pet-age"
+              value={editAge}
+              onChange={(e) => setEditAge(e.target.value)}
             />
           </FormGroup>
+          {/* BREED */}
           <FormGroup>
-            <Label htmlFor="definition">Edit Definition:</Label>
+            <Label htmlFor="breed">Edit Breed:</Label>
             <Input
               type="select"
-              name="definition"
-              value={editRating}
-              onChange={(e) => setEditRating(e.target.value)}
-            >
-              <option></option>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
-              <option value="7">7</option>
-              <option value="8">8</option>
-              <option value="9">9</option>
-              <option value="10">10</option>
-            </Input>
+              name="breed"
+              value={editBreed}
+              onChange={(e) => setEditBreed(e.target.value)}
+            />{" "}
           </FormGroup>
-          <Button type="submit">Update the movie!</Button>
+
+          {/* BIO */}
+          <FormGroup>
+            <Label htmlFor="pet-bio">Edit Pet Bio:</Label>
+            <Input
+              name="pet-bio"
+              value={editBio}
+              onChange={(e) => setEditBio(e.target.value)}
+            />
+          </FormGroup>
+
+          {/* DOGPIC */}
+          <FormGroup>
+            <Label htmlFor="pet-pic">Edit Pet Picture:</Label>
+            <Input
+              name="pet-pic"
+              value={editPetPic}
+              onChange={(e) => setEditPetPic(e.target.value)}
+            />
+          </FormGroup>
+
+          {/* BUTTON */}
+
+          <Button type="submit">Update!</Button>
         </Form>
       </ModalBody>
     </Modal>
   );
 };
 
-export default MovieEdit;
+export default PetProfileEdit;
