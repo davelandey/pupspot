@@ -11,11 +11,13 @@ import Profile from "./components/Profile/ProfilePage";
 import PetProfile from "./components/PetProfile/PetProfilePage";
 import NavbarComponent from "./components/NavbarComponent/NavbarComponent";
 import "bootstrap/dist/css/bootstrap.min.css";
+
 import { useState, useEffect } from "react";
 import React from "react";
 import {Endpoints} from "./components/Routes/Endpoints";
 import { RouteFetch } from "./components/Routes";
 import Auth from "./components/Auth/Auth";
+
 
 
 function App() {
@@ -81,6 +83,7 @@ console.log(locations)
 
       <NavbarComponent updateToken={updateToken} />
       {/* <Profile/> */}
+
       <Footer />
 
 
