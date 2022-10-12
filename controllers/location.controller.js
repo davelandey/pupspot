@@ -48,7 +48,7 @@ router.post("/add", validateSession, async (req, res) => {
 });
 
 //GET:
-router.get("/", validateSession, async (req, res) => {
+router.get("/",  async (req, res) => {
   try {
     const location = await Location.find();
     res.json({ location: location });

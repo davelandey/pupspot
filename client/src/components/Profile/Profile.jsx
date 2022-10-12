@@ -24,7 +24,7 @@ const Profile = (props) => {
 
     return ( 
     <>
-    <Container className="profilePage">
+    <Container className="profilePage" fluid>
       <Row>
     <Col
       className="bg-light border"
