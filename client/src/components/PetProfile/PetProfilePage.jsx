@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import "./Profile.css";
+import React, { useState, useEffect } from "react";
+import "./PetProfile.css";
 import { NavLink } from "react-router-dom";
 import {
   Container,
@@ -23,16 +23,26 @@ import {
   CardText,
 } from "reactstrap";
 
-const Profile = (props) => {
+// Trying custom dropdown
+import "bootstrap/dist/css/bootstrap.min.css";
+import CustomListDropDown from "./CustomListDropDown";
+
+const PetProfile = (props) => {
   const [modal, setModal] = useState(false);
   const toggle = () => setModal(!modal);
 
+  //Age Slider
+  const [value, onChange] = useState(1);
+  useEffect(() => {
+    const ele = document.querySelector(".buble");
+    if (ele) {
+      ele.style.left = `${Number(value / 4)}px`;
+    }
+  });
+
   return (
     <>
-      {/* <Button color="danger" onClick={toggle}>
-    <NavLink className="login-button" >User Profile</NavLink>
-      </Button> */}
-      <Container className="profilePage" style={{ width: "95%" }}>
+      <Container className="petprofilePage" style={{ width: "95%" }}>
         {/* One row, across page */}
         <Row>
           {/* Column one - will adjust to size, automatically*/}
@@ -45,49 +55,44 @@ const Profile = (props) => {
               <Row>
                 <Col m="2">
                   <FormGroup className="FormGroup">
-                    <Label for="exampleEmail">First name:</Label>
+                    <Label for="Petname">Pet's name:</Label>
                     <Input
-                      id="userProfileFirstName"
-                      name="userProfileFirstName"
-                      placeholder="Add/Edit your first name"
+                      id="Petname"
+                      name="petProfileFirstName"
+                      placeholder="Add/Edit pet name"
                       type="string"
                     />
                   </FormGroup>
                   <FormGroup className="FormGroup">
-                    <Label for="exampleEmail">Last name:</Label>
-                    <Input
-                      id="userProfileLastName"
-                      name="userProfileLastName"
-                      placeholder="Add/Edit your last name"
+                    {/* <Input
+                      id="petProfileBreed"
+                      name="petProfileBreed"
+                      placeholder="Add/Edit your pet's breed"
                       type="string"
-                    />
+                    /> */}
+                    <CustomListDropDown />
                   </FormGroup>
-                  <FormGroup className="FormGroup">
-                    <Label for="exampleEmail">User name:</Label>
-                    <Input
-                      id="userProfileUserName"
-                      name="userProfileUserName"
-                      placeholder="Add/Edit your user name"
-                      type="string"
+                  <FormGroup className="slider-parent">
+                    Age:{" "}
+                    <input
+                      type="range"
+                      min="1"
+                      max="20"
+                      value={value}
+                      onChange={({ target: { value: radius } }) => {
+                        onChange(radius);
+                      }}
                     />
+                    <div className="buble">{value}</div>
                   </FormGroup>
-                  <FormGroup>
-                    <Label for="userProfilePassword">Password</Label>
-                    <Input
-                      id="userProfilePassword"
-                      name="userProfilePassword"
-                      placeholder="Edit your password"
-                      type="password"
-                    />
+
+                  <FormGroup className="radio-sex" check>
+                    <Input name="radio2" type="radio" />{" "}
+                    <Label check>MALE</Label>
                   </FormGroup>
-                  <FormGroup>
-                    <Label for="userProfileZipcode">Zipcode:</Label>
-                    <Input
-                      id="userProfileZipcode"
-                      name="userProfileZipcode"
-                      placeholder="Add/Edit your zipcode"
-                      type="string"
-                    />
+                  <FormGroup check>
+                    <Input name="radio2" type="radio" />{" "}
+                    <Label check>FEMALE</Label>
                   </FormGroup>
                 </Col>
                 <Col xs="4">
@@ -98,7 +103,7 @@ const Profile = (props) => {
                   >
                     <img alt="Sample" src="https://picsum.photos/300/200" />
                     <CardBody>
-                      <CardTitle tag="h5">[userName]</CardTitle>
+                      <CardTitle tag="h5">[petName]</CardTitle>
                       <CardSubtitle className="mb-2 text-muted" tag="h6">
                         Card subtitle
                       </CardSubtitle>
@@ -112,13 +117,13 @@ const Profile = (props) => {
                 </Col>
               </Row>
               <FormGroup>
-                <Label for="exampleText">About me:</Label>
+                <Label for="exampleText">Pet bio:</Label>
                 <Input id="exampleText" name="text" type="textarea" />
               </FormGroup>
               <FormGroup>
-                <Label for="exampleFile">Profile picture</Label>
+                <Label for="exampleFile">Pet Profile picture</Label>
                 <Input id="exampleFile" name="file" type="file" />
-                <FormText>Upload your profile picture here.</FormText>
+                <FormText>Upload your pet's profile picture here.</FormText>
               </FormGroup>
               <FormGroup tag="fieldset">
                 <legend>Privacy Settings</legend>
@@ -152,4 +157,4 @@ const Profile = (props) => {
   );
 };
 
-export default Profile;
+export default PetProfile;

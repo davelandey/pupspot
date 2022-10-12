@@ -1,0 +1,33 @@
+Container {
+  /* width: 100%; */
+}
+
+.profilePage {
+  width: 100% !important;
+  height: 50% !important;
+  align-content: center;
+  background-color: green;
+  padding: none;
+  margin: none;
+  margin-bottom: 10%;
+}
+Form {
+  height: 30%;
+}
+
+#Menu-item-1 {
+  align-content: center;
+  text-align: center;
+}
+
+.slider-parent {
+  position: relative;
+  margin-top: 8%;
+}
+
+.buble {
+  position: absolute;
+}
+.radio-sex {
+  margin-top: 8%;
+}
