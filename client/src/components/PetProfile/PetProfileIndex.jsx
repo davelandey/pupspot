@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Container, Row, Col } from "reactstrap";
+
 import PetProfilePage from "./PetProfilePage";
 import PetProfileCard from "./PetProfileCard";
 import PetProfileEdit from "./PetProfileEdit";
@@ -32,7 +33,7 @@ function PetProfileIndex(props) {
     const requestOptions = {
       method: "GET",
       headers: myHeaders,
-    }
+    };
 
     try {
       const response = await fetch(Endpoints.pet.getall, requestOptions);
