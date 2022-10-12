@@ -21,6 +21,7 @@ import {
 import "./navbar.css";
 import Login from "../Login/Login";
 import Profile from "../Profile/ProfilePage";
+import PetProfile from "../PetProfile/PetProfilePage";
 import { FiSettings } from "react-icons/fi";
 
 const NavbarComponent = (args) => {
@@ -29,6 +30,9 @@ const NavbarComponent = (args) => {
 
   const [modal, setModal] = useState(false);
   const toggleUserProfile = () => setModal(!modal);
+
+  const [modalPet, setModalPet] = useState(false);
+  const toggleUserPetProfile = () => setModalPet(!modalPet);
 
   return (
     <div>
@@ -85,7 +89,16 @@ const NavbarComponent = (args) => {
                   <Button color="danger" onClick={toggleUserProfile}>
                     User Profile
                   </Button>
-                  <Modal isOpen={modal} toggle={toggleUserProfile}  size="xl" style = {{width: "80%", height:"90%", overflow: "scroll"}} >
+                  <Modal
+                    isOpen={modal}
+                    toggle={toggleUserProfile}
+                    size="xl"
+                    style={{
+                      width: "80%",
+                      height: "90%",
+                      overflow: "scroll-y",
+                    }}
+                  >
                     <ModalHeader toggle={toggleUserProfile}>
                       User Profile
                     </ModalHeader>
@@ -101,23 +114,39 @@ const NavbarComponent = (args) => {
                       </Button>
                     </ModalFooter>
                   </Modal>
-                  {/* <NavLink
-                    activeClassName="active"
-                    className="nav-link"
-                    to={"/user-profile"}
-                  >
-                      User Profile
-                  </NavLink> */}
                 </DropdownItem>
+                {/* Pet Profile */}
                 <DropdownItem>
-                  <NavLink
-                    activeClassName="active"
-                    className="nav-link"
-                    to={"/pet-profile"}
-                  >
+                  <Button color="danger" onClick={toggleUserPetProfile}>
                     Pet Profile
-                  </NavLink>
+                  </Button>
+                  <Modal
+                    isOpen={modalPet}
+                    toggle={toggleUserPetProfile}
+                    size="xl"
+                    style={{
+                      width: "80%",
+                      height: "90%",
+                      overflow: "scroll-y",
+                    }}
+                  >
+                    <ModalHeader toggle={toggleUserPetProfile}>
+                      Pet Profile
+                    </ModalHeader>
+                    <ModalBody id="pet-profile-modal">
+                      <PetProfile />
+                    </ModalBody>
+                    <ModalFooter>
+                      <Button color="primary" onClick={toggleUserPetProfile}>
+                        Submit
+                      </Button>{" "}
+                      <Button color="secondary" onClick={toggleUserPetProfile}>
+                        Cancel
+                      </Button>
+                    </ModalFooter>
+                  </Modal>
                 </DropdownItem>
+                {/* Privacy */}
                 <DropdownItem>
                   <NavLink
                     activeClassName="active"
