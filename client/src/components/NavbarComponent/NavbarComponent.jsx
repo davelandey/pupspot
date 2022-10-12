@@ -93,7 +93,11 @@ const NavbarComponent = (args) => {
                     isOpen={modal}
                     toggle={toggleUserProfile}
                     size="xl"
-                    style={{ width: "80%", height: "90%", overflow: "scroll" }}
+                    style={{
+                      width: "80%",
+                      height: "90%",
+                      overflow: "scroll-y",
+                    }}
                   >
                     <ModalHeader toggle={toggleUserProfile}>
                       User Profile
@@ -117,10 +121,14 @@ const NavbarComponent = (args) => {
                     Pet Profile
                   </Button>
                   <Modal
-                    isOpen={modal}
+                    isOpen={modalPet}
                     toggle={toggleUserPetProfile}
                     size="xl"
-                    style={{ width: "80%", height: "90%", overflow: "scroll" }}
+                    style={{
+                      width: "80%",
+                      height: "90%",
+                      overflow: "scroll-y",
+                    }}
                   >
                     <ModalHeader toggle={toggleUserPetProfile}>
                       Pet Profile

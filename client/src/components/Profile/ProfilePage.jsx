@@ -16,11 +16,11 @@ import {
   // ModalHeader,
   // ModalBody,
   // ModalFooter,
-  Card, 
+  Card,
   CardBody,
   CardTitle,
   CardSubtitle,
-  CardText
+  CardText,
 } from "reactstrap";
 
 const Profile = (props) => {
@@ -39,7 +39,7 @@ const Profile = (props) => {
           <Col
             className="bg-light border"
             xxl="4"
-            style={{ overflow: "scroll", height: "50%" }}
+            style={{ overflow: "scroll-y", height: "50%" }}
           >
             <Form>
               <Row>

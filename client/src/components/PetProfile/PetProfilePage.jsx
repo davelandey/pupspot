@@ -23,6 +23,10 @@ import {
   CardText,
 } from "reactstrap";
 
+// Trying custom dropdown
+import "bootstrap/dist/css/bootstrap.min.css";
+import CustomListDropDown from "./CustomListDropDown";
+
 const PetProfile = (props) => {
   const [modal, setModal] = useState(false);
   const toggle = () => setModal(!modal);
@@ -45,7 +49,7 @@ const PetProfile = (props) => {
           <Col
             className="bg-light border"
             xxl="4"
-            style={{ overflow: "scroll", height: "50%" }}
+            style={{ overflow: "scroll-y", height: "50%" }}
           >
             <Form>
               <Row>
@@ -60,15 +64,16 @@ const PetProfile = (props) => {
                     />
                   </FormGroup>
                   <FormGroup className="FormGroup">
-                    <Label for="exampleEmail">Breed</Label>
-                    <Input
-                      id="userProfileLastName"
-                      name="userProfileLastName"
+                    {/* <Input
+                      id="petProfileBreed"
+                      name="petProfileBreed"
                       placeholder="Add/Edit your pet's breed"
                       type="string"
-                    />
+                    /> */}
+                    <CustomListDropDown />
                   </FormGroup>
                   <FormGroup className="slider-parent">
+                    Age:{" "}
                     <input
                       type="range"
                       min="1"
