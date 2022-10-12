@@ -20,14 +20,18 @@ Form {
   text-align: center;
 }
 
-.slider-parent {
+.birthdate {
   position: relative;
-  margin-top: 8%;
+  margin-top: 40%;
 }
 
 .buble {
   position: absolute;
 }
 .radio-sex {
-  margin-top: 8%;
+  margin-top: 40%;
+}
+
+.petName {
+  margin-top: 10%;
 }
