@@ -50,7 +50,7 @@ const NavbarComponent = (props) => {
               <DropdownToggle nav caret>
                 Locations
               </DropdownToggle>
-              <DropdownMenu right>
+              <DropdownMenu left>
                 <DropdownItem>
                   <NavLink
                     activeClassName="active"
@@ -161,7 +161,7 @@ const NavbarComponent = (props) => {
           </Nav>
 
           <NavbarText>
-            <Login updateToken={props.updateToken} />
+            <Login sessionToken={props.sessionToken} clearToken={props.clearToken} updateToken={props.updateToken} />
           </NavbarText>
         </Collapse>
       </Navbar>

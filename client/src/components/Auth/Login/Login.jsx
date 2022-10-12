@@ -19,7 +19,24 @@ const Login = (props) => {
   const [modal, setModal] = useState(false);
   const [backdrop, setBackdrop] = useState(true);
   const [keyboard, setKeyboard] = useState(true);
-  const toggle = () => setModal(!modal);
+  //Original code below
+  // const toggle = () => setModal(!modal)
+
+console.log(props.sessionToken)
+
+  const toggle = () => {
+    if (props.sessionToken) {
+      console.log("clear token");
+      props.clearToken();
+    } else {
+      //this doesn't seem to be doing anything...
+      console.log("close modal");
+      setModal(!modal);
+    }
+  };
+
+  // if props.token then clear token
+  //else set modal
 
   const changeBackdrop = (e) => {
     let { value } = e.target;
@@ -34,8 +51,8 @@ const Login = (props) => {
   };
 
   //*-----LOGIN POSTING DATA------
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [userName, setUserName] = useState("testUser1");
+  const [password, setPassword] = useState("123");
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -43,17 +60,19 @@ const Login = (props) => {
 
     let body = {
       user: {
-        username: username,
+        userName: userName,
         password: password,
       },
     };
-  
 
     try {
-     await RouteFetch.post(Endpoints.user.login, body, (data) =>
-        props.updateToken(data.token)
+      await RouteFetch.post(
+        Endpoints.user.login,
+        body,
+        (data) => props.updateToken(data.token)
         // close the modal
-     );
+      );
+      setModal(!modal);
     } catch (error) {
       console.error(error);
     }
@@ -64,7 +83,10 @@ const Login = (props) => {
       <Button onClick={toggle}>
         {" "}
         {/* Removed from below: to={"/login"} */}
-        <NavLink className="login-button">Login</NavLink>
+        <NavLink className="login-button">
+        {!props.sessionToken ? "LOGIN" : "LOGOUT"}
+        
+        </NavLink>
       </Button>
 
       <Form onSubmit={handleSubmit}>
@@ -77,14 +99,14 @@ const Login = (props) => {
         >
           <ModalHeader className="modal-header" toggle={toggle}>
             <span className="modal-header-text">
-              <h3>LOGIN</h3>
+LOGIN
             </span>
           </ModalHeader>
           <ModalBody>
             <FormGroup>
               <Input
                 onChange={(event) => {
-                  setUsername(event.target.value);
+                  setUserName(event.target.value);
                 }}
                 id="Username"
                 name="Username"
@@ -104,7 +126,11 @@ const Login = (props) => {
                 type="password"
               />
               <div className="btn-container">
-                <Button onClick={handleSubmit} type="submit" className="submitButton">
+                <Button
+                  onClick={handleSubmit}
+                  type="submit"
+                  className="submitButton"
+                >
                   Submit
                 </Button>
               </div>

@@ -3,6 +3,7 @@ import { Container, Row, Col } from "reactstrap";
 import "./Map.css";
 
 const Map = (props) => {
+   
   return (
     <>
       <Container ClassName="MapContainer" fluid>
@@ -14,13 +15,8 @@ const Map = (props) => {
               scrollWheelZoom={true}
             >
               <TileLayer
-                // attribution='<a href="http://jawg.io" title="Tiles Courtesy of Jawg Maps" target="_blank">&copy; <b>Jawg</b>Maps</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                // url="https://{s}.tile.jawg.io/jawg-streets/{z}/{x}/{y}{r}.png?access-token={accessToken}"
-                url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}"
-                // minZoom: 0
-                // maxZoom: 22
-                // subdomains: 'abcd'
-                // accessToken: 'process.env.APIKEY'
+                attribution='<a href=\"https://www.jawg.io\" target=\"_blank\">&copy; Jawg</a> - <a href=\"https://www.openstreetmap.org\" target=\"_blank\">&copy; OpenStreetMap</a>&nbsp;contributors'
+                url = {`https://{s}.tile.jawg.io/jawg-streets/{z}/{x}/{y}{r}.png?access-token=${process.env.REACT_APP_APIKEYMAP}`}
               />
               <Marker position={[44.49080732835979, -73.18607660265336]}>
                 <Popup>
