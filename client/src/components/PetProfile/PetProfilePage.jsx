@@ -147,4 +147,4 @@ const PetProfile = (props) => {
   );
 };
 
-export default PetProfile;
+export default PetProfilePage;
