@@ -1,3 +1,4 @@
+import DatePicker from "react-date-picker";
 import React, { useState, useEffect } from "react";
 import "./PetProfile.css";
 import { NavLink } from "react-router-dom";
@@ -23,22 +24,15 @@ import {
   CardText,
 } from "reactstrap";
 
-// Trying custom dropdown
 import "bootstrap/dist/css/bootstrap.min.css";
 import CustomListDropDown from "./CustomListDropDown";
+// DATE:
 
 const PetProfile = (props) => {
   const [modal, setModal] = useState(false);
   const toggle = () => setModal(!modal);
-
-  //Age Slider
-  const [value, onChange] = useState(1);
-  useEffect(() => {
-    const ele = document.querySelector(".buble");
-    if (ele) {
-      ele.style.left = `${Number(value / 4)}px`;
-    }
-  });
+  // DATE:
+  const [value, onChange] = useState(new Date());
 
   return (
     <>
@@ -53,8 +47,8 @@ const PetProfile = (props) => {
           >
             <Form>
               <Row>
-                <Col m="2">
-                  <FormGroup className="FormGroup">
+                <Col m="4">
+                  <FormGroup className="petName">
                     <Label for="Petname">Pet's name:</Label>
                     <Input
                       id="Petname"
@@ -63,29 +57,6 @@ const PetProfile = (props) => {
                       type="string"
                     />
                   </FormGroup>
-                  <FormGroup className="FormGroup">
-                    {/* <Input
-                      id="petProfileBreed"
-                      name="petProfileBreed"
-                      placeholder="Add/Edit your pet's breed"
-                      type="string"
-                    /> */}
-                    <CustomListDropDown />
-                  </FormGroup>
-                  <FormGroup className="slider-parent">
-                    Age:{" "}
-                    <input
-                      type="range"
-                      min="1"
-                      max="20"
-                      value={value}
-                      onChange={({ target: { value: radius } }) => {
-                        onChange(radius);
-                      }}
-                    />
-                    <div className="buble">{value}</div>
-                  </FormGroup>
-
                   <FormGroup className="radio-sex" check>
                     <Input name="radio2" type="radio" />{" "}
                     <Label check>MALE</Label>
@@ -95,6 +66,25 @@ const PetProfile = (props) => {
                     <Label check>FEMALE</Label>
                   </FormGroup>
                 </Col>
+                <Col m="4">
+                  <FormGroup className="FormGroup">
+                    <CustomListDropDown />
+                    {/* Leaving the below in case we want users to manually enter breed? */}
+                    {/* <Input
+                      id="petProfileBreed"
+                      name="petProfileBreed"
+                      placeholder="Add/Edit your pet's breed"
+                      type="string"
+                    /> */}
+                  </FormGroup>
+
+                  <FormGroup className="birthdate">
+                    Birth Date:
+                    <DatePicker onChange={onChange} value={value} />
+                    {/* working */}
+                  </FormGroup>
+                </Col>
+
                 <Col xs="4">
                   <Card
                     style={{
@@ -116,7 +106,7 @@ const PetProfile = (props) => {
                   </Card>
                 </Col>
               </Row>
-              <FormGroup>
+              <FormGroup className="petBio">
                 <Label for="exampleText">Pet bio:</Label>
                 <Input id="exampleText" name="text" type="textarea" />
               </FormGroup>
