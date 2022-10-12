@@ -27,7 +27,7 @@ export default class CustomListDropDown extends React.Component {
   }
 
   componentDidMount() {
-    fetch(`https://api.TheDogAPI.com/v1/breeds?${process.env.APIKEYBREEDS}`)
+    fetch(`https://api.TheDogAPI.com/v1/breeds?${process.env.REACT_APP_APIKEYBREEDS}`)
       .then((response) => response.json())
       .then((res) => this.setState({ collection: res }));
   }

@@ -161,7 +161,7 @@ const NavbarComponent = (props) => {
           </Nav>
 
           <NavbarText>
-            <Login updateToken={props.updateToken} />
+            <Login sessionToken={props.sessionToken} clearToken={props.clearToken} updateToken={props.updateToken} />
           </NavbarText>
         </Collapse>
       </Navbar>

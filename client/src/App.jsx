@@ -2,8 +2,6 @@ import "./App.css";
 import { Routes, Route, NavLink } from "react-router-dom";
 import Header from "./components/Header/Header";
 import Signup from "./components/Auth/Signup/Signup";
-import Login from "./components/Auth/Login/Login";
-
 import Footer from "./components/Footer/Footer";
 import Map from "./components/Map/Map";
 import Profile from "./components/Profile/ProfilePage";
@@ -27,6 +25,7 @@ function App() {
     }
   }, []);
 
+  // pass down to login button
   const clearToken = () => {
     localStorage.clear();
     setSessionToken("");
@@ -74,7 +73,7 @@ function App() {
     <div className="App">
       <Header />
 
-      <NavbarComponent updateToken={updateToken} />
+      <NavbarComponent sessionToken={sessionToken} clearToken={clearToken} updateToken={updateToken} />
       {/* <Profile/> */}
       <Map />
       <Footer />
@@ -85,7 +84,7 @@ function App() {
         <Route path="/dog-parks" element={<Map />} />
         <Route path="/trails" element={<Map />} />
         <Route path="/restaurants" element={<Map />} />
-        <Route path="/signup" element={<Signup />} />
+        <Route path="/signup" element={<Signup updateToken={updateToken}/>} />
         <Route path="/user-profile" element={<Profile />} />
         <Route path="/pet-profile" element={<PetProfile />} />
       </Routes>
