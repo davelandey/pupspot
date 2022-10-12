@@ -14,13 +14,13 @@ const Map = (props) => {
               scrollWheelZoom={true}
             >
               <TileLayer
-                attribution='<a href="http://jawg.io" title="Tiles Courtesy of Jawg Maps" target="_blank">&copy; <b>Jawg</b>Maps</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                url="https://{s}.tile.jawg.io/jawg-streets/{z}/{x}/{y}{r}.png?access-token={accessToken}"
-                // url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}"
-                minZoom: 0
-                maxZoom: 22
-                subdomains: 'abcd'
-                accessToken: 'process.env.APIKEY'
+                // attribution='<a href="http://jawg.io" title="Tiles Courtesy of Jawg Maps" target="_blank">&copy; <b>Jawg</b>Maps</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                // url="https://{s}.tile.jawg.io/jawg-streets/{z}/{x}/{y}{r}.png?access-token={accessToken}"
+                url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}"
+                // minZoom: 0
+                // maxZoom: 22
+                // subdomains: 'abcd'
+                // accessToken: 'process.env.APIKEY'
               />
               <Marker position={[44.49080732835979, -73.18607660265336]}>
                 <Popup>
