@@ -1,23 +1,32 @@
-Container{
-    /* width: 100%; */
+Container {
+  /* width: 100%; */
 }
 
-.profilePage{
-    width: 100% !important;
-    height: 50% !important;
-    align-content: center;
-    background-color: green;
-    padding: none;
-    margin: none;
-    margin-bottom: 10%;
+.profilePage {
+  width: 100% !important;
+  height: 50% !important;
+  align-content: center;
+  background-color: green;
+  padding: none;
+  margin: none;
+  margin-bottom: 10%;
 }
-Form{
-    height: 30%;
+Form {
+  height: 30%;
 }
 
-#Menu-item-1{
-    align-content: center;
-    text-align: center;
+#Menu-item-1 {
+  align-content: center;
+  text-align: center;
+}
+
+.profileView {
+  width: 100% !important;
+  height: 50% !important;
+  align-content: center;
+  padding: none;
+  margin: none;
+  margin-bottom: 10%;
 }
 
 /* ** -------------  NOT USED FOR ProfilePage Styling--------------- */

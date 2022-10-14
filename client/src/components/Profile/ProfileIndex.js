@@ -1,36 +1,38 @@
-import { useState, useEffect } from "react";
-import { RouteFetch } from "../Routes";
-import { Endpoints } from "../Routes/Endpoints";
-import { Routes, Route, NavLink } from "react-router-dom";
-import ProfileView from "./ProfileView";
+// //!Might not be nessecary:
 
-//!NEED TO USE A USER ID TO ACCESS DATA?
-function ProfileIndex(props) {
-  const token = props.sessionToken;
+// import { useState, useEffect } from "react";
+// import { RouteFetch } from "../Routes";
+// import { Endpoints } from "../Routes/Endpoints";
+// import { Routes, Route, NavLink } from "react-router-dom";
+// import ProfileView from "./ProfileView";
 
-  const [userView, setUserView] = useState([]);
+// //!NEED TO USE A USER ID TO ACCESS DATA?
+// function ProfileIndex(props) {
+//   const token = props.sessionToken;
 
-  const fetchUser = async () => {
-    try {
-      RouteFetch.get(Endpoints.user.getById, callback, token);
-      function callback(data) {
-        setUserView(data.user.getById);
-      }
-    } catch (error) {
-      console.error(error);
-    }
-  };
+//   const [userView, setUserView] = useState([]);
 
-  useEffect(() => {
-    fetchUser();
-  }, []);
+//   const fetchUser = async () => {
+//     try {
+//       RouteFetch.get(Endpoints.user.getById, callback, token);
+//       function callback(data) {
+//         setUserView(data.user.getById);
+//       }
+//     } catch (error) {
+//       console.error(error);
+//     }
+//   };
 
-  return (
-    <div className="ProfileIndex">
-      <Routes>
-        <Route path="/user-profile" element={<ProfileView user={userView} />} />
-      </Routes>
-    </div>
-  );
-}
-export default ProfileIndex;
+//   useEffect(() => {
+//     fetchUser();
+//   }, []);
+
+//   return (
+//     <div className="ProfileIndex">
+//       <Routes>
+//         <Route path="/user-profile" element={<ProfileView user={userView} />} />
+//       </Routes>
+//     </div>
+//   );
+// }
+// export default ProfileIndex;
