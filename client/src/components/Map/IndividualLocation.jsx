@@ -10,11 +10,16 @@ import {
   FormGroup,
   Button,
   Input,
+  Modal,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
 } from "reactstrap";
 import "./individualLocation.css";
 import { RouteFetch } from "../Routes";
 import { Endpoints } from "../Routes/Endpoints";
 import { useState, useEffect } from "react";
+import ProfileView from "../Profile/ProfileView";
 
 const IndividualLocation = (props) => {
   // getting the URL params
@@ -47,7 +52,11 @@ const IndividualLocation = (props) => {
     console.log("get messages by location");
 
     try {
-      RouteFetch.get(Endpoints.message.getByLocation + locationName, callback, token);
+      RouteFetch.get(
+        Endpoints.message.getByLocation + locationName,
+        callback,
+        token
+      );
 
       function callback(data) {
         setIndividualMessages(data);
@@ -78,7 +87,12 @@ const IndividualLocation = (props) => {
     };
 
     try {
-      await RouteFetch.post(Endpoints.message.add + locationName, bodyObject, callback, token);
+      await RouteFetch.post(
+        Endpoints.message.add + locationName,
+        bodyObject,
+        callback,
+        token
+      );
 
       function callback(data) {
         setMessageData(data);
@@ -91,6 +105,29 @@ const IndividualLocation = (props) => {
 
   console.log(individualMessages);
   // console.log(individualMessages.message);
+
+  // *-----------------------------USER MODAL
+  const [modalProfile, setModalProfile] = useState(false);
+  const [userProfileId, setuserProfileId] = useState("");
+  const [userProfile, setUserProfile] = useState();
+
+  // FETCH BY ID
+  const fetchUser = async (userId) => {
+    try {
+      console.log("fetch user works?");
+      RouteFetch.get(Endpoints.user.getById + userId, callback);
+      function callback(data) {
+        console.log("callback user works?", data);
+        setUserProfile(data.user);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  const toggleUserProfile = (userId) => {
+    fetchUser(userId);
+    setModalProfile(!modalProfile);
+  };
 
   return (
     <>
@@ -140,19 +177,47 @@ const IndividualLocation = (props) => {
             style={{ overflow: "scroll", height: "500px" }}
           >
             This is where the chat box will go
-             <ul className="message-ul">
+            <ul className="message-ul">
               {individualMessages?.message?.map((message) => (
                 <li>
                   <span className="when">{`${message.timeStamp} `}</span>
                   <span className="userName">{`${message.userName} `}</span>
                   {/* insert profile view button */}
-                    {/* 1. pass user information via props to this component
+                  {/* 1. pass user information via props to this component
                     2. User info being fetched from profile index so we will need to figure out how to get the data HERE!
                     3. button will be connected to onClick function to trigger a modal to display profile information */}
                   {message.body}
+
+                  {/* __________________________________________________________EMILY WORKING ON PROFILE MODAL */}
+                  <Button
+                    color="danger"
+                    onClick={() => toggleUserProfile(message.userId)}
+                  >
+                    User Profile
+                  </Button>
+                  <Modal
+                    isOpen={modalProfile}
+                    toggle={toggleUserProfile}
+                    size="xl"
+                    style={{
+                      width: "80%",
+                      height: "90%",
+                      overflow: "scroll-y",
+                    }}
+                  >
+                    <ModalHeader toggle={toggleUserProfile}>
+                      User Profile
+                    </ModalHeader>
+                    <ModalBody id="user-profile-modal">
+                      <ProfileView user={userProfile} />
+                    </ModalBody>
+                    <ModalFooter></ModalFooter>
+                  </Modal>
+
+                  {/* __________________________________________________________EMILY WORKING ABOVE */}
                 </li>
               ))}
-            </ul> 
+            </ul>
           </Col>
         </Row>
 
