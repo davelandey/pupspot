@@ -41,10 +41,10 @@ const Map = (props) => {
 
                     <NavLink
                       className="nav-link"
-                      to={location.locationName
+                      to={`/location/${location.locationName
                         .split(" ")
                         .join("-")
-                        .toLowerCase()}
+                        .toLowerCase()}`}
                       activeclassname="active-link"
                     >
                       More Info

@@ -26,7 +26,8 @@ router.post("/add", validateSession, async (req, res) => {
 
 //GET:
 // !User specific pet/s
-router.get("/", validateSession, async (req, res) => {
+//!Removed validate session from here
+router.get("/", async (req, res) => {
   try {
     const petProfile = await PetProfile.find();
     res.json({ petProfile: petProfile });

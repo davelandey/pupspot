@@ -55,7 +55,7 @@ const NavbarComponent = (props) => {
                   <NavLink
                     activeClassName="active"
                     className="nav-link"
-                    to={"/dog-parks"}
+                    to={"/category/dog-parks"}
                   >
                     Dog Parks
                   </NavLink>
@@ -64,7 +64,7 @@ const NavbarComponent = (props) => {
                   <NavLink
                     activeClassName="active"
                     className="nav-link"
-                    to={"/trails"}
+                    to={"/category/trails"}
                   >
                     Trails & Paths
                   </NavLink>
@@ -73,7 +73,7 @@ const NavbarComponent = (props) => {
                   <NavLink
                     activeClassName="active"
                     className="nav-link"
-                    to={"/restaurants"}
+                    to={"/category/restaurants"}
                   >
                     Dog Friendly Restaurants
                   </NavLink>

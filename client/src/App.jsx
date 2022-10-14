@@ -15,8 +15,18 @@ import Auth from "./components/Auth/Auth";
 import IndividualLocation from "./components/Map/IndividualLocation";
 import Home from "./components/Home/Home";
 import Loading from "./components/Loading/Loading";
+
+import CategoryLocations from "./components/Map/CategoryLocations";
+
+// EMILY PROFILE EDIT:
+// import Profile from "./components/Profile/ProfilePage";
+
+import ProfileIndex from "./components/Profile/ProfileIndex";
+
+
 // import ProfileIndex from "./components/Profile/ProfileIndex";
 import ProfileView from "./components/Profile/ProfileView";
+
 
 function App() {
   //*----TOKEN----
@@ -109,24 +119,19 @@ function App() {
       <div className="content-section">
         <Routes>
           <Route path="/" element={<Home locations={locations} />} />
-          <Route path="/location" element={<Map locations={locations} />} />
-          <Route path="/dog-parks" element={<Map locations={locations} />} />
-          <Route path="/trails" element={<Map locations={locations} />} />
-          <Route path="/restaurants" element={<Map locations={locations} />} />
+          <Route path="/category/:locationCategory" element={<CategoryLocations locations={locations} />} />
+          {/* <Route path="/dog-parks" element={<CategoryLocations locations={locations} />} />
+          <Route path="/trails" element={<CategoryLocations locations={locations} />} />
+          <Route path="/restaurants" element={<CategoryLocations locations={locations} />} /> */}
           {/* Creates path based on location name */}
           <Route
-            path="/:locationName"
-            element={
-              locations?.length > 0 ? (
-                <IndividualLocation
-                  locations={locations}
-                  sessionToken={sessionToken}
-                />
-              ) : (
-                // <h1>Loading...</h1>
-                <Loading />
-              )
-            }
+
+            path="/location/:locationName"
+            element={locations?.length> 0 ? <IndividualLocation locations={locations} sessionToken={sessionToken} />: 
+            // <h1>Loading...</h1>
+            <Loading />
+          }
+
           />
           <Route
             path="/signup"
