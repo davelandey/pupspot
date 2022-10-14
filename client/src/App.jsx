@@ -3,8 +3,7 @@ import { Routes, Route, NavLink } from "react-router-dom";
 import Header from "./components/Header/Header";
 import Signup from "./components/Auth/Signup/Signup";
 import Footer from "./components/Footer/Footer";
-import Profile from "./components/Profile/ProfilePage";
-import PetProfile from "./components/PetProfile/PetProfilePage";
+import PetProfileIndex from "./components/PetProfile/PetProfileIndex";
 import NavbarComponent from "./components/NavbarComponent/NavbarComponent";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Map from "./components/Map/Map";
@@ -15,14 +14,9 @@ import { RouteFetch } from "./components/Routes";
 import Auth from "./components/Auth/Auth";
 import IndividualLocation from "./components/Map/IndividualLocation";
 import Home from "./components/Home/Home";
-
 import Loading from "./components/Loading/Loading";
-
-// EMILY PROFILE EDIT:
-// import Profile from "./components/Profile/ProfilePage";
-
-import ProfileIndex from "./components/Profile/ProfileIndex";
-
+// import ProfileIndex from "./components/Profile/ProfileIndex";
+import ProfileView from "./components/Profile/ProfileView";
 
 function App() {
   //*----TOKEN----
@@ -77,6 +71,31 @@ function App() {
 
   // console.log(locations);
 
+  //*---------------------------------------------EMILY------USER PROFILE FETCH------
+  //ROB - Is this the right place for this?
+
+  const [userView, setUserView] = useState([]);
+
+  // const fetchUser = async () => {
+  //   try {
+  //     console.log("fetch user works?");
+  //     RouteFetch.get(Endpoints.user.getById, callback);
+  //     function callback(data) {
+  //       // !DOES NOT WORK:
+  //       console.log("callback user works?");
+  //       setUserView(data.user.getById);
+  //     }
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   fetchUser();
+  // }, []);
+
+  //*---------------------------------------------EMILY------USER PROFILE FETCH------
+
   return (
     <div className="App">
       <Header />
@@ -97,28 +116,37 @@ function App() {
           {/* Creates path based on location name */}
           <Route
             path="/:locationName"
-            element={locations?.length> 0 ? <IndividualLocation locations={locations} sessionToken={sessionToken} />: 
-            // <h1>Loading...</h1>
-            <Loading />
-          }
+            element={
+              locations?.length > 0 ? (
+                <IndividualLocation
+                  locations={locations}
+                  sessionToken={sessionToken}
+                />
+              ) : (
+                // <h1>Loading...</h1>
+                <Loading />
+              )
+            }
           />
           <Route
             path="/signup"
             element={<Signup updateToken={updateToken} />}
           />
-          <Route path="/pet-profile" element={<PetProfileIndex sessionToken={sessionToken}/>} />
-          {/* EMILY PROFILE EDIT: */}
-          {/* <Route path="/user-profile" element={<Profile />} />*/}
+          <Route
+            path="/pet-profile"
+            element={<PetProfileIndex sessionToken={sessionToken} />}
+          />
+
           <Route
             path="/user-profile"
-            element={<ProfileIndex sessionToken={sessionToken} />}
+            element={<ProfileView sessionToken={sessionToken} />}
           />
+        </Routes>
       </div>
 
       <Footer />
     </div>
   );
-
 }
 
 export default App;
