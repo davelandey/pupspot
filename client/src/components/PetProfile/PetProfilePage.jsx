@@ -28,7 +28,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import CustomListDropDown from "./CustomListDropDown";
 // DATE:
 
-const PetProfile = (props) => {
+const PetProfilePage = (props) => {
   const [modal, setModal] = useState(false);
   const toggle = () => setModal(!modal);
   // DATE:
