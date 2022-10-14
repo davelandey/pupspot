@@ -4,6 +4,9 @@ export const Endpoints = {
   user: {
     signup: `${APIURL}/user/signup`,
     login: `${APIURL}/user/login`,
+    profilePage: `${APIURL}/user/profile`,
+    // ! GET BY IF FOR PROFILE?
+    getById: `${APIURL}/user/:id`,
   },
   location: {
     getall: `${APIURL}/location/`,
