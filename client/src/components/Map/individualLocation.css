@@ -1,0 +1,22 @@
+.header {
+    text-align: center;
+}
+
+.content-container {
+    width: 62vw;
+}
+
+.map-column {
+width: 100%;
+object-fit: cover;
+}
+
+.map-container {
+height: 45vh;
+width: 40vw;
+}
+
+.message-box {
+    background-color: aqua;
+}
+/* Need to add a media querey to stack columns ontop of each other for smaller views - VERTICAL VIEW */

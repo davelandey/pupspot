@@ -14,10 +14,14 @@ import { RouteFetch } from "./components/Routes";
 import Auth from "./components/Auth/Auth";
 import IndividualLocation from "./components/Map/IndividualLocation";
 import Home from "./components/Home/Home";
+
+import Loading from "./components/Loading/Loading";
+
 // EMILY PROFILE EDIT:
 // import Profile from "./components/Profile/ProfilePage";
 
 import ProfileIndex from "./components/Profile/ProfileIndex";
+
 
 function App() {
   //*----TOKEN----
@@ -49,9 +53,8 @@ function App() {
   //   );
   // };
 
+  //*------LOCATION FETCH------
   const [locations, setLocations] = useState([]);
-
-  // const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNDU4NTU2NjIxY2U0MTFkNDZjMDQ3ZCIsImlhdCI6MTY2NTUwMzQ4NiwiZXhwIjoxNjY1NTg5ODg2fQ.QpIms398MGB6Hxdhmjysrkc6pvUpf9m0Zv3GAVVV2tE"
 
   const fetchLocations = async () => {
     console.log("getall locations");
@@ -93,7 +96,10 @@ function App() {
           {/* Creates path based on location name */}
           <Route
             path="/:locationName"
-            element={<IndividualLocation locations={locations} />}
+            element={locations?.length> 0 ? <IndividualLocation locations={locations} sessionToken={sessionToken} />: 
+            // <h1>Loading...</h1>
+            <Loading />
+          }
           />
           <Route
             path="/signup"
@@ -108,15 +114,11 @@ function App() {
           <Route path="/pet-profile" element={<PetProfile />} />
         </Routes>
       </div>
+
       <Footer />
     </div>
   );
-  {
-    /* Removed because of duplicate login button issue. Will delete once we understand more about how data will be collected in form. */
-  }
-  {
-    /* <Route path="/login" element={<Login />} /> */
-  }
+
 }
 
 export default App;

@@ -10,6 +10,10 @@ export const Endpoints = {
   },
   location: {
     getall: `${APIURL}/location/`,
+
+    getIndividual: `${APIURL}/location/`
+  
+
   },
   petProfile: {
     getall: `${APIURL}/petProfile/movie`,
@@ -18,5 +22,12 @@ export const Endpoints = {
     delete: `${APIURL}/petProfile/:id`,
     create: `${APIURL}/petProfile/add`,
     update: `${APIURL}/petProfile/update/:id`,
+
   },
+  message: {
+    add: `${APIURL}/message/add/`,
+    getByLocation: `${APIURL}/message/`,
+    edit: `${APIURL}/message/update/`,
+    delete: `${APIURL}/message/`
+  }
 };
