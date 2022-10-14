@@ -3,8 +3,7 @@ import { Routes, Route, NavLink } from "react-router-dom";
 import Header from "./components/Header/Header";
 import Signup from "./components/Auth/Signup/Signup";
 import Footer from "./components/Footer/Footer";
-import Profile from "./components/Profile/ProfilePage";
-import PetProfile from "./components/PetProfile/PetProfilePage";
+import PetProfileIndex from "./components/PetProfile/PetProfileIndex";
 import NavbarComponent from "./components/NavbarComponent/NavbarComponent";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Map from "./components/Map/Map";
@@ -15,8 +14,8 @@ import { RouteFetch } from "./components/Routes";
 import Auth from "./components/Auth/Auth";
 import IndividualLocation from "./components/Map/IndividualLocation";
 import Home from "./components/Home/Home";
-
 import Loading from "./components/Loading/Loading";
+import CategoryLocations from "./components/Map/CategoryLocations";
 
 // EMILY PROFILE EDIT:
 // import Profile from "./components/Profile/ProfilePage";
@@ -90,10 +89,10 @@ function App() {
       <div className="content-section">
         <Routes>
           <Route path="/" element={<Home locations={locations} />} />
-          <Route path="/location" element={<Map locations={locations} />} />
-          <Route path="/dog-parks" element={<Map locations={locations} />} />
-          <Route path="/trails" element={<Map locations={locations} />} />
-          <Route path="/restaurants" element={<Map locations={locations} />} />
+          <Route path="/:locationCategory" element={<CategoryLocations locations={locations} />} />
+          {/* <Route path="/dog-parks" element={<CategoryLocations locations={locations} />} />
+          <Route path="/trails" element={<CategoryLocations locations={locations} />} />
+          <Route path="/restaurants" element={<CategoryLocations locations={locations} />} /> */}
           {/* Creates path based on location name */}
           <Route
             path="/:locationName"
@@ -113,6 +112,7 @@ function App() {
             path="/user-profile"
             element={<ProfileIndex sessionToken={sessionToken} />}
           />
+        </Routes>
       </div>
 
       <Footer />

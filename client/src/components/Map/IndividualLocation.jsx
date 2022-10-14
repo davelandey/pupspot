@@ -82,6 +82,7 @@ const IndividualLocation = (props) => {
 
       function callback(data) {
         setMessageData(data);
+        fetchMessages()
       }
     } catch (error) {
       console.error(error);
