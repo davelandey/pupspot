@@ -4,7 +4,7 @@ import Header from "./components/Header/Header";
 import Signup from "./components/Auth/Signup/Signup";
 import Footer from "./components/Footer/Footer";
 import Profile from "./components/Profile/ProfilePage";
-import PetProfile from "./components/PetProfile/PetProfilePage";
+import PetProfileIndex from "./components/PetProfile/PetProfileIndex";
 import NavbarComponent from "./components/NavbarComponent/NavbarComponent";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Map from "./components/Map/Map";
@@ -97,7 +97,7 @@ function App() {
             element={<Signup updateToken={updateToken} />}
           />
           <Route path="/user-profile" element={<Profile />} />
-          <Route path="/pet-profile" element={<PetProfile />} />
+          <Route path="/pet-profile" element={<PetProfileIndex sessionToken={sessionToken}/>} />
         </Routes>
       </div>
 

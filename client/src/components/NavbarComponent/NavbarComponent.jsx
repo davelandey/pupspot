@@ -21,7 +21,7 @@ import {
 import "./navbar.css";
 import Login from "../Auth/Login/Login";
 import Profile from "../Profile/ProfilePage";
-import PetProfile from "../PetProfile/PetProfilePage";
+import PetProfile from "../PetProfile/PetProfileIndex";
 import { FiSettings } from "react-icons/fi";
 
 const NavbarComponent = (props) => {

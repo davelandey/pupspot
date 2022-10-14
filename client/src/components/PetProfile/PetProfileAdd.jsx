@@ -1,6 +1,8 @@
+
 import DatePicker from "react-date-picker";
+
 import React, { useState, useEffect } from "react";
-import "./PetProfile.css";
+
 import { NavLink } from "react-router-dom";
 import {
   Container,
@@ -28,7 +30,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import CustomListDropDown from "./CustomListDropDown";
 // DATE:
 
-const PetProfile = (props) => {
+const PetProfilePage = (props) => {
   const [modal, setModal] = useState(false);
   const toggle = () => setModal(!modal);
   // DATE:
@@ -92,16 +94,23 @@ const PetProfile = (props) => {
                     }}
                   >
                     <img alt="Sample" src="https://picsum.photos/300/200" />
-                    <CardBody>
-                      <CardTitle tag="h5">[petName]</CardTitle>
-                      <CardSubtitle className="mb-2 text-muted" tag="h6">
-                        Card subtitle
+                    <CardBody >
+                      <CardTitle id="PetProfilePageCard" tag="h2">Pet Name</CardTitle>
+                      <CardSubtitle id="PetProfilePageCard" className="mb-2 text-muted" tag="h3">
+                        <Row>
+                          <Col>
+                          Breed:
+                          </Col>
+                          <Col>
+                          Age:
+                          </Col>
+                        </Row>
                       </CardSubtitle>
                       <CardText>
-                        Some quick example text to build on the card title and
-                        make up the bulk of the card‘s content.
+                       Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci, voluptate tempora natus eveniet repellat, expedita minus totam ducimus laborum odit nam autem dignissimos nesciunt? Libero.
                       </CardText>
-                      <Button>Message me!</Button>
+                      <Button color ="success">Edit</Button>
+                      <Button color="warning">Disable</Button>
                     </CardBody>
                   </Card>
                 </Col>
@@ -115,7 +124,7 @@ const PetProfile = (props) => {
                 <Input id="exampleFile" name="file" type="file" />
                 <FormText>Upload your pet's profile picture here.</FormText>
               </FormGroup>
-              <FormGroup tag="fieldset">
+              {/* <FormGroup tag="fieldset">
                 <legend>Privacy Settings</legend>
                 <FormGroup check>
                   <Input name="radio1" type="radio" />{" "}
@@ -138,7 +147,7 @@ const PetProfile = (props) => {
                     Private: there are details about this that need to be added{" "}
                   </Label>
                 </FormGroup>
-              </FormGroup>
+              </FormGroup> */}
             </Form>
           </Col>
         </Row>

@@ -9,7 +9,7 @@ export const Endpoints = {
     getall: `${APIURL}/location/`,
   },
   petProfile: {
-    getall: `${APIURL}/petProfile/movie`,
+    getall: `${APIURL}/petProfile/`,
     getById: `${APIURL}/petProfile/:id`,
     //EDIT DELETE FUNCTION?
     delete: `${APIURL}/petProfile/:id`,
