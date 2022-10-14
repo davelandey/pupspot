@@ -35,3 +35,13 @@ Form {
 .petName {
   margin-top: 10%;
 }
+
+
+#PetProfilePageCard{
+  text-align: center;
+  padding: 0.1rem;
+}
+
+#PetProfilePageCardText{
+  text-align: justify;
+}

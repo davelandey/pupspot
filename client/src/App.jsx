@@ -3,6 +3,7 @@ import { Routes, Route, NavLink } from "react-router-dom";
 import Header from "./components/Header/Header";
 import Signup from "./components/Auth/Signup/Signup";
 import Footer from "./components/Footer/Footer";
+import Profile from "./components/Profile/ProfilePage";
 import PetProfile from "./components/PetProfile/PetProfilePage";
 import NavbarComponent from "./components/NavbarComponent/NavbarComponent";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -105,14 +106,13 @@ function App() {
             path="/signup"
             element={<Signup updateToken={updateToken} />}
           />
+          <Route path="/pet-profile" element={<PetProfileIndex sessionToken={sessionToken}/>} />
           {/* EMILY PROFILE EDIT: */}
           {/* <Route path="/user-profile" element={<Profile />} />*/}
           <Route
             path="/user-profile"
             element={<ProfileIndex sessionToken={sessionToken} />}
           />
-          <Route path="/pet-profile" element={<PetProfile />} />
-        </Routes>
       </div>
 
       <Footer />

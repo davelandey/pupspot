@@ -1,13 +1,16 @@
+import "./PetProfile.css";
 import React, { useState, useEffect } from "react";
 import { Container, Row, Col } from "reactstrap";
-
-import PetProfilePage from "./PetProfilePage";
+import PetProfileAdd from "./PetProfileAdd";
 import PetProfileCard from "./PetProfileCard";
 import PetProfileEdit from "./PetProfileEdit";
-import { Endpoints } from "../Endpoints";
+import { Endpoints } from "../Routes/Endpoints";
+import { RouteFetch } from "../Routes";
 
 function PetProfileIndex(props) {
-  const [pets, setPets] = useState([]);
+  const token = props.sessionToken;
+
+  const [petData, setPetData] = useState([]);
   const [updateActive, setUpdateActive] = useState(false);
   const [petToUpdate, setPetToUpdate] = useState({});
 
@@ -25,21 +28,12 @@ function PetProfileIndex(props) {
   };
 
   const fetchPets = async () => {
-    // TODO fetch all the pets
     console.log("getall pets");
-    let myHeaders = new Headers();
-    myHeaders.append("Authorization", props.token);
-
-    const requestOptions = {
-      method: "GET",
-      headers: myHeaders,
-    };
-
     try {
-      const response = await fetch(Endpoints.pet.getall, requestOptions);
-      const data = await response.json();
-      console.log(data.pet);
-      setPets(data.pet);
+      RouteFetch.get(Endpoints.petProfile.getall, callback, token);
+      function callback(data) {
+        setPetData(data);
+      }
     } catch (error) {
       console.error(error);
     }
@@ -52,26 +46,31 @@ function PetProfileIndex(props) {
   return (
     <Container>
       <Row>
-        <Col md="3">
-          <PetProfilePage fetchPets={fetchPets} token={props.token} />
-        </Col>
         <Col md="9">
           <PetProfileCard
-            pets={pets}
+            token={token}
+            petData={petData}
             fetchPets={fetchPets}
-            token={props.token}
             editUpdatePet={editUpdatePet}
             updateOn={updateOn}
           />
         </Col>
         {updateActive ? (
           <PetProfileEdit
+            token={token}
             petToUpdate={petToUpdate}
-            updateOff={updateOff}
-            token={props.token}
-            fetchPets={fetchPets}
+            // updateOff={updateOff}
+            // fetchPets={fetchPets}
           />
         ) : null}
+      </Row>
+      <Row>
+        {/* <Col md="3"> */}
+        <PetProfileAdd 
+        // petData={petData}
+        // fetchPets={fetchPets} 
+        token={props.token} />
+        {/* </Col> */}
       </Row>
     </Container>
   );
