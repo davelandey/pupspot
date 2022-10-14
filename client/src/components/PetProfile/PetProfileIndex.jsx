@@ -1,6 +1,6 @@
 import "./PetProfile.css";
 import React, { useState, useEffect } from "react";
-import { Container, Row, Col } from "reactstrap";
+import { Container, Row, Col, Button } from "reactstrap";
 import PetProfileAdd from "./PetProfileAdd";
 import PetProfileCard from "./PetProfileCard";
 import PetProfileEdit from "./PetProfileEdit";
@@ -42,6 +42,8 @@ function PetProfileIndex(props) {
   useEffect(() => {
     fetchPets();
   }, []);
+  
+console.log(petData)
 
   return (
     <Container>
@@ -50,7 +52,7 @@ function PetProfileIndex(props) {
           <PetProfileCard
             token={token}
             petData={petData}
-            fetchPets={fetchPets}
+            // fetchPets={fetchPets}
             editUpdatePet={editUpdatePet}
             updateOn={updateOn}
           />
@@ -59,19 +61,24 @@ function PetProfileIndex(props) {
           <PetProfileEdit
             token={token}
             petToUpdate={petToUpdate}
-            // updateOff={updateOff}
-            // fetchPets={fetchPets}
+            updateOff={updateOff}
+            fetchPets={fetchPets}
           />
         ) : null}
-      </Row>
       <Row>
-        {/* <Col md="3"> */}
+        <Col>
+        <Button> Add a pet!
+        </Button>
+        </Col>
+        </Row>
+        <Col>
         <PetProfileAdd 
-        // petData={petData}
-        // fetchPets={fetchPets} 
-        token={props.token} />
-        {/* </Col> */}
-      </Row>
+        petData={petData}
+        fetchPets={fetchPets}
+        token={token}
+        />
+        </Col>
+        </Row>
     </Container>
   );
 }

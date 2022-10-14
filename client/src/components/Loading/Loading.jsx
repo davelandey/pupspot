@@ -1,4 +1,4 @@
-import ReactLoading from "react-loading";
+import ReactLoading from "react-loading"
 import { Section, Title, Article, Prop, list } from "./generic";
 import "./loading.css"
 

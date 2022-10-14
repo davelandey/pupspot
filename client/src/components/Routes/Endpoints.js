@@ -17,11 +17,11 @@ export const Endpoints = {
   },
   petProfile: {
     getall: `${APIURL}/petProfile/`,
-    getById: `${APIURL}/petProfile/:id`,
+    getById: `${APIURL}/petProfile/`,
     //EDIT DELETE FUNCTION?
-    delete: `${APIURL}/petProfile/:id`,
+    delete: `${APIURL}/petProfile/`,
     create: `${APIURL}/petProfile/add`,
-    update: `${APIURL}/petProfile/update/:id`,
+    update: `${APIURL}/petProfile/update/`,
 
   },
   message: {
