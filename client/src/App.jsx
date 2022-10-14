@@ -47,6 +47,7 @@ function App() {
   //   );
   // };
 
+  //*------LOCATION FETCH------
   const [locations, setLocations] = useState([]);
 
   const fetchLocations = async () => {

@@ -7,13 +7,13 @@ export const Endpoints = {
   },
   location: {
     getall: `${APIURL}/location/`,
-    getIndividual: `${APIURL}/location/:id`
+    getIndividual: `${APIURL}/location/`
   
   },
   message: {
-    add: `${APIURL}/message/add/:locationId`,
-    getByLocation: `${APIURL}/message/:locationId`,
-    edit: `${APIURL}/message/update/:id`,
-    delete: `${APIURL}/message/:id`
+    add: `${APIURL}/message/add/`,
+    getByLocation: `${APIURL}/message/`,
+    edit: `${APIURL}/message/update/`,
+    delete: `${APIURL}/message/`
   }
 };

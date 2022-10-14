@@ -22,8 +22,8 @@ const IndividualLocation = (props) => {
 
   //getting props of location data
   let locations = props.locations;
-  let token = props.sessionToken
-  console.log(token)
+  let token = props.sessionToken;
+  console.log(token);
 
   //reformatting URL params to same format as location name in JSON data
   let splitName = locationName.split("-");
@@ -40,11 +40,30 @@ const IndividualLocation = (props) => {
 
   console.log(thisLocation);
 
-  //*-------GETTING MESSAGES CONNECTED TO AN INDIVIDUAL LOCATION-------
+  //*-------GET MESSAGES CONNECTED TO AN INDIVIDUAL LOCATION-------
+  const [individualMessages, setIndividualMessages] = useState();
 
+  const fetchMessages = async () => {
+    console.log("get messages by location");
 
+    try {
+      RouteFetch.get(Endpoints.message.getByLocation + locationName, callback, token);
 
-  //*-------CREATING A NEW MESSAGE ON FORM SUBMIT-------
+      function callback(data) {
+        setIndividualMessages(data);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchMessages();
+  }, []);
+
+  console.log(individualMessages);
+
+  //*-------CREATE A NEW MESSAGE ON FORM SUBMIT-------
   const [body, setBody] = useState("");
   const [messageData, setMessageData] = useState([]);
 
@@ -59,7 +78,7 @@ const IndividualLocation = (props) => {
     };
 
     try {
-      await RouteFetch.post(Endpoints.message.add, bodyObject, callback, token);
+      await RouteFetch.post(Endpoints.message.add + locationName, bodyObject, callback, token);
 
       function callback(data) {
         setMessageData(data);
@@ -69,8 +88,8 @@ const IndividualLocation = (props) => {
     }
   }
 
-
-  console.log(messageData)
+  console.log(individualMessages);
+  // console.log(individualMessages.message);
 
   return (
     <>
@@ -120,19 +139,23 @@ const IndividualLocation = (props) => {
             style={{ overflow: "scroll", height: "500px" }}
           >
             This is where the chat box will go
-            {/* <ul className="message-ul">
-              {messageData?.map((message) => (
+             <ul className="message-ul">
+              {individualMessages?.message?.map((message) => (
                 <li>
-                  <span className="when">{`${message.when} `}</span>
+                  <span className="when">{`${message.timeStamp} `}</span>
                   <span className="userName">{`${message.userName} `}</span>
+                  {/* insert profile view button */}
+                    {/* 1. pass user information via props to this component
+                    2. User info being fetched from profile index so we will need to figure out how to get the data HERE!
+                    3. button will be connected to onClick function to trigger a modal to display profile information */}
                   {message.body}
                 </li>
               ))}
-            </ul> */}
+            </ul> 
           </Col>
         </Row>
 
-    {/* MESSAGE FORM */}
+        {/* MESSAGE FORM */}
         <Row>
           <Col className="message-inputs">
             <Form onSubmit={handleSubmit}>
