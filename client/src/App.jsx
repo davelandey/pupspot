@@ -89,13 +89,13 @@ function App() {
       <div className="content-section">
         <Routes>
           <Route path="/" element={<Home locations={locations} />} />
-          <Route path="/:locationCategory" element={<CategoryLocations locations={locations} />} />
+          <Route path="/category/:locationCategory" element={<CategoryLocations locations={locations} />} />
           {/* <Route path="/dog-parks" element={<CategoryLocations locations={locations} />} />
           <Route path="/trails" element={<CategoryLocations locations={locations} />} />
           <Route path="/restaurants" element={<CategoryLocations locations={locations} />} /> */}
           {/* Creates path based on location name */}
           <Route
-            path="/:locationName"
+            path="/location/:locationName"
             element={locations?.length> 0 ? <IndividualLocation locations={locations} sessionToken={sessionToken} />: 
             // <h1>Loading...</h1>
             <Loading />
