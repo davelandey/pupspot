@@ -4,7 +4,7 @@ import Header from "./components/Header/Header";
 import Signup from "./components/Auth/Signup/Signup";
 import Footer from "./components/Footer/Footer";
 import Profile from "./components/Profile/ProfilePage";
-import PetProfileIndex from "./components/PetProfile/PetProfileIndex";
+import PetProfile from "./components/PetProfile/PetProfilePage";
 import NavbarComponent from "./components/NavbarComponent/NavbarComponent";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Map from "./components/Map/Map";
@@ -15,6 +15,14 @@ import { RouteFetch } from "./components/Routes";
 import Auth from "./components/Auth/Auth";
 import IndividualLocation from "./components/Map/IndividualLocation";
 import Home from "./components/Home/Home";
+
+import Loading from "./components/Loading/Loading";
+
+// EMILY PROFILE EDIT:
+// import Profile from "./components/Profile/ProfilePage";
+
+import ProfileIndex from "./components/Profile/ProfileIndex";
+
 
 function App() {
   //*----TOKEN----
@@ -46,9 +54,8 @@ function App() {
   //   );
   // };
 
+  //*------LOCATION FETCH------
   const [locations, setLocations] = useState([]);
-
-  // const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNDU4NTU2NjIxY2U0MTFkNDZjMDQ3ZCIsImlhdCI6MTY2NTUwMzQ4NiwiZXhwIjoxNjY1NTg5ODg2fQ.QpIms398MGB6Hxdhmjysrkc6pvUpf9m0Zv3GAVVV2tE"
 
   const fetchLocations = async () => {
     console.log("getall locations");
@@ -82,7 +89,7 @@ function App() {
 
       <div className="content-section">
         <Routes>
-          <Route path="/" element={<Home locations={locations}/>} />
+          <Route path="/" element={<Home locations={locations} />} />
           <Route path="/location" element={<Map locations={locations} />} />
           <Route path="/dog-parks" element={<Map locations={locations} />} />
           <Route path="/trails" element={<Map locations={locations} />} />
@@ -90,28 +97,28 @@ function App() {
           {/* Creates path based on location name */}
           <Route
             path="/:locationName"
-            element={<IndividualLocation locations={locations} />}
+            element={locations?.length> 0 ? <IndividualLocation locations={locations} sessionToken={sessionToken} />: 
+            // <h1>Loading...</h1>
+            <Loading />
+          }
           />
           <Route
             path="/signup"
             element={<Signup updateToken={updateToken} />}
           />
-          <Route path="/user-profile" element={<Profile />} />
           <Route path="/pet-profile" element={<PetProfileIndex sessionToken={sessionToken}/>} />
-        </Routes>
+          {/* EMILY PROFILE EDIT: */}
+          {/* <Route path="/user-profile" element={<Profile />} />*/}
+          <Route
+            path="/user-profile"
+            element={<ProfileIndex sessionToken={sessionToken} />}
+          />
       </div>
-
-      <Footer />
 
       <Footer />
     </div>
   );
-  {
-    /* Removed because of duplicate login button issue. Will delete once we understand more about how data will be collected in form. */
-  }
-  {
-    /* <Route path="/login" element={<Login />} /> */
-  }
+
 }
 
 export default App;
