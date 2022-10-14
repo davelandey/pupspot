@@ -18,7 +18,8 @@ import { Endpoints } from "../Routes/Endpoints";
 const PetProfileCard = (props) => {
   const petData = props.petData
   const fetchPets = props.fetchPets
-  const toekn = props.token
+  const token = props.token
+
 console.log(petData)
 
 
@@ -28,44 +29,44 @@ console.log(petData)
     // TODO after successful disable/delete run the props.fetchPets()
   };
 
-  // const petMapper = () => {
-  //   return props.pets.map(function (pet, index) {
-  //     return (
-  //       <Card
-  //         key={index}
-  //         style={{
-  //           width: "18rem",
-  //         }}
-  //       >
-  //         <img alt={petData.name} src={petData.dogPic} />
-  //         <CardBody>
-  //           <CardTitle tag="h3">{petData.name}</CardTitle>
-  //           <CardSubtitle className="mb-2 text-muted" tag="h6">
-  //             {petData.breed}
-  //           </CardSubtitle>
-  //           <CardText>{petData.dogBio}</CardText>
-  //           <Button
-  //             color="success"
-  //             onClick={() => {
-  //               props.editUpdatePet(pet);
-  //               props.updateOn();
-  //             }}
-  //           >
-  //             Update
-  //           </Button>
-  //           <Button
-  //             color="warning"
-  //             onClick={() => {
-  //               deletePet(pet);
-  //             }}
-  //           >
-  //             Delete
-  //           </Button>
-  //         </CardBody>
-  //       </Card>
-  //     );
-  //   });
-  // };
+  const petMapper = () => {
+    return props.petData.map(function (pet, index) {
+      return (
+        <Card
+          key={index}
+          style={{
+            width: "18rem",
+          }}
+        >
+          <img alt={petData.name} src={petData.dogPic} />
+          <CardBody>
+            <CardTitle tag="h3">{petData.name}</CardTitle>
+            <CardSubtitle className="mb-2 text-muted" tag="h6">
+              {petData.breed}
+            </CardSubtitle>
+            <CardText>{petData.dogBio}</CardText>
+            <Button
+              color="success"
+              onClick={() => {
+                props.editUpdatePet(pet);
+                props.updateOn();
+              }}
+            >
+              Update
+            </Button>
+            <Button
+              color="warning"
+              onClick={() => {
+                deletePet(pet);
+              }}
+            >
+              Delete
+            </Button>
+          </CardBody>
+        </Card>
+      );
+    });
+  };
 
   return (
     <>

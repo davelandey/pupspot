@@ -20,6 +20,7 @@ export const Endpoints = {
     delete: `${APIURL}/petProfile/`,
     create: `${APIURL}/petProfile/add`,
     update: `${APIURL}/petProfile/update/`,
+
   },
   message: {
     add: `${APIURL}/message/add/`,

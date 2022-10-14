@@ -141,7 +141,9 @@ function App() {
             path="/user-profile"
             element={<ProfileView sessionToken={sessionToken} />}
           />
-        </Routes>
+
+      </Routes>
+
       </div>
 
       <Footer />
