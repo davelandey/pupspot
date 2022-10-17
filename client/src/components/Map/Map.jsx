@@ -6,12 +6,16 @@ import IndividualLocation from "./IndividualLocation";
 
 const Map = (props) => {
   const locations = props.locations;
+  const formatLocationCategory = props.formatLocationCategory
 
   return (
     <>
-      <Container ClassName="MapContainer" fluid>
-        <Row>
-          <Col className="bg-light border" l="auto">
+      <Container>
+
+        <Row className="map-row my-auto">
+
+          <Col className="map-col bg-light border" xs="auto" >
+           
             <MapContainer
               center={[44.49080732835979, -73.18607660265336]}
               zoom={15}
@@ -29,7 +33,8 @@ const Map = (props) => {
                 >
                   <Popup>
                     <h4>{location.locationName}</h4>
-                    <p>Category: {location.locationCategory}</p>
+                    {/*! This is causing an issue */}
+                    {/* <p>Category: {formatLocationCategory(location.locationCategory)}</p> */}
                     <p>
                       {location.streetAddress}
                       <br />
@@ -54,6 +59,7 @@ const Map = (props) => {
               ))}
             </MapContainer>
           </Col>
+
         </Row>
       </Container>
 
