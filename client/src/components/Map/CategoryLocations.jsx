@@ -1,8 +1,11 @@
 import Map from "./Map";
 import { useParams } from "react-router-dom";
+import {Container, Row, Col} from "reactstrap"
+import "./category-location.css"
 
 const CategoryLocations = (props) => {
 let locations = props.locations
+let formatLocationCategory = props.formatLocationCategory
 console.log(locations)
 
   // getting the URL params
@@ -25,13 +28,24 @@ console.log(locations)
 
   console.log(categoryLocations);
 
+
     return ( <>
     
-    
-    <h1>Hello from Category Location!</h1>
-    
-    {/* Need to filter data to be passed to map component */}
-    <Map locations={categoryLocations}/>
+<h1 className="center-align-text">{formatLocationCategory(stringName)}</h1>
+
+<Container className="content-container">
+<Row className="row">
+  <Col className="map-column" >
+
+    <Map formatLocationCategory={formatLocationCategory} locations={categoryLocations}/>
+
+  </Col>
+</Row>
+
+</Container>
+
+
+
     
     </> );
 }

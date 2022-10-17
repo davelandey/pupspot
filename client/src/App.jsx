@@ -69,6 +69,42 @@ function App() {
     fetchLocations();
   }, []);
 
+
+//Function to capitalize category locations
+function formatLocationCategory(locationCategory){
+  let words = locationCategory.split(" ");
+
+  for (let i = 0; i < words.length; i++) {
+   words[i] = words[i][0].toUpperCase() + words[i].substr(1);
+}
+let formattedCategory = words.join(" ");
+console.log(formattedCategory);
+return formattedCategory
+ }
+
+  
+  const [userView, setUserView] = useState([]);
+
+  // const fetchUser = async () => {
+  //   try {
+  //     console.log("fetch user works?");
+  //     RouteFetch.get(Endpoints.user.getById, callback);
+  //     function callback(data) {
+  //       // !DOES NOT WORK:
+  //       console.log("callback user works?");
+  //       setUserView(data.user.getById);
+  //     }
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   fetchUser();
+  // }, []);
+
+  //*---------------------------------------------EMILY------USER PROFILE FETCH------
+
   return (
     <div className="App">
       <Header />
@@ -81,27 +117,21 @@ function App() {
       <div className="content-section">
         <Routes>
           <Route path="/" element={<Home locations={locations} />} />
-          <Route
-            path="/category/:locationCategory"
-            element={<CategoryLocations locations={locations} />}
-          />
-          {/* <Route path="/dog-parks" element={<CategoryLocations locations={locations} />} />
-          <Route path="/trails" element={<CategoryLocations locations={locations} />} />
-          <Route path="/restaurants" element={<CategoryLocations locations={locations} />} /> */}
+
+
+           {/* Creates path based on location category */}
+          <Route path="/category/:locationCategory" element={<CategoryLocations formatLocationCategory={formatLocationCategory} locations={locations} />} />
+
           {/* Creates path based on location name */}
           <Route
             path="/location/:locationName"
-            element={
-              locations?.length > 0 ? (
-                <IndividualLocation
-                  locations={locations}
-                  sessionToken={sessionToken}
-                />
-              ) : (
-                // <h1>Loading...</h1>
-                <Loading />
-              )
-            }
+
+            element={locations?.length> 0 ? <IndividualLocation formatLocationCategory={formatLocationCategory} locations={locations} sessionToken={sessionToken} />: 
+            // <h1>Loading...</h1>
+            <Loading />
+          }
+
+
           />
           <Route
             path="/signup"

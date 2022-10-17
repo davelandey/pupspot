@@ -2,18 +2,19 @@ import React from "react";
 import "./Header.css";
 import { NavLink, Container, Row, Col } from "reactstrap";
 const fireHydrant = require("../../images/Hydrant-3.png");
+const petuniaLogo = require("../../images/pupspotLogo_100px.png")
 
 const Header = (props) => {
   return (
     <>
       <Container className="header-bar" fluid>
-        <Row>
-          <Col className ="headerCol1" xs="2">
-          <NavLink to='/'> <img className="hydrant" src={fireHydrant} alt="A cartoon fire hydrant"/></NavLink>
+        <Row className="row1">
+          <Col className ="headerCol1" xs="auto">
+          <img className="petunia" src={petuniaLogo} alt="pupSpot logo"/>
           </Col>
           <Col xs="auto">
             <h1 className="pupSpot-text">PupSpot.</h1>
-            <h2 className="headerTagLine">The most unbelivebly catchy tagline, known to humankind</h2>
+            <h2 className="headerTagLine">Find your best friend, a best friend.</h2>
           </Col>
           </Row>
             </Container>
