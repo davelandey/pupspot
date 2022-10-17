@@ -19,7 +19,8 @@ import "./individualLocation.css";
 import { RouteFetch } from "../Routes";
 import { Endpoints } from "../Routes/Endpoints";
 import { useState, useEffect } from "react";
-import ProfileView from "../Profile/ProfileView";
+// import ProfileView from "../Profile/ProfileView";
+// import ProfileEdit from "../Profile/ProfileEdit";
 
 const IndividualLocation = (props) => {
   // getting the URL params
@@ -96,7 +97,7 @@ const IndividualLocation = (props) => {
 
       function callback(data) {
         setMessageData(data);
-        fetchMessages()
+        fetchMessages();
       }
     } catch (error) {
       console.error(error);
@@ -108,24 +109,23 @@ const IndividualLocation = (props) => {
 
   // *-----------------------------USER MODAL
   const [modalProfile, setModalProfile] = useState(false);
-  const [userProfileId, setuserProfileId] = useState("");
-  const [userProfile, setUserProfile] = useState();
 
-  // FETCH BY ID
-  const fetchUser = async (userId) => {
-    try {
-      console.log("fetch user works?");
-      RouteFetch.get(Endpoints.user.getById + userId, callback);
-      function callback(data) {
-        console.log("callback user works?", data);
-        setUserProfile(data.user);
-      }
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  // !FETCH BY ID - MOVING TO PROFILEINDEX
+  // const [userProfileId, setuserProfileId] = useState("");
+  // const [userProfile, setUserProfile] = useState();
+  // const fetchUser = async (userId) => {
+  //   try {
+  //     RouteFetch.get(Endpoints.user.getById + userId, callback);
+  //     function callback(data) {
+  //       console.log("callback user works?", data);
+  //       setUserProfile(data.user);
+  //     }
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
   const toggleUserProfile = (userId) => {
-    fetchUser(userId);
+    // fetchUser(userId);
     setModalProfile(!modalProfile);
   };
 
@@ -209,7 +209,11 @@ const IndividualLocation = (props) => {
                       User Profile
                     </ModalHeader>
                     <ModalBody id="user-profile-modal">
-                      <ProfileView user={userProfile} />
+                      {/* <ProfileView
+                        user={userProfile}
+                        sessionToken={props.sessionToken}
+                        fetchUser={fetchUser}
+                      /> */}
                     </ModalBody>
                     <ModalFooter></ModalFooter>
                   </Modal>

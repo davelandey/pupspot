@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Profile.css";
 import { NavLink } from "react-router-dom";
 import {
@@ -22,10 +22,54 @@ import {
   CardSubtitle,
   CardText,
 } from "reactstrap";
+import { RouteFetch } from "../Routes";
+import { Endpoints } from "../Routes/Endpoints";
 
-const Profile = (props) => {
+const ProfilePage = (props) => {
   const [modal, setModal] = useState(false);
   const toggle = () => setModal(!modal);
+
+  // PROFILE PIC UPLOAD
+  const [loading, setLoading] = useState(false);
+  const [image, setImage] = useState("https://picsum.photos/300/200");
+
+  // USER PHOTO UPLOAD
+  const updateUserProfile = async (data) => {
+    await RouteFetch.patch(
+      Endpoints.user.update + props.user._id,
+      data,
+      () => props.fetchUser(props.user?._id),
+      props.sessionToken
+    );
+  };
+
+  const UploadImage = async (e) => {
+    const files = e.target.files;
+    const data = new FormData();
+    data.append("file", files[0]);
+    data.append("upload_preset", "pupspot");
+    setLoading(true);
+    try {
+      const res = await fetch(
+        "https://api.cloudinary.com/v1_1/dimzsxbfc/image/upload",
+        {
+          method: "POST",
+          body: data,
+        }
+      );
+
+      const File = await res.json();
+      console.log(File.secure_url);
+
+      setImage(File.secure_url);
+      setLoading(false);
+      updateUserProfile({ user: { profilePic: File.secure_url } });
+    } catch (err) {
+      console.warn(err);
+    }
+  };
+
+  useEffect(() => {}, [props.user]);
 
   return (
     <>
@@ -96,18 +140,29 @@ const Profile = (props) => {
                       width: "18rem",
                     }}
                   >
-                    <img alt="Sample" src="https://picsum.photos/300/200" />
-                    <CardBody>
+                    <img alt="Sample" src={props.user?.profilePic} />
+                    {/* <CardBody>
                       <CardTitle tag="h5">[userName]</CardTitle>
+
                       <CardSubtitle className="mb-2 text-muted" tag="h6">
                         Card subtitle
-                      </CardSubtitle>
-                      <CardText>
+                      </CardSubtitle> */}
+                    {/* <CardText>
                         Some quick example text to build on the card title and
                         make up the bulk of the card‘s content.
-                      </CardText>
-                      <Button>Message me!</Button>
-                    </CardBody>
+                      </CardText> */}
+                    {/* <Button>Message me!</Button> */}
+                    {/* </CardBody> */}
+                    <FormGroup>
+                      {/* <Label for="exampleFile">Profile picture</Label> */}
+                      <Input
+                        type="file"
+                        name="file"
+                        placeholder="Upload image here"
+                        onChange={UploadImage}
+                      />
+                      <FormText>Upload your profile picture here.</FormText>
+                    </FormGroup>
                   </Card>
                 </Col>
               </Row>
@@ -115,11 +170,16 @@ const Profile = (props) => {
                 <Label for="exampleText">About me:</Label>
                 <Input id="exampleText" name="text" type="textarea" />
               </FormGroup>
-              <FormGroup>
+              {/* <FormGroup>
                 <Label for="exampleFile">Profile picture</Label>
-                <Input id="exampleFile" name="file" type="file" />
+                <Input
+                  type="file"
+                  name="file"
+                  placeholder="Upload image here"
+                  onChange={UploadImage}
+                />
                 <FormText>Upload your profile picture here.</FormText>
-              </FormGroup>
+              </FormGroup> */}
               <FormGroup tag="fieldset">
                 <legend>Privacy Settings</legend>
                 <FormGroup check>
@@ -152,4 +212,4 @@ const Profile = (props) => {
   );
 };
 
-export default Profile;
+export default ProfilePage;

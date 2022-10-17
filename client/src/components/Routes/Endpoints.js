@@ -7,6 +7,7 @@ export const Endpoints = {
     login: `${APIURL}/user/login`,
     profilePage: `${APIURL}/user/profile`,
     getById: `${APIURL}/user/`,
+    update: `${APIURL}/user/update/`,
   },
   location: {
     getall: `${APIURL}/location/`,
@@ -20,7 +21,6 @@ export const Endpoints = {
     delete: `${APIURL}/petProfile/`,
     create: `${APIURL}/petProfile/add`,
     update: `${APIURL}/petProfile/update/`,
-
   },
   message: {
     add: `${APIURL}/message/add/`,

@@ -15,18 +15,8 @@ import Auth from "./components/Auth/Auth";
 import IndividualLocation from "./components/Map/IndividualLocation";
 import Home from "./components/Home/Home";
 import Loading from "./components/Loading/Loading";
-
 import CategoryLocations from "./components/Map/CategoryLocations";
-
-// EMILY PROFILE EDIT:
-// import Profile from "./components/Profile/ProfilePage";
-
 import ProfileIndex from "./components/Profile/ProfileIndex";
-
-
-// import ProfileIndex from "./components/Profile/ProfileIndex";
-import ProfileView from "./components/Profile/ProfileView";
-
 
 function App() {
   //*----TOKEN----
@@ -79,33 +69,6 @@ function App() {
     fetchLocations();
   }, []);
 
-  // console.log(locations);
-
-  //*---------------------------------------------EMILY------USER PROFILE FETCH------
-  //ROB - Is this the right place for this?
-
-  const [userView, setUserView] = useState([]);
-
-  // const fetchUser = async () => {
-  //   try {
-  //     console.log("fetch user works?");
-  //     RouteFetch.get(Endpoints.user.getById, callback);
-  //     function callback(data) {
-  //       // !DOES NOT WORK:
-  //       console.log("callback user works?");
-  //       setUserView(data.user.getById);
-  //     }
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   fetchUser();
-  // }, []);
-
-  //*---------------------------------------------EMILY------USER PROFILE FETCH------
-
   return (
     <div className="App">
       <Header />
@@ -114,24 +77,31 @@ function App() {
         clearToken={clearToken}
         updateToken={updateToken}
       />
-      {/* <Profile/> */}
 
       <div className="content-section">
         <Routes>
           <Route path="/" element={<Home locations={locations} />} />
-          <Route path="/category/:locationCategory" element={<CategoryLocations locations={locations} />} />
+          <Route
+            path="/category/:locationCategory"
+            element={<CategoryLocations locations={locations} />}
+          />
           {/* <Route path="/dog-parks" element={<CategoryLocations locations={locations} />} />
           <Route path="/trails" element={<CategoryLocations locations={locations} />} />
           <Route path="/restaurants" element={<CategoryLocations locations={locations} />} /> */}
           {/* Creates path based on location name */}
           <Route
-
             path="/location/:locationName"
-            element={locations?.length> 0 ? <IndividualLocation locations={locations} sessionToken={sessionToken} />: 
-            // <h1>Loading...</h1>
-            <Loading />
-          }
-
+            element={
+              locations?.length > 0 ? (
+                <IndividualLocation
+                  locations={locations}
+                  sessionToken={sessionToken}
+                />
+              ) : (
+                // <h1>Loading...</h1>
+                <Loading />
+              )
+            }
           />
           <Route
             path="/signup"
@@ -144,11 +114,9 @@ function App() {
 
           <Route
             path="/user-profile"
-            element={<ProfileView sessionToken={sessionToken} />}
+            element={<ProfileIndex sessionToken={sessionToken} />}
           />
-
-      </Routes>
-
+        </Routes>
       </div>
 
       <Footer />

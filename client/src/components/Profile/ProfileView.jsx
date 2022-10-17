@@ -22,26 +22,59 @@ import {
   CardSubtitle,
   CardText,
 } from "reactstrap";
+import { RouteFetch } from "../Routes";
+import { Endpoints } from "../Routes/Endpoints";
 
 const ProfileView = (props) => {
+  const user = props.user;
+
   const [modal, setModal] = useState(false);
   const toggle = () => setModal(!modal);
+  // PROFILE PIC UPLOAD
+  // const [loading, setLoading] = useState(false);
+  // const [image, setImage] = useState("https://picsum.photos/300/200");
 
+  // -----------------_EMAIL ME
   function onEmailClick() {
     window.open(`mailto:${props.user?.email}`);
   }
+  // USER PHOTO UPLOAD
+  // const updateUserProfile = async (data) => {
+  //   await RouteFetch.patch(
+  //     Endpoints.user.update + props.user._id,
+  //     data,
+  //     () => props.fetchUser(props.user?._id),
+  //     props.sessionToken
+  //   );
+  // };
 
-  //! ROB TOKEN AND getting props of user profile data
-  // let profileData = props.profileData;
-  // let token = props.sessionToken;
-  // console.log(token);
+  // const UploadImage = async (e) => {
+  //   const files = e.target.files;
+  //   const data = new FormData();
+  //   data.append("file", files[0]);
+  //   data.append("upload_preset", "pupspot");
+  //   setLoading(true);
+  //   try {
+  //     const res = await fetch(
+  //       "https://api.cloudinary.com/v1_1/dimzsxbfc/image/upload",
+  //       {
+  //         method: "POST",
+  //         body: data,
+  //       }
+  //     );
 
-  //!create a fetch functure that fetches based of pet owner id
-  //store that in another usestate called pets
+  //     const File = await res.json();
+  //     console.log(File.secure_url);
 
-  useEffect(() => {
-    //! call FetchPets
-  }, [props.user]);
+  //     setImage(File.secure_url);
+  //     setLoading(false);
+  //     updateUserProfile({ user: { profilePic: File.secure_url } });
+  //   } catch (err) {
+  //     console.warn(err);
+  //   }
+  // };
+
+  useEffect(() => {}, [props.user]);
 
   return (
     <>
@@ -87,22 +120,8 @@ const ProfileView = (props) => {
                     <Label for="exampleEmail">
                       Username:{props.user?.userName}
                     </Label>
-                    {/* <Input
-                      id="userProfileUserName"
-                      name="userProfileUserName"
-                      placeholder="Add/Edit your user name"
-                      type="string"
-                    /> */}
                   </FormGroup>
-                  <FormGroup>
-                    {/* <Label for="userProfilePassword">Password</Label> */}
-                    {/* <Input
-                      id="userProfilePassword"
-                      name="userProfilePassword"
-                      placeholder="Edit your password"
-                      type="password"
-                    /> */}
-                  </FormGroup>
+
                   <FormGroup className="FormGroup">
                     <Label for="exampleEmail">
                       About:{props.user?.humanBio}
@@ -122,21 +141,27 @@ const ProfileView = (props) => {
                       width: "18rem",
                     }}
                   >
-                    <img alt="Sample" src="https://picsum.photos/300/200" />
-                    <CardBody>
-                      {/* <CardTitle tag="h5">[userName]</CardTitle> */}
-                      <CardSubtitle className="mb-2 text-muted" tag="h6">
-                        {/* Card subtitle */}
-                      </CardSubtitle>
-                      <CardText>
-                        PROFILE PICTURE{props.user?.profilePic}
-                      </CardText>
-                    </CardBody>
+                    <img alt="Sample" src={props.user?.profilePic} />
+                    {/* add default image  */}
+
+                    {/* <CardBody>
+                      {<CardSubtitle className="mb-2 text-muted" tag="h6">
+                        Card subtitle
+                      </CardSubtitle> 
+                       <CardText>PROFILE PICTURE</CardText>
+*/}
+                    {/* <Input
+                      type="file"
+                      name="file"
+                      placeholder="Upload image here"
+                      onChange={UploadImage}
+                    /> */}
+                    {/* </CardBody>  */}
                   </Card>
                 </Col>
               </Row>
 
-              {/* ----------------------------------------MESSAGE BUTTON */}
+              {/* ---MESSAGE BUTTON */}
               <FormGroup>
                 <Button onClick={onEmailClick}>Message me!</Button>
               </FormGroup>
@@ -149,7 +174,8 @@ const ProfileView = (props) => {
               <img alt="Sample" src="https://picsum.photos/300/200" />
 
               <CardBody>
-                <CardTitle tag="h5">[userName]</CardTitle>
+                {/* figure out how to inport pet information and photo */}
+                <CardTitle tag="h5">[Pet Name]</CardTitle>
                 <CardSubtitle className="mb-2 text-muted" tag="h6">
                   Card subtitle
                 </CardSubtitle>
