@@ -24,11 +24,11 @@ import ProfileView from "../Profile/ProfileView";
 const IndividualLocation = (props) => {
   // getting the URL params
   let { locationName } = useParams();
-  
+
   //getting props of location data
   let locations = props.locations;
   let token = props.sessionToken;
-  let formatLocationCategory = props.formatLocationCategory
+  let formatLocationCategory = props.formatLocationCategory;
   console.log(token);
 
   //reformatting URL params to same format as location name in JSON data
@@ -77,20 +77,19 @@ const IndividualLocation = (props) => {
   const [body, setBody] = useState("");
   const [messageData, setMessageData] = useState([]);
 
-
   async function handleSubmit(event) {
     event.preventDefault();
     console.log("post message on individual page");
 
-//setting date
-    const date = new Date();
-    const formattedDate = date.toDateString();
-    const time = date.toLocaleTimeString();
+         //Setting the date & time of submitted message
+         const date = new Date();
+         const formattedDate = date.toDateString();
+         const time = date.toLocaleTimeString();
 
     let bodyObject = {
       message: {
-        timeStamp: `${formattedDate} ${time}`,
         body: body,
+        timeStamp: `${formattedDate} ${time}`,
       },
     };
 
@@ -104,21 +103,21 @@ const IndividualLocation = (props) => {
 
       function callback(data) {
         setMessageData(data);
-        fetchMessages()
+        fetchMessages();
       }
-  
     } catch (error) {
       console.error(error);
     }
 
-        //resetting input field to be blank after submit
-        this.setBody(" ")
-        console.log(body)
+    //resetting input field to be blank after submit
+    this.setBody(" ");
+    console.log(body);
   }
-
 
   console.log(individualMessages);
   // console.log(individualMessages.message);
+
+
 
   // *-----------------------------USER MODAL
   const [modalProfile, setModalProfile] = useState(false);
@@ -150,18 +149,16 @@ const IndividualLocation = (props) => {
       <Container className="content-container">
         <Row>
           <Col className="bg-light border location-info-box">
-          
-Category: {formatLocationCategory(thisLocation.locationCategory)}
-<br />
-{thisLocation.streetAddress}
-<br />
-{thisLocation.city}, VT {thisLocation.zipcode}
-<br />
-{thisLocation.phone}
-<br />
-<a href={thisLocation.website}>Website</a>
-<br />
-
+            Category: {formatLocationCategory(thisLocation.locationCategory)}
+            <br />
+            {thisLocation.streetAddress}
+            <br />
+            {thisLocation.city}, VT {thisLocation.zipcode}
+            <br />
+            {thisLocation.phone}
+            <br />
+            <a href={thisLocation.website}>Website</a>
+            <br />
             This is where the individual information will go! Stretch goal:
             WEATHER!
           </Col>
@@ -200,22 +197,19 @@ Category: {formatLocationCategory(thisLocation.locationCategory)}
         {/* MESSAGE BOX */}
         <Row className="message-box">
           <Col
-            className="chat-box bg-light border" 
+            className="chat-box bg-light border"
             style={{ overflow: "scroll", height: "500px" }}
           >
             <ul className="message-ul">
               {individualMessages?.message?.map((message) => (
                 <li>
-              
-                  <span className="when">{`${message.timeStamp} `}</span>
+                  <span className="when">{`${message?.timeStamp} `}</span>
                   <span className="userName">{`${message.userName} `}</span>
                   {/* insert profile view button */}
                   {/* 1. pass user information via props to this component
                     2. User info being fetched from profile index so we will need to figure out how to get the data HERE!
                     3. button will be connected to onClick function to trigger a modal to display profile information */}
-                  <span className="message-body">
-                  {`${message.body} `}
-                  </span>
+                  <span className="message-body">{`${message.body} `}</span>
 
                   {/* __________________________________________________________EMILY WORKING ON PROFILE MODAL */}
                   <Button
