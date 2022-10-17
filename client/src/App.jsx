@@ -79,7 +79,17 @@ function App() {
     fetchLocations();
   }, []);
 
-  // console.log(locations);
+//Function to capitalize category locations
+function formatLocationCategory(locationCategory){
+  let words = locationCategory.split(" ");
+
+  for (let i = 0; i < words.length; i++) {
+   words[i] = words[i][0].toUpperCase() + words[i].substr(1);
+}
+let formattedCategory = words.join(" ");
+console.log(formattedCategory);
+return formattedCategory
+ }
 
   //*---------------------------------------------EMILY------USER PROFILE FETCH------
   //ROB - Is this the right place for this?
@@ -119,15 +129,13 @@ function App() {
       <div className="content-section">
         <Routes>
           <Route path="/" element={<Home locations={locations} />} />
-          <Route path="/category/:locationCategory" element={<CategoryLocations locations={locations} />} />
-          {/* <Route path="/dog-parks" element={<CategoryLocations locations={locations} />} />
-          <Route path="/trails" element={<CategoryLocations locations={locations} />} />
-          <Route path="/restaurants" element={<CategoryLocations locations={locations} />} /> */}
+           {/* Creates path based on location category */}
+          <Route path="/category/:locationCategory" element={<CategoryLocations formatLocationCategory={formatLocationCategory} locations={locations} />} />
           {/* Creates path based on location name */}
           <Route
 
             path="/location/:locationName"
-            element={locations?.length> 0 ? <IndividualLocation locations={locations} sessionToken={sessionToken} />: 
+            element={locations?.length> 0 ? <IndividualLocation formatLocationCategory={formatLocationCategory} locations={locations} sessionToken={sessionToken} />: 
             // <h1>Loading...</h1>
             <Loading />
           }
