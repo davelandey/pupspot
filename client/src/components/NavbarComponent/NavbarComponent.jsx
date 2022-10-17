@@ -20,9 +20,9 @@ import {
 } from "reactstrap";
 import "./navbar.css";
 import Login from "../Auth/Login/Login";
-import Profile from "../Profile/ProfilePage";
 import PetProfile from "../PetProfile/PetProfileIndex";
 import { FiSettings } from "react-icons/fi";
+import ProfileIndex from "../Profile/ProfileIndex";
 
 const NavbarComponent = (props) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -103,7 +103,7 @@ const NavbarComponent = (props) => {
                       User Profile
                     </ModalHeader>
                     <ModalBody id="user-profile-modal">
-                      <Profile />
+                      <ProfileIndex />
                     </ModalBody>
                     <ModalFooter>
                       <Button color="primary" onClick={toggleUserProfile}>
@@ -161,7 +161,11 @@ const NavbarComponent = (props) => {
           </Nav>
 
           <NavbarText>
-            <Login sessionToken={props.sessionToken} clearToken={props.clearToken} updateToken={props.updateToken} />
+            <Login
+              sessionToken={props.sessionToken}
+              clearToken={props.clearToken}
+              updateToken={props.updateToken}
+            />
           </NavbarText>
         </Collapse>
       </Navbar>
