@@ -1,42 +1,41 @@
-.header-bar{
+.header-bar {
     background-color: #0077B6;
     /* background-color: #0096C7; */
     padding: 0 !important;
     margin: 0 !important;
-  
+
 
 }
 
-.headerCol1{
+/* .headerCol1 {
     text-align: center;
- 
 
-}
+
+} */
 
 .row1 {
-padding: 3px 6px;
-    align-content: center !important;
-    /* justify-content: center !important; */
+    padding: 15px 20px;
+    justify-content: flex-start !important;
 }
 
-.pupSpot-text{
+.pupSpot-text {
     text-align: left;
-   font-size: 2.5em;
+    font-size: 2.5em;
     padding: none;
     margin: none;
 
 }
 
 .petunia {
-    width:90px;
+    width: 90px;
     height: 90px;
 }
 
 /* .hydrant{
     line-height:2.5em;
     width: 15vw; */
-    /* border: 0.1rem solid black; */
-    /* border-radius: 6%;
+/* border: 0.1rem solid black; */
+/* border-radius: 6%;
     align-content: center;
     align-items: center;
     align-self: center;
@@ -52,33 +51,33 @@ padding: 3px 6px;
     animation-delay: 1ms;
 }  */
 
- /* @keyframes hydrantSpin {
+/* @keyframes hydrantSpin {
     from {transform: rotatez(0deg)}
     to {transform: rotateZ(360deg)}
 }   */
 
-.pupSpot-text:hover{
+.pupSpot-text:hover {
     text-shadow: 2px 2px 4px white;
 }
 
-.headerTagLine{
-text-align: center;
-font-size: 1.5em;
-padding: none;
-margin: none;
+.headerTagLine {
+    text-align: center;
+    font-size: 1.5em;
+    padding: none;
+    margin: none;
 
 }
 
-.headerTagLine:hover{
-    font-style:oblique;
+.headerTagLine:hover {
+    font-style: oblique;
 }
 
 
 @media (max-width: 765px) {
     .row1 {
 
-            justify-content: center !important;
-        }
-        
-  
-  }
+        justify-content: center !important;
+    }
+
+
+}

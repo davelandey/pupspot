@@ -83,13 +83,12 @@ const IndividualLocation = (props) => {
 
          //Setting the date & time of submitted message
          const date = new Date();
-         const formattedDate = date.toDateString();
-         const time = date.toLocaleTimeString();
+         const time = date.toLocaleTimeString('en-us', { weekday:"long", year:"numeric", month:"short", day:"numeric"});
 
     let bodyObject = {
       message: {
         body: body,
-        timeStamp: `${formattedDate} ${time}`,
+        timeStamp: `${time}`,
       },
     };
 
