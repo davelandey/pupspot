@@ -19,7 +19,8 @@ import "./individualLocation.css";
 import { RouteFetch } from "../Routes";
 import { Endpoints } from "../Routes/Endpoints";
 import { useState, useEffect } from "react";
-import ProfileView from "../Profile/ProfileView";
+// import ProfileView from "../Profile/ProfileView";
+// import ProfileEdit from "../Profile/ProfileEdit";
 
 const IndividualLocation = (props) => {
   // getting the URL params
@@ -28,6 +29,7 @@ const IndividualLocation = (props) => {
   //getting props of location data
   let locations = props.locations;
   let token = props.sessionToken;
+  let formatLocationCategory = props.formatLocationCategory;
   console.log(token);
 
   //reformatting URL params to same format as location name in JSON data
@@ -80,9 +82,14 @@ const IndividualLocation = (props) => {
     event.preventDefault();
     console.log("post message on individual page");
 
+         //Setting the date & time of submitted message
+         const date = new Date();
+         const time = date.toLocaleTimeString('en-us', { weekday:"long", year:"numeric", month:"short", day:"numeric"});
+
     let bodyObject = {
       message: {
         body: body,
+        timeStamp: `${time}`,
       },
     };
 
@@ -96,36 +103,41 @@ const IndividualLocation = (props) => {
 
       function callback(data) {
         setMessageData(data);
-        fetchMessages()
+        fetchMessages();
       }
     } catch (error) {
       console.error(error);
     }
+
+    //resetting input field to be blank after submit
+    this.setBody(" ");
+    console.log(body);
   }
 
   console.log(individualMessages);
   // console.log(individualMessages.message);
 
+
+
   // *-----------------------------USER MODAL
   const [modalProfile, setModalProfile] = useState(false);
-  const [userProfileId, setuserProfileId] = useState("");
-  const [userProfile, setUserProfile] = useState();
 
-  // FETCH BY ID
-  const fetchUser = async (userId) => {
-    try {
-      console.log("fetch user works?");
-      RouteFetch.get(Endpoints.user.getById + userId, callback);
-      function callback(data) {
-        console.log("callback user works?", data);
-        setUserProfile(data.user);
-      }
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  // !FETCH BY ID - MOVING TO PROFILEINDEX
+  // const [userProfileId, setuserProfileId] = useState("");
+  // const [userProfile, setUserProfile] = useState();
+  // const fetchUser = async (userId) => {
+  //   try {
+  //     RouteFetch.get(Endpoints.user.getById + userId, callback);
+  //     function callback(data) {
+  //       console.log("callback user works?", data);
+  //       setUserProfile(data.user);
+  //     }
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
   const toggleUserProfile = (userId) => {
-    fetchUser(userId);
+    // fetchUser(userId);
     setModalProfile(!modalProfile);
   };
 
@@ -135,15 +147,26 @@ const IndividualLocation = (props) => {
 
       <Container className="content-container">
         <Row>
-          <Col className="bg-light border" xs="2" md="3" lg="4">
+          <Col className="bg-light border location-info-box">
+            Category: {formatLocationCategory(thisLocation.locationCategory)}
+            <br />
+            {thisLocation.streetAddress}
+            <br />
+            {thisLocation.city}, VT {thisLocation.zipcode}
+            <br />
+            {thisLocation.phone}
+            <br />
+            <a href={thisLocation.website}>Website</a>
+            <br />
             This is where the individual information will go! Stretch goal:
             WEATHER!
           </Col>
-          <Col className="bg-light border map-column" xs="2" md="3" lg="4">
+          {/*  xs="2" md="3" lg="4" */}
+          <Col className="bg-light border map-column">
             <MapContainer
               className="map-container"
-              center={[44.49080732835979, -73.18607660265336]}
-              zoom={15}
+              center={[thisLocation.latitude, thisLocation.longitude]}
+              zoom={16}
               scrollWheelZoom={true}
             >
               <TileLayer
@@ -176,17 +199,16 @@ const IndividualLocation = (props) => {
             className="chat-box bg-light border"
             style={{ overflow: "scroll", height: "500px" }}
           >
-            This is where the chat box will go
             <ul className="message-ul">
               {individualMessages?.message?.map((message) => (
                 <li>
-                  <span className="when">{`${message.timeStamp} `}</span>
+                  <span className="when">{`${message?.timeStamp} `}</span>
                   <span className="userName">{`${message.userName} `}</span>
                   {/* insert profile view button */}
                   {/* 1. pass user information via props to this component
                     2. User info being fetched from profile index so we will need to figure out how to get the data HERE!
                     3. button will be connected to onClick function to trigger a modal to display profile information */}
-                  {message.body}
+                  <span className="message-body">{`${message.body} `}</span>
 
                   {/* __________________________________________________________EMILY WORKING ON PROFILE MODAL */}
                   <Button
@@ -209,7 +231,11 @@ const IndividualLocation = (props) => {
                       User Profile
                     </ModalHeader>
                     <ModalBody id="user-profile-modal">
-                      <ProfileView user={userProfile} />
+                      {/* <ProfileView
+                        user={userProfile}
+                        sessionToken={props.sessionToken}
+                        fetchUser={fetchUser}
+                      /> */}
                     </ModalBody>
                     <ModalFooter></ModalFooter>
                   </Modal>
