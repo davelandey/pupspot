@@ -10,19 +10,19 @@ import {
   Container,
   Row,
   Col,
+  Modal,
+  ModalBody,
+  ModalFooter,
 } from "reactstrap";
 import PetProfileAdd from "./PetProfileAdd";
 import { RouteFetch } from "../../components/Routes";
 import { Endpoints } from "../Routes/Endpoints";
+import PetProfileEdit from "./PetProfileEdit";
 
 const PetProfileCard = (props) => {
-  const petData = props.petData
-  const fetchPets = props.fetchPets
-  const token = props.token
-
-console.log(petData)
-
-
+  const petData = props.petData;
+  const token = props.token;
+  // const updateOn = props.updateOn
   const deletePet = async (pet) => {
     console.log("pet delete button clicked");
     // TODO two options - user can disable, (i.e. change bool to false) which will stop displaying pet, admin can delete a pet
@@ -30,7 +30,7 @@ console.log(petData)
   };
 
   const petMapper = () => {
-    return props.petData.map(function (pet, index) {
+    return petData?.petProfile?.map(function (pet, index) {
       return (
         <Card
           key={index}
@@ -38,30 +38,29 @@ console.log(petData)
             width: "18rem",
           }}
         >
-          <img alt={petData.name} src={petData.dogPic} />
+          <img
+            alt={pet.dogName}
+            src={pet?.dogPic}
+            onError={({ currentTarget }) => {
+              currentTarget.onerror = null; // prevents looping
+              currentTarget.src = "https://images.dog.ceo/breeds/african/n02116738_4834.jpg";
+            }}
+          />
           <CardBody>
-            <CardTitle tag="h3">{petData.name}</CardTitle>
-            <CardSubtitle className="mb-2 text-muted" tag="h6">
-              {petData.breed}
-            </CardSubtitle>
-            <CardText>{petData.dogBio}</CardText>
-            <Button
-              color="success"
-              onClick={() => {
-                props.editUpdatePet(pet);
-                props.updateOn();
-              }}
-            >
-              Update
-            </Button>
-            <Button
-              color="warning"
-              onClick={() => {
-                deletePet(pet);
-              }}
-            >
-              Delete
-            </Button>
+            <CardTitle tag="h3">{pet.dogName}</CardTitle>
+            <Row>
+              <Col>
+                <CardSubtitle className="mb-2 text-muted" tag="h6">
+                  {pet.breed}
+                </CardSubtitle>
+              </Col>
+              <Col>
+                <CardSubtitle className="mb-2 text-muted" tag="h6">
+                  {pet.age}
+                </CardSubtitle>
+              </Col>
+            </Row>
+            <CardText>{pet.dogBio}</CardText>
           </CardBody>
         </Card>
       );
@@ -70,43 +69,13 @@ console.log(petData)
 
   return (
     <>
-      <Container fluid="xl">
+      <Container fluid="auto">
         <h3>Pet Profile</h3>
         <Row>
           <Col xs="auto" className="bg-light border">
-            <Card
-              style={{
-                width: "18rem",
-              }}
-            >
-              <img alt="Sample" src="https://picsum.photos/300/200" />
-              <CardBody>
-                <CardTitle id="PetProfilePageCard" tag="h2">
-                  Pet Name
-                </CardTitle>
-                <CardSubtitle
-                  id="PetProfilePageCard"
-                  className="mb-2 text-muted"
-                  tag="h3"
-                >
-                  <Row>
-                    <Col>Breed:</Col>
-                    <Col>Age:</Col>
-                  </Row>
-                </CardSubtitle>
-                <CardText>
-                  {/* {petMapper()} */}
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Adipisci, voluptate tempora natus eveniet repellat, expedita
-                  minus totam ducimus laborum odit nam autem dignissimos
-                  nesciunt? Libero.
-                </CardText>
-                <Button color="success">Edit</Button>
-                <Button color="warning">Disable</Button>
-              </CardBody>
-            </Card>
+            {petMapper()}
           </Col>
-        </Row>  
+        </Row>
       </Container>
     </>
   );

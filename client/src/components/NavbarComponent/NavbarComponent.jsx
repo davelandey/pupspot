@@ -23,6 +23,9 @@ import Login from "../Auth/Login/Login";
 import Profile from "../Profile/ProfilePage";
 import PetProfile from "../PetProfile/PetProfileIndex";
 import { FiSettings } from "react-icons/fi";
+import PetProfileAdd from "../PetProfile/PetProfileAdd";
+import PetProfileIndex from "../PetProfile/PetProfileIndex";
+import PetProfileNestedModal from "../PetProfile/PetProfileNestedModal";
 
 const NavbarComponent = (props) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -33,6 +36,12 @@ const NavbarComponent = (props) => {
 
   const [modalPet, setModalPet] = useState(false);
   const toggleUserPetProfile = () => setModalPet(!modalPet);
+
+  const [isShown, setIsShown] = useState(false);
+
+  const handleClick = event => {
+    setIsShown(current => !current);
+  };
 
   return (
     <div>
@@ -115,36 +124,15 @@ const NavbarComponent = (props) => {
                     </ModalFooter>
                   </Modal>
                 </DropdownItem>
-                {/* Pet Profile */}
+
+                {/* ------------- Pet Profile ---------------- */}
+
                 <DropdownItem>
-                  <Button color="danger" onClick={toggleUserPetProfile}>
-                    Pet Profile
-                  </Button>
-                  <Modal
-                    isOpen={modalPet}
-                    toggle={toggleUserPetProfile}
-                    size="xl"
-                    style={{
-                      width: "80%",
-                      height: "90%",
-                      overflow: "scroll-y",
-                    }}
-                  >
-                    <ModalHeader toggle={toggleUserPetProfile}>
-                      Pet Profile
-                    </ModalHeader>
-                    <ModalBody id="pet-profile-modal">
-                      <PetProfile />
-                    </ModalBody>
-                    <ModalFooter>
-                      <Button color="primary" onClick={toggleUserPetProfile}>
-                        Submit
-                      </Button>{" "}
-                      <Button color="secondary" onClick={toggleUserPetProfile}>
-                        Cancel
-                      </Button>
-                    </ModalFooter>
-                  </Modal>
+                  <div>
+                    <Button color="danger" onClick={handleClick}> Pet Profile</Button>
+                    { isShown && <PetProfileIndex isShown = {isShown} handleClick={handleClick} setIsShown={setIsShown}/>}
+                    {/* Removed previous code - see screenshot 10/17 @11:15am */}
+                  </div>
                 </DropdownItem>
                 {/* Privacy */}
                 <DropdownItem>
@@ -161,7 +149,11 @@ const NavbarComponent = (props) => {
           </Nav>
 
           <NavbarText>
-            <Login sessionToken={props.sessionToken} clearToken={props.clearToken} updateToken={props.updateToken} />
+            <Login
+              sessionToken={props.sessionToken}
+              clearToken={props.clearToken}
+              updateToken={props.updateToken}
+            />
           </NavbarText>
         </Collapse>
       </Navbar>

@@ -8,9 +8,16 @@ import {
   Label,
   Input,
   Button,
+  ModalFooter,
 } from "reactstrap";
 
 const PetProfileEdit = (props) => {
+//  deletePet = props.deletePet
+  const [modal, setModal] = useState(false);
+
+  const toggle = () => setModal(!modal);
+
+  // petData = props.pet
   // PET NAME:
   const [editPetName, setEditPetName] = useState(props.petToUpdate.petName);
   // PET AGE:
@@ -27,66 +34,37 @@ const PetProfileEdit = (props) => {
   };
 
   return (
-    <Modal isOpen={true}>
-      <ModalHeader>Edit Your Pet Profile!</ModalHeader>
-      <ModalBody>
-        <Form onSubmit={updateCurrent}>
-          {/* NAME */}
-          <FormGroup>
-            <Label htmlFor="pet-name">Edit Pet Name:</Label>
-            <Input
-              name="pet-name"
-              value={editPetName}
-              onChange={(e) => setEditPetName(e.target.value)}
-            />
-          </FormGroup>
-          {/* AGE */}
-          <FormGroup>
-            <Label htmlFor="pet-age">Edit Pet Age:</Label>
-            <Input
-              name="pet-age"
-              value={editAge}
-              onChange={(e) => setEditAge(e.target.value)}
-            />
-          </FormGroup>
-          {/* BREED */}
-          <FormGroup>
-            <Label htmlFor="breed">Edit Breed:</Label>
-            <Input
-              type="select"
-              name="breed"
-              value={editBreed}
-              onChange={(e) => setEditBreed(e.target.value)}
-            />{" "}
-          </FormGroup>
-
-          {/* BIO */}
-          <FormGroup>
-            <Label htmlFor="pet-bio">Edit Pet Bio:</Label>
-            <Input
-              name="pet-bio"
-              value={editBio}
-              onChange={(e) => setEditBio(e.target.value)}
-            />
-          </FormGroup>
-
-          {/* DOGPIC */}
-          <FormGroup>
-            <Label htmlFor="pet-pic">Edit Pet Picture:</Label>
-            <Input
-              name="pet-pic"
-              value={editPetPic}
-              onChange={(e) => setEditPetPic(e.target.value)}
-            />
-          </FormGroup>
-
-          {/* BUTTON */}
-
-          <Button type="submit">Update!</Button>
-        </Form>
-      </ModalBody>
-    </Modal>
+    <div>
+      <Modal isOpen={modal} fade={false} toggle={toggle}>
+        <ModalHeader toggle={toggle}>Modal title</ModalHeader>
+        <ModalBody>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+          aliquip ex ea commodo consequat. Duis aute irure dolor in
+          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+          culpa qui officia deserunt mollit anim id est laborum.
+        </ModalBody>
+        <ModalFooter>
+          <Button color="primary" onClick={toggle}>
+            Do Something
+          </Button>{' '}
+          <Button color="secondary" onClick={toggle}>
+            Cancel
+          </Button>
+          <Button
+              color="warning"
+              onClick={() => {
+                // deletePet(pet);
+              }}
+            >
+              Delete
+            </Button>
+        </ModalFooter>
+      </Modal>
+    </div>
   );
-};
+}
 
 export default PetProfileEdit;

@@ -6,13 +6,20 @@ import PetProfileCard from "./PetProfileCard";
 import PetProfileEdit from "./PetProfileEdit";
 import { Endpoints } from "../Routes/Endpoints";
 import { RouteFetch } from "../Routes";
+import PetProfileNestedModal from "./PetProfileNestedModal";
 
 function PetProfileIndex(props) {
   const token = props.sessionToken;
-
   const [petData, setPetData] = useState([]);
   const [updateActive, setUpdateActive] = useState(false);
   const [petToUpdate, setPetToUpdate] = useState({});
+  const [modal, setModal] = useState(false);
+
+  const toggle = () => setModal(!modal);
+
+  const handleClick = props.handleClick
+  const setIsShown = props.setIsShown
+  const isShown = props.isShown
 
   const editUpdatePet = (pet) => {
     setPetToUpdate(pet);
@@ -42,44 +49,21 @@ function PetProfileIndex(props) {
   useEffect(() => {
     fetchPets();
   }, []);
-  
-console.log(petData)
+
+  console.log(petData);
 
   return (
-    <Container>
-      <Row>
-        <Col md="9">
-          <PetProfileCard
-            token={token}
-            petData={petData}
-            // fetchPets={fetchPets}
-            editUpdatePet={editUpdatePet}
-            updateOn={updateOn}
-          />
-        </Col>
-        {updateActive ? (
-          <PetProfileEdit
-            token={token}
-            petToUpdate={petToUpdate}
-            updateOff={updateOff}
-            fetchPets={fetchPets}
-          />
-        ) : null}
-      <Row>
-        <Col>
-        <Button> Add a pet!
-        </Button>
-        </Col>
-        </Row>
-        <Col>
-        <PetProfileAdd 
-        petData={petData}
-        fetchPets={fetchPets}
-        token={token}
-        />
-        </Col>
-        </Row>
-    </Container>
+
+    <PetProfileNestedModal 
+    handleClick={handleClick} 
+    isShown = {isShown} 
+    setIsShown={setIsShown}
+    petData={petData}
+    editUpdatePet={editUpdatePet}
+    updateOn={updateOn}
+    updateOff={updateOff}
+    />
+
   );
 }
 
