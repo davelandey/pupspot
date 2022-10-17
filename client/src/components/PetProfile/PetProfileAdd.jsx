@@ -24,13 +24,18 @@ import {
   CardTitle,
   CardSubtitle,
   CardText,
+  Modal,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
 } from "reactstrap";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import CustomListDropDown from "./CustomListDropDown";
 // DATE:
 
-const PetProfilePage = (props) => {
+const PetProfileAdd = (props) => {
+  const updateOn = props.updateOn
   const [modal, setModal] = useState(false);
   const toggle = () => setModal(!modal);
   // DATE:
@@ -38,6 +43,9 @@ const PetProfilePage = (props) => {
 
   return (
     <>
+    <Modal isOpen={modal} toggle={toggle}>
+        <ModalHeader toggle={toggle}>Add your pet!</ModalHeader>
+        <ModalBody>
       <Container className="petprofilePage" style={{ width: "95%" }}>
         {/* One row, across page */}
         <Row>
@@ -88,72 +96,36 @@ const PetProfilePage = (props) => {
                 </Col>
 
                 <Col xs="4">
-                  <Card
-                    style={{
-                      width: "18rem",
-                    }}
-                  >
-                    <img alt="Sample" src="https://picsum.photos/300/200" />
-                    <CardBody >
-                      <CardTitle id="PetProfilePageCard" tag="h2">Pet Name</CardTitle>
-                      <CardSubtitle id="PetProfilePageCard" className="mb-2 text-muted" tag="h3">
-                        <Row>
-                          <Col>
-                          Breed:
-                          </Col>
-                          <Col>
-                          Age:
-                          </Col>
-                        </Row>
-                      </CardSubtitle>
-                      <CardText>
-                       Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci, voluptate tempora natus eveniet repellat, expedita minus totam ducimus laborum odit nam autem dignissimos nesciunt? Libero.
-                      </CardText>
-                      <Button color ="success">Edit</Button>
-                      <Button color="warning">Disable</Button>
-                    </CardBody>
-                  </Card>
+                  <div>
+                  <img alt="Sample" src="https://picsum.photos/300/200" />
+                  </div>
                 </Col>
               </Row>
               <FormGroup className="petBio">
                 <Label for="exampleText">Pet bio:</Label>
-                <Input id="exampleText" name="text" type="textarea" />
+                <Input id="exampleText" name="text" type="textarea" bsSize="large"/>
               </FormGroup>
               <FormGroup>
                 <Label for="exampleFile">Pet Profile picture</Label>
                 <Input id="exampleFile" name="file" type="file" />
                 <FormText>Upload your pet's profile picture here.</FormText>
               </FormGroup>
-              {/* <FormGroup tag="fieldset">
-                <legend>Privacy Settings</legend>
-                <FormGroup check>
-                  <Input name="radio1" type="radio" />{" "}
-                  <Label check>
-                    Public to all (default): any user of the site can see your
-                    profile. You will not be able to leave comments on this
-                    setting.
-                  </Label>
-                </FormGroup>
-                <FormGroup check>
-                  <Input name="radio1" type="radio" />{" "}
-                  <Label check>
-                    Public to users: only users who are logged in will be able
-                    to view your profile and comments.
-                  </Label>
-                </FormGroup>
-                <FormGroup check disabled>
-                  <Input name="radio1" type="radio" />{" "}
-                  <Label check>
-                    Private: there are details about this that need to be added{" "}
-                  </Label>
-                </FormGroup>
-              </FormGroup> */}
             </Form>
           </Col>
         </Row>
       </Container>
+        </ModalBody>
+        <ModalFooter>
+          <Button color="primary" onClick={toggle}>
+            Update!
+          </Button>{' '}
+          <Button color="secondary" onClick={toggle}>
+            Cancel
+          </Button>
+        </ModalFooter>
+      </Modal>
     </>
   );
 };
 
-export default PetProfilePage;
+export default PetProfileAdd;

@@ -45,3 +45,13 @@ Form {
 #PetProfilePageCardText{
   text-align: justify;
 }
+
+#PetprofileEditContainer{
+  width: 100% !important;
+  height: 50% !important;
+  align-content: center;
+  background-color: green;
+  padding: none;
+  margin: none;
+  margin-bottom: 10%;
+}
