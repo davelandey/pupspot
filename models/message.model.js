@@ -21,7 +21,7 @@ const MessageSchema = new mongoose.Schema({
     },
   //!Explore timestamp...
  timeStamp: {
-    type: Date,
+    type: String,
     default: Date.now(),
   },
  disable: {
