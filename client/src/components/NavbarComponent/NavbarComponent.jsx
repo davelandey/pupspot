@@ -22,11 +22,11 @@ import "./navbar.css";
 import Login from "../Auth/Login/Login";
 import PetProfile from "../PetProfile/PetProfileIndex";
 import { FiSettings } from "react-icons/fi";
-
 import PetProfileAdd from "../PetProfile/PetProfileAdd";
 import PetProfileIndex from "../PetProfile/PetProfileIndex";
 import PetProfileNestedModal from "../PetProfile/PetProfileNestedModal";
-
+import ProfileView from "../Profile/ProfileView";
+import ProfileEdit from "../Profile/ProfileEdit";
 
 const NavbarComponent = (props) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -40,8 +40,8 @@ const NavbarComponent = (props) => {
 
   const [isShown, setIsShown] = useState(false);
 
-  const handleClick = event => {
-    setIsShown(current => !current);
+  const handleClick = (event) => {
+    setIsShown((current) => !current);
   };
 
   return (
@@ -113,7 +113,7 @@ const NavbarComponent = (props) => {
                       User Profile
                     </ModalHeader>
                     <ModalBody id="user-profile-modal">
-                      <ProfileIndex />
+                      <ProfileEdit />
                     </ModalBody>
                     <ModalFooter>
                       <Button color="primary" onClick={toggleUserProfile}>
@@ -130,8 +130,17 @@ const NavbarComponent = (props) => {
 
                 <DropdownItem>
                   <div>
-                    <Button color="danger" onClick={handleClick}> Pet Profile</Button>
-                    { isShown && <PetProfileIndex isShown = {isShown} handleClick={handleClick} setIsShown={setIsShown}/>}
+                    <Button color="danger" onClick={handleClick}>
+                      {" "}
+                      Pet Profile
+                    </Button>
+                    {isShown && (
+                      <PetProfileIndex
+                        isShown={isShown}
+                        handleClick={handleClick}
+                        setIsShown={setIsShown}
+                      />
+                    )}
                     {/* Removed previous code - see screenshot 10/17 @11:15am */}
                   </div>
                 </DropdownItem>

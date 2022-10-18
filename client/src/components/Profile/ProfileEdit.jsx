@@ -29,45 +29,45 @@ const ProfilePage = (props) => {
   const [modal, setModal] = useState(false);
   const toggle = () => setModal(!modal);
 
-  // PROFILE PIC UPLOAD
-  const [loading, setLoading] = useState(false);
-  const [image, setImage] = useState("https://picsum.photos/300/200");
+  // // PROFILE PIC UPLOAD
+  // const [loading, setLoading] = useState(false);
+  // const [image, setImage] = useState("https://picsum.photos/300/200");
 
-  // USER PHOTO UPLOAD
-  const updateUserProfile = async (data) => {
-    await RouteFetch.patch(
-      Endpoints.user.update + props.user._id,
-      data,
-      () => props.fetchUser(props.user?._id),
-      props.sessionToken
-    );
-  };
+  // // USER PHOTO UPLOAD
+  // const updateUserProfile = async (data) => {
+  //   await RouteFetch.patch(
+  //     Endpoints.user.update + props.user._id,
+  //     data,
+  //     () => props.fetchUser(props.user?._id),
+  //     props.sessionToken
+  //   );
+  // };
 
-  const UploadImage = async (e) => {
-    const files = e.target.files;
-    const data = new FormData();
-    data.append("file", files[0]);
-    data.append("upload_preset", "pupspot");
-    setLoading(true);
-    try {
-      const res = await fetch(
-        "https://api.cloudinary.com/v1_1/dimzsxbfc/image/upload",
-        {
-          method: "POST",
-          body: data,
-        }
-      );
+  // const UploadImage = async (e) => {
+  //   const files = e.target.files;
+  //   const data = new FormData();
+  //   data.append("file", files[0]);
+  //   data.append("upload_preset", "pupspot");
+  //   setLoading(true);
+  //   try {
+  //     const res = await fetch(
+  //       "https://api.cloudinary.com/v1_1/dimzsxbfc/image/upload",
+  //       {
+  //         method: "POST",
+  //         body: data,
+  //       }
+  //     );
 
-      const File = await res.json();
-      console.log(File.secure_url);
+  //     const File = await res.json();
+  //     console.log(File.secure_url);
 
-      setImage(File.secure_url);
-      setLoading(false);
-      updateUserProfile({ user: { profilePic: File.secure_url } });
-    } catch (err) {
-      console.warn(err);
-    }
-  };
+  //     setImage(File.secure_url);
+  //     setLoading(false);
+  //     updateUserProfile({ user: { profilePic: File.secure_url } });
+  //   } catch (err) {
+  //     console.warn(err);
+  //   }
+  // };
 
   useEffect(() => {}, [props.user]);
 
@@ -155,12 +155,12 @@ const ProfilePage = (props) => {
                     {/* </CardBody> */}
                     <FormGroup>
                       {/* <Label for="exampleFile">Profile picture</Label> */}
-                      <Input
+                      {/* <Input
                         type="file"
                         name="file"
                         placeholder="Upload image here"
                         onChange={UploadImage}
-                      />
+                      /> */}
                       <FormText>Upload your profile picture here.</FormText>
                     </FormGroup>
                   </Card>

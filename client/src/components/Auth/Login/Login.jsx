@@ -22,7 +22,7 @@ const Login = (props) => {
   //Original code below
   // const toggle = () => setModal(!modal)
 
-console.log(props.sessionToken)
+  console.log(props.sessionToken);
 
   const toggle = () => {
     if (props.sessionToken) {
@@ -69,7 +69,10 @@ console.log(props.sessionToken)
       await RouteFetch.post(
         Endpoints.user.login,
         body,
-        (data) => props.updateToken(data.token)
+        (data) => {
+          // ROB: add the data.user._id to the updateToken Param
+          props.updateToken(data.token);
+        }
         // close the modal
       );
       setModal(!modal);
@@ -84,8 +87,7 @@ console.log(props.sessionToken)
         {" "}
         {/* Removed from below: to={"/login"} */}
         <NavLink className="login-button">
-        {!props.sessionToken ? "LOGIN" : "LOGOUT"}
-        
+          {!props.sessionToken ? "LOGIN" : "LOGOUT"}
         </NavLink>
       </Button>
 
@@ -98,9 +100,7 @@ console.log(props.sessionToken)
           centered={true}
         >
           <ModalHeader className="modal-header" toggle={toggle}>
-            <span className="modal-header-text">
-LOGIN
-            </span>
+            <span className="modal-header-text">LOGIN</span>
           </ModalHeader>
           <ModalBody>
             <FormGroup>
