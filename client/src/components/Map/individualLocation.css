@@ -1,9 +1,14 @@
 .header {
     text-align: center;
+    padding: 0.5em;
 }
 
 .content-container {
     width: 62vw;
+}
+
+.top-row {
+    height: 40vh;
 }
 
 .map-column {
@@ -16,7 +21,7 @@ justify-content: center;
 
 
 .map-container {
-height: 45vh;
+height: 40vh;
 width: 40vw;
 padding: 0;
 margin: 0;
@@ -24,12 +29,42 @@ margin: 0;
 
 .location-info-box {
     text-align: left;
+    padding: 1em;
+    /* border: 1px solid black !important; */
+}
+
+.location-info-category {
+    font-weight: bold;
+    line-height: 2em;
+}
+
+
+.website-span {
+    font-weight: bold;
+    line-height: 2em;
+    color: var(--blue) !important
+}
+
+.website-span > a:hover {
+    color: var(--green) !important;
+    transition: 0.7s ease !important;
+
+
 }
 
 /* ---Message Box Styles--- */
+.message-header {
+    background-color: #3a5a40;
+    padding: 5px;
+    text-align: center;
+    color: white;
+
+}
+
 .chat-box {
     padding: 1em;
     text-align: left;
+
 }
 
 /* Text styles for messages */
@@ -39,14 +74,55 @@ margin: 0;
 
 .when {
     font-style: italic;
-    color: blue;
+    color: var(--gray)
+
 }
 
 .userName {
     font-weight: bold;
-    color: red; 
+    color: var(--blue)
+}
+
+/* Profile Button */
+.profile-btn {
+    border-radius: 20px !important;
+    /* padding: none !important;
+    margin: none !important; */
+    border: none !important;
+    background: none !important;
 }
 
 
+.profile-btn:focus {
+    outline: none !important;
+    box-shadow: none;
+}
+
+.placeholder {
+    height: 8em;
+}
+
 
 /* Need to add a media querey to stack columns ontop of each other for smaller views - VERTICAL VIEW */
+
+/* NOT WORKING -- NEEDS TO APPEAR IN A SINGLE COLUMN */
+/* @media (max-width: 768px) {
+
+    .content-container { */
+        /* flex-direction: column-reverse !important; */
+        /* flex-wrap: wrap-reverse;
+    }
+
+    .map-container { */
+        /* height: 100%;
+        width: 100%; */
+        /* padding: 0;
+        margin: 0;
+        } */
+
+    /* .col-top, .col-bottom {
+        flex-direction: row-reverse;
+    } */
+
+
+/* } */

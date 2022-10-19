@@ -22,10 +22,12 @@ import "./navbar.css";
 import Login from "../Auth/Login/Login";
 import PetProfile from "../PetProfile/PetProfileIndex";
 import { FiSettings } from "react-icons/fi";
-import ProfileIndex from "../Profile/ProfileIndex"
 import PetProfileAdd from "../PetProfile/PetProfileAdd";
 import PetProfileIndex from "../PetProfile/PetProfileIndex";
 import PetProfileNestedModal from "../PetProfile/PetProfileNestedModal";
+import ProfileIndex from "../Profile/ProfileIndex";
+import ProfileView from "../Profile/ProfileView";
+import ProfileEdit from "../Profile/ProfileEdit";
 
 
 const NavbarComponent = (props) => {
@@ -43,6 +45,7 @@ const NavbarComponent = (props) => {
   const handleClick = event => {
     console.log("Pet Profile click is working")
     setIsShown(current => !current);
+
   };
 
   return (
@@ -114,7 +117,11 @@ const NavbarComponent = (props) => {
                       User Profile
                     </ModalHeader>
                     <ModalBody id="user-profile-modal">
+// dave -------------------------------------------------------------- LOOK AT THIS
                       <ProfileIndex/>
+
+                      <ProfileEdit />
+
                     </ModalBody>
                     <ModalFooter>
                       <Button color="primary" onClick={toggleUserProfile}>
@@ -134,6 +141,7 @@ const NavbarComponent = (props) => {
                     <Button color="danger" onClick={handleClick}> Pet Profile</Button>
                     { isShown && 
                     <PetProfileIndex isShown = {isShown} setIsShown={setIsShown} handleClick={handleClick} />}
+
                   </div>
                 </DropdownItem>
                 {/* Privacy */}
@@ -155,6 +163,8 @@ const NavbarComponent = (props) => {
               sessionToken={props.sessionToken}
               clearToken={props.clearToken}
               updateToken={props.updateToken}
+              setUserId={props.setUserId}
+              userId={props.userId}
             />
           </NavbarText>
         </Collapse>

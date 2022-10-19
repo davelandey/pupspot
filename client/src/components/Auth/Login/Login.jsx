@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Button,
   Modal,
@@ -19,11 +19,15 @@ const Login = (props) => {
   const [modal, setModal] = useState(false);
   const [backdrop, setBackdrop] = useState(true);
   const [keyboard, setKeyboard] = useState(true);
+  //passing id props from navbar
+  const setUserId = props.setUserId;
+
   //Original code below
   // const toggle = () => setModal(!modal)
   
   console.log(props.sessionToken)
   
+
   const toggle = () => {
     if (props.sessionToken) {
       console.log("clear token");
@@ -71,8 +75,18 @@ const Login = (props) => {
       await RouteFetch.post(
         Endpoints.user.login,
         body,
+        
+ // From Daves code
+ 
         (data) => props.updateToken(data.token) 
         // setUserProfileId(data),
+
+        (data) => {
+          // ROB: add the data.user._id to the updateToken Param
+          setUserId(data.user._id);
+          props.updateToken(data.token, data.user._id);
+        }
+
         // close the modal
         );
         // console.log(data.user)
@@ -82,7 +96,6 @@ const Login = (props) => {
     }
   }
 
-console.log(userProfileId)
 
   return (
     <>
@@ -90,8 +103,7 @@ console.log(userProfileId)
         {" "}
         {/* Removed from below: to={"/login"} */}
         <NavLink className="login-button">
-        {!props.sessionToken ? "LOGIN" : "LOGOUT"}
-        
+          {!props.sessionToken ? "LOGIN" : "LOGOUT"}
         </NavLink>
       </Button>
 
@@ -104,9 +116,7 @@ console.log(userProfileId)
           centered={true}
         >
           <ModalHeader className="modal-header" toggle={toggle}>
-            <span className="modal-header-text">
-LOGIN
-            </span>
+            <span className="modal-header-text">LOGIN</span>
           </ModalHeader>
           <ModalBody>
             <FormGroup>
