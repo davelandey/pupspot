@@ -3,11 +3,26 @@ import { Container, Row, Col } from "reactstrap";
 import { NavLink, Route, Routes } from "react-router-dom";
 import "./Map.css";
 import IndividualLocation from "./IndividualLocation";
-import { icon } from "leaflet";
+
+import { IconContext } from "react-icons";
+import { HiInformationCircle } from "react-icons/hi";
 
 const Map = (props) => {
   const locations = props.locations;
-  const formatLocationCategory = props.formatLocationCategory;
+
+  //Function to capitalize category locations
+  function formatLocationCategory(locationCategory) {
+    let words = locationCategory.split(" ");
+
+    for (let i = 0; i < words.length; i++) {
+      words[i] = words[i][0].toUpperCase() + words[i].substr(1);
+    }
+    let formattedCategory = words.join(" ");
+    console.log(formattedCategory);
+    return formattedCategory;
+  }
+
+import { icon } from "leaflet";
 
   //PAW MARKER:
   const markerIcon = icon({
@@ -17,6 +32,7 @@ const Map = (props) => {
     iconAnchor: [15.5, 42], // point of the icon which will correspond to marker's location
     popupAnchor: [0, -45], // point from which the popup should open relative to the iconAnchor
   });
+
 
   return (
     <>
@@ -41,28 +57,38 @@ const Map = (props) => {
                   icon={markerIcon}
                 >
                   <Popup>
-                    <h4>{location.locationName}</h4>
-                    {/*! This is causing an issue */}
-                    {/* <p>Category: {formatLocationCategory(location.locationCategory)}</p> */}
-                    <p>
+                    <div className="popup-text-container">
+                      <h4 className="popup-header">{location.locationName}</h4>
+                      <span className="popup-section-title">Category: </span>
+                      {formatLocationCategory(location.locationCategory)}
+                      <br />
+                      <span className="popup-section-title">Address: </span>
+                      <br />
                       {location.streetAddress}
                       <br />
-                      {location.city}, {location.state}
-                    </p>
-                    <p>
-                      <a href={location.website}>Website</a>
-                    </p>
-
-                    <NavLink
-                      className="nav-link"
-                      to={`/location/${location.locationName
-                        .split(" ")
-                        .join("-")
-                        .toLowerCase()}`}
-                      activeclassname="active-link"
+                      {location.city}, {location.state} {location.zipcode}
+                      <br></br>
+                      <span className="popup-website">
+                        <a href={location.website}>Website</a>
+                      </span>
+                    </div>
+                    <IconContext.Provider
+                      value={{ color: "gray", className: "global-class-name" }}
                     >
-                      More Info
-                    </NavLink>
+                      <div className="info-icon-container">
+                        <HiInformationCircle />
+                        <NavLink
+                          className="popup-navlink"
+                          to={`/location/${location.locationName
+                            .split(" ")
+                            .join("-")
+                            .toLowerCase()}`}
+                          activeclassname="active-link"
+                        >
+                          {` More Info`}
+                        </NavLink>
+                      </div>
+                    </IconContext.Provider>
                   </Popup>
                 </Marker>
               ))}

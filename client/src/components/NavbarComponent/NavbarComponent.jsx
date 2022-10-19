@@ -25,8 +25,10 @@ import { FiSettings } from "react-icons/fi";
 import PetProfileAdd from "../PetProfile/PetProfileAdd";
 import PetProfileIndex from "../PetProfile/PetProfileIndex";
 import PetProfileNestedModal from "../PetProfile/PetProfileNestedModal";
+import ProfileIndex from "../Profile/ProfileIndex";
 import ProfileView from "../Profile/ProfileView";
 import ProfileEdit from "../Profile/ProfileEdit";
+
 
 const NavbarComponent = (props) => {
   const [isOpen, setIsOpen] = useState(false);

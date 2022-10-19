@@ -1,5 +1,5 @@
 import "./App.css";
-import { Routes, Route, NavLink } from "react-router-dom";
+import { Routes, Route, NavLink, useNavigate } from "react-router-dom";
 import Header from "./components/Header/Header";
 import Signup from "./components/Auth/Signup/Signup";
 import Footer from "./components/Footer/Footer";
@@ -168,6 +168,7 @@ function App() {
             path="/signup"
             element={<Signup updateToken={updateToken} />}
           />
+
           <Route
             path="/pet-profile"
             element={<PetProfileIndex sessionToken={sessionToken} />}

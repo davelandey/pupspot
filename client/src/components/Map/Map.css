@@ -19,3 +19,38 @@
     align-content: center;
   }
 
+  /* Popup styles */
+  .popup-header {
+    font-size: 18px;
+
+    /* margin-bottom: 0;
+padding-bottom: 0; */
+  }
+
+  .popup-section-title {
+    font-weight: bold;
+    line-height: 2em;
+  }
+
+
+
+  .popup-navlink,
+  .popup-website, .popup-navlink {
+    font-weight: bold;
+    line-height: 2em;
+    color: var(--blue) !important
+  }
+
+  /* .popup-website > a:hover {
+    color: var(--green)!important;
+    transition: 0.7s ease !important;
+  } */
+
+
+
+  .popup-navlink:hover,
+  .popup-website>a:hover {
+    color: var(--green) !important;
+    transition: 0.7s ease !important;
+
+  }
