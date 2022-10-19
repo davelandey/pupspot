@@ -143,6 +143,7 @@ const NavbarComponent = (props) => {
                     <Button color="danger" onClick={handleClick}> Pet Profile</Button>
                     { isShown && 
                     <PetProfileIndex isShown = {isShown} setIsShown={setIsShown} handleClick={handleClick} />}
+
                   </div>
                 </DropdownItem>
                 {/* Privacy */}

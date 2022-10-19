@@ -77,6 +77,7 @@ console.log(props.sessionToken)
         
  // From Daves code
  
+
         (data) => {
           // ROB: add the data.user._id to the updateToken Param
           setUserId(data.user._id);
