@@ -21,10 +21,24 @@ import ProfileIndex from "./components/Profile/ProfileIndex";
 function App() {
   //*----TOKEN----
   const [sessionToken, setSessionToken] = useState("");
+  const [userId, setUserId] = useState("");
 
+  //ROB: CREATE A USESTATE FOR userId
   useEffect(() => {
     if (localStorage.getItem("token")) {
       setSessionToken(localStorage.getItem("token"));
+    }
+    //!ROB: Have another IF STATEMENT for localstorage getItem("userId") if you have it
+    // then setUserId
+    if (localStorage.getItem("userId")) {
+      setSessionToken(localStorage.getItem("userId"));
+    }
+  }, []);
+
+  // ID -----
+  useEffect(() => {
+    if (localStorage.getItem("id")) {
+      setUserId(localStorage.getItem("id"));
     }
   }, []);
 
@@ -34,10 +48,13 @@ function App() {
     setSessionToken("");
   };
 
-  const updateToken = (newToken) => {
+  const updateToken = (newToken, id) => {
     localStorage.setItem("token", newToken);
+    localStorage.setItem("userId", id);
     setSessionToken(newToken);
     console.log(newToken);
+    setUserId(id);
+    //ROB: update or set the userId setUserId(id)
   };
 
   // const protectedViews = () => {
@@ -69,20 +86,18 @@ function App() {
     fetchLocations();
   }, []);
 
+  //Function to capitalize category locations
+  function formatLocationCategory(locationCategory) {
+    let words = locationCategory.split(" ");
 
-//Function to capitalize category locations
-function formatLocationCategory(locationCategory){
-  let words = locationCategory.split(" ");
+    for (let i = 0; i < words.length; i++) {
+      words[i] = words[i][0].toUpperCase() + words[i].substr(1);
+    }
+    let formattedCategory = words.join(" ");
+    console.log(formattedCategory);
+    return formattedCategory;
+  }
 
-  for (let i = 0; i < words.length; i++) {
-   words[i] = words[i][0].toUpperCase() + words[i].substr(1);
-}
-let formattedCategory = words.join(" ");
-console.log(formattedCategory);
-return formattedCategory
- }
-
-  
   const [userView, setUserView] = useState([]);
 
   // const fetchUser = async () => {
@@ -108,30 +123,46 @@ return formattedCategory
   return (
     <div className="App">
       <Header />
+
       <NavbarComponent
         sessionToken={sessionToken}
         clearToken={clearToken}
         updateToken={updateToken}
+        setUserId={setUserId}
+        userId={userId}
       />
 
       <div className="content-section">
         <Routes>
           <Route path="/" element={<Home locations={locations} />} />
 
-
-           {/* Creates path based on location category */}
-          <Route path="/category/:locationCategory" element={<CategoryLocations formatLocationCategory={formatLocationCategory} locations={locations} />} />
+          {/* Creates path based on location category */}
+          <Route
+            path="/category/:locationCategory"
+            element={
+              <CategoryLocations
+                formatLocationCategory={formatLocationCategory}
+                locations={locations}
+              />
+            }
+          />
 
           {/* Creates path based on location name */}
           <Route
             path="/location/:locationName"
-
-            element={locations?.length> 0 ? <IndividualLocation formatLocationCategory={formatLocationCategory} locations={locations} sessionToken={sessionToken} />: 
-            // <h1>Loading...</h1>
-            <Loading />
-          }
-
-
+            element={
+              locations?.length > 0 ? (
+                <IndividualLocation
+                  formatLocationCategory={formatLocationCategory}
+                  locations={locations}
+                  sessionToken={sessionToken}
+                  userId={userId}
+                />
+              ) : (
+                // <h1>Loading...</h1>
+                <Loading />
+              )
+            }
           />
           <Route
             path="/signup"
