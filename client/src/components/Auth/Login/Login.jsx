@@ -56,6 +56,7 @@ const Login = (props) => {
   //*-----LOGIN POSTING DATA------
   const [userName, setUserName] = useState("testUser1");
   const [password, setPassword] = useState("123");
+  const [userProfileId, setUserProfileId] = useState("");
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -72,6 +73,7 @@ const Login = (props) => {
       await RouteFetch.post(
         Endpoints.user.login,
         body,
+
         (data) => {
           // ROB: add the data.user._id to the updateToken Param
           setUserId(data.user._id);
@@ -79,6 +81,7 @@ const Login = (props) => {
         }
         // close the modal
       );
+      // console.log(data.user)
       setModal(!modal);
     } catch (error) {
       console.error(error);

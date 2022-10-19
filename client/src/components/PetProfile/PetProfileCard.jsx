@@ -62,6 +62,9 @@ const PetProfileCard = (props) => {
             </Row>
             <CardText>{pet.dogBio}</CardText>
           </CardBody>
+          <Button>
+            Edit button here?
+          </Button>
         </Card>
       );
     });

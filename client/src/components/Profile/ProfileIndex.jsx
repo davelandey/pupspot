@@ -1,4 +1,8 @@
 import { React } from "react";
+<<<<<<< HEAD
+=======
+
+>>>>>>> develop
 import ProfileView from "../Profile/ProfileView";
 import ProfileEdit from "../Profile/ProfileEdit";
 
@@ -18,6 +22,10 @@ const ProfileIndex = (props) => {
       ) : (
         <ProfileView user={user} />
       )}
+<<<<<<< HEAD
+=======
+
+>>>>>>> develop
     </>
   );
 };
