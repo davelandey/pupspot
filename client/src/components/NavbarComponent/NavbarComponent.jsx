@@ -163,6 +163,8 @@ const NavbarComponent = (props) => {
               sessionToken={props.sessionToken}
               clearToken={props.clearToken}
               updateToken={props.updateToken}
+              setUserId={props.setUserId}
+              userId={props.userId}
             />
           </NavbarText>
         </Collapse>

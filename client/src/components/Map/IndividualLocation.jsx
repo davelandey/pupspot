@@ -25,8 +25,10 @@ import { RouteFetch } from "../Routes";
 import { Endpoints } from "../Routes/Endpoints";
 import { useState, useEffect } from "react";
 import { icon } from "leaflet";
-import ProfileView from "../Profile/ProfileView";
-import ProfileEdit from "../Profile/ProfileEdit";
+// WORKING transition to ProfileIndex
+// import ProfileView from "../Profile/ProfileView";
+// import ProfileEdit from "../Profile/ProfileEdit";
+import ProfileIndex from "../Profile/ProfileIndex";
 
 const IndividualLocation = (props) => {
   // getting the URL params
@@ -121,8 +123,8 @@ const IndividualLocation = (props) => {
     }
 
     //resetting input field to be blank after submit
-    this.setBody(" ");
-    console.log(body);
+    // this.setBody(" ");
+    // console.log(body);
   }
 
   console.log(individualMessages);
@@ -191,6 +193,7 @@ const IndividualLocation = (props) => {
       console.log(props.user);
       updateUserProfile({ user: { profilePic: File.secure_url } });
     } catch (err) {
+      //not the folllowing data:
       console.warn(err);
     }
   };
@@ -316,6 +319,7 @@ const IndividualLocation = (props) => {
 
                           {/* ROB: Make a turnary if userProfile._id == props.userId then show the button. 
                           DONT FORGET TO PASS THE userIdProps to the component from the App.jsx */}
+
                           <Input
                             type="file"
                             name="file"
@@ -323,8 +327,15 @@ const IndividualLocation = (props) => {
                             onChange={UploadImage}
                           />
                         </CardBody>
-                        <ProfileView user={userProfile} fetchUser={fetchUser} />
-                        <ProfileEdit user={userProfile} fetchUser={fetchUser} />
+                        {/* WORKING transition to ProfileIndex--------------------------------------- */}
+                        {/* <ProfileView user={userProfile} fetchUser={fetchUser} />
+                        <ProfileEdit user={userProfile} fetchUser={fetchUser} /> */}
+                        <ProfileIndex
+                          user={userProfile}
+                          fetchUser={fetchUser}
+                          userId={props.userId}
+                          UploadImage={UploadImage}
+                        />
                       </Card>
                     </ModalBody>
                     <ModalFooter></ModalFooter>

@@ -28,6 +28,7 @@ import { Endpoints } from "../Routes/Endpoints";
 const ProfilePage = (props) => {
   const [modal, setModal] = useState(false);
   const toggle = () => setModal(!modal);
+  const UploadImage = props.UploadImage;
 
   // // PROFILE PIC UPLOAD
   // const [loading, setLoading] = useState(false);
@@ -170,7 +171,7 @@ const ProfilePage = (props) => {
                 <Label for="exampleText">About me:</Label>
                 <Input id="exampleText" name="text" type="textarea" />
               </FormGroup>
-              {/* <FormGroup>
+              <FormGroup>
                 <Label for="exampleFile">Profile picture</Label>
                 <Input
                   type="file"
@@ -179,7 +180,7 @@ const ProfilePage = (props) => {
                   onChange={UploadImage}
                 />
                 <FormText>Upload your profile picture here.</FormText>
-              </FormGroup> */}
+              </FormGroup>
               <FormGroup tag="fieldset">
                 <legend>Privacy Settings</legend>
                 <FormGroup check>

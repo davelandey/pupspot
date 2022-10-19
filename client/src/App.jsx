@@ -21,12 +21,25 @@ import ProfileIndex from "./components/Profile/ProfileIndex";
 function App() {
   //*----TOKEN----
   const [sessionToken, setSessionToken] = useState("");
-  // CREATE A USESTATE FOR userId
+  const [userId, setUserId] = useState("");
+
+  //ROB: CREATE A USESTATE FOR userId
   useEffect(() => {
     if (localStorage.getItem("token")) {
       setSessionToken(localStorage.getItem("token"));
     }
-    //ROB: Have another IF STATEMENT for localstorage getItem("userId") if you have it then setUserId
+    //!ROB: Have another IF STATEMENT for localstorage getItem("userId") if you have it
+    // then setUserId
+    if (localStorage.getItem("userId")) {
+      setSessionToken(localStorage.getItem("userId"));
+    }
+  }, []);
+
+  // ID -----
+  useEffect(() => {
+    if (localStorage.getItem("id")) {
+      setUserId(localStorage.getItem("id"));
+    }
   }, []);
 
   // pass down to login button
@@ -37,8 +50,10 @@ function App() {
 
   const updateToken = (newToken, id) => {
     localStorage.setItem("token", newToken);
+    localStorage.setItem("userId", id);
     setSessionToken(newToken);
     console.log(newToken);
+    setUserId(id);
     //ROB: update or set the userId setUserId(id)
   };
 
@@ -108,10 +123,13 @@ function App() {
   return (
     <div className="App">
       <Header />
+
       <NavbarComponent
         sessionToken={sessionToken}
         clearToken={clearToken}
         updateToken={updateToken}
+        setUserId={setUserId}
+        userId={userId}
       />
 
       <div className="content-section">
@@ -138,6 +156,7 @@ function App() {
                   formatLocationCategory={formatLocationCategory}
                   locations={locations}
                   sessionToken={sessionToken}
+                  userId={userId}
                 />
               ) : (
                 // <h1>Loading...</h1>
