@@ -11,8 +11,8 @@ const Map = (props) => {
 
   //PAW MARKER:
   const markerIcon = icon({
-    // !change env?
-    iconUrl: `https://api.geoapify.com/v1/icon?size=xx-large&type=awesome&color=%233e9cfe&icon=paw&apiKey=032e6c0443c3405f87b605c4c5e314ab`,
+    // !change evo
+    iconUrl: `https://api.geoapify.com/v1/icon?size=xx-large&type=awesome&color=%233e9cfe&icon=paw&apiKey=${process.env.REACT_MY_APIKEYICON}`,
     iconSize: [31, 46], // size of the icon
     iconAnchor: [15.5, 42], // point of the icon which will correspond to marker's location
     popupAnchor: [0, -45], // point from which the popup should open relative to the iconAnchor
