@@ -155,3 +155,21 @@ const PetProfileEdit = (props) => {
 export default PetProfileEdit;
 
 
+**** -------------------- NESTED MODAL
+
+          <Modal
+            isOpen={nestedModal}
+            toggle={toggleNested}
+            onClosed={closeAll ? toggle : undefined}
+          >
+            <ModalHeader>{title}</ModalHeader>
+            <ModalBody></ModalBody>
+            <ModalFooter>
+              <Button color="primary" onClick={toggleNested}>
+                Done
+              </Button>{' '}
+              <Button color="secondary" onClick={toggleAll}>
+                All Done
+              </Button>
+            </ModalFooter>
+          </Modal>

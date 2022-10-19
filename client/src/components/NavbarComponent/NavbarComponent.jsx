@@ -40,10 +40,12 @@ const NavbarComponent = (props) => {
   const [modalPet, setModalPet] = useState(false);
   const toggleUserPetProfile = () => setModalPet(!modalPet);
 
-  const [isShown, setIsShown] = useState(false);
+  const [isShown, setIsShown] = useState(true);
 
-  const handleClick = (event) => {
-    setIsShown((current) => !current);
+  const handleClick = event => {
+    console.log("Pet Profile click is working")
+    setIsShown(current => !current);
+
   };
 
   return (
@@ -115,7 +117,11 @@ const NavbarComponent = (props) => {
                       User Profile
                     </ModalHeader>
                     <ModalBody id="user-profile-modal">
+// dave -------------------------------------------------------------- LOOK AT THIS
+                      <ProfileIndex/>
+
                       <ProfileEdit />
+
                     </ModalBody>
                     <ModalFooter>
                       <Button color="primary" onClick={toggleUserProfile}>
@@ -132,18 +138,10 @@ const NavbarComponent = (props) => {
 
                 <DropdownItem>
                   <div>
-                    <Button color="danger" onClick={handleClick}>
-                      {" "}
-                      Pet Profile
-                    </Button>
-                    {isShown && (
-                      <PetProfileIndex
-                        isShown={isShown}
-                        handleClick={handleClick}
-                        setIsShown={setIsShown}
-                      />
-                    )}
-                    {/* Removed previous code - see screenshot 10/17 @11:15am */}
+                    <Button color="danger" onClick={handleClick}> Pet Profile</Button>
+                    { isShown && 
+                    <PetProfileIndex isShown = {isShown} setIsShown={setIsShown} handleClick={handleClick} />}
+
                   </div>
                 </DropdownItem>
                 {/* Privacy */}

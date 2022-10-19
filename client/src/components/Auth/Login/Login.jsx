@@ -24,8 +24,9 @@ const Login = (props) => {
 
   //Original code below
   // const toggle = () => setModal(!modal)
-
-  console.log(props.sessionToken);
+  
+  console.log(props.sessionToken)
+  
 
   const toggle = () => {
     if (props.sessionToken) {
@@ -37,10 +38,10 @@ const Login = (props) => {
       setModal(!modal);
     }
   };
-
+  
   // if props.token then clear token
   //else set modal
-
+  
   const changeBackdrop = (e) => {
     let { value } = e.target;
     if (value !== "static") {
@@ -48,14 +49,16 @@ const Login = (props) => {
     }
     setBackdrop(value);
   };
-
+  
   const changeKeyboard = (e) => {
     setKeyboard(e.currentTarget.checked);
   };
-
+  
   //*-----LOGIN POSTING DATA------
   const [userName, setUserName] = useState("testUser1");
   const [password, setPassword] = useState("123");
+  const [userProfileId, setUserProfileId] = useState("");
+  
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -72,20 +75,27 @@ const Login = (props) => {
       await RouteFetch.post(
         Endpoints.user.login,
         body,
+        
+ // From Daves code
+ 
+        (data) => props.updateToken(data.token) 
+        // setUserProfileId(data),
+
         (data) => {
           // ROB: add the data.user._id to the updateToken Param
           setUserId(data.user._id);
           props.updateToken(data.token, data.user._id);
         }
+
         // close the modal
-      );
+        );
+        // console.log(data.user)
       setModal(!modal);
     } catch (error) {
       console.error(error);
     }
   }
 
-  console.log(props.userId);
 
   return (
     <>
