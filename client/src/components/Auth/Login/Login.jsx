@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Button,
   Modal,
@@ -19,6 +19,9 @@ const Login = (props) => {
   const [modal, setModal] = useState(false);
   const [backdrop, setBackdrop] = useState(true);
   const [keyboard, setKeyboard] = useState(true);
+  //passing id props from navbar
+  const setUserId = props.setUserId;
+
   //Original code below
   // const toggle = () => setModal(!modal)
 
@@ -34,10 +37,10 @@ console.log(props.sessionToken)
       setModal(!modal);
     }
   };
-
+  
   // if props.token then clear token
   //else set modal
-
+  
   const changeBackdrop = (e) => {
     let { value } = e.target;
     if (value !== "static") {
@@ -45,14 +48,16 @@ console.log(props.sessionToken)
     }
     setBackdrop(value);
   };
-
+  
   const changeKeyboard = (e) => {
     setKeyboard(e.currentTarget.checked);
   };
-
+  
   //*-----LOGIN POSTING DATA------
   const [userName, setUserName] = useState("testUser1");
   const [password, setPassword] = useState("123");
+  const [userProfileId, setUserProfileId] = useState("");
+  
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -69,9 +74,20 @@ console.log(props.sessionToken)
       await RouteFetch.post(
         Endpoints.user.login,
         body,
-        (data) => props.updateToken(data.token)
+        
+        
+ // From Daves code
+ 
+
+        (data) => {
+          // ROB: add the data.user._id to the updateToken Param
+          setUserId(data.user._id);
+          props.updateToken(data.token, data.user._id);
+        }
+
         // close the modal
-      );
+        );
+        // console.log(data.user)
       setModal(!modal);
     } catch (error) {
       console.error(error);
@@ -84,8 +100,7 @@ console.log(props.sessionToken)
         {" "}
         {/* Removed from below: to={"/login"} */}
         <NavLink className="login-button">
-        {!props.sessionToken ? "LOGIN" : "LOGOUT"}
-        
+          {!props.sessionToken ? "LOGIN" : "LOGOUT"}
         </NavLink>
       </Button>
 
@@ -98,9 +113,7 @@ console.log(props.sessionToken)
           centered={true}
         >
           <ModalHeader className="modal-header" toggle={toggle}>
-            <span className="modal-header-text">
-LOGIN
-            </span>
+            <span className="modal-header-text">LOGIN</span>
           </ModalHeader>
           <ModalBody>
             <FormGroup>

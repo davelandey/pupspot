@@ -22,11 +22,12 @@ import "./navbar.css";
 import Login from "../Auth/Login/Login";
 import PetProfile from "../PetProfile/PetProfileIndex";
 import { FiSettings } from "react-icons/fi";
-
 import PetProfileAdd from "../PetProfile/PetProfileAdd";
 import PetProfileIndex from "../PetProfile/PetProfileIndex";
 import PetProfileNestedModal from "../PetProfile/PetProfileNestedModal";
 import ProfileIndex from "../Profile/ProfileIndex";
+import ProfileView from "../Profile/ProfileView";
+import ProfileEdit from "../Profile/ProfileEdit";
 
 
 const NavbarComponent = (props) => {
@@ -39,10 +40,12 @@ const NavbarComponent = (props) => {
   const [modalPet, setModalPet] = useState(false);
   const toggleUserPetProfile = () => setModalPet(!modalPet);
 
-  const [isShown, setIsShown] = useState(false);
+  const [isShown, setIsShown] = useState(true);
 
   const handleClick = event => {
+    console.log("Pet Profile click is working")
     setIsShown(current => !current);
+
   };
 
   return (
@@ -114,7 +117,9 @@ const NavbarComponent = (props) => {
                       User Profile
                     </ModalHeader>
                     <ModalBody id="user-profile-modal">
-                      <ProfileIndex />
+                      {/* ADD PROPS HERE FOR IT TO WORK --------------------------------------------------------- */}
+                      <ProfileEdit userId={props.userId}/>
+
                     </ModalBody>
                     <ModalFooter>
                       <Button color="primary" onClick={toggleUserProfile}>
@@ -132,8 +137,9 @@ const NavbarComponent = (props) => {
                 <DropdownItem>
                   <div>
                     <Button color="danger" onClick={handleClick}> Pet Profile</Button>
-                    { isShown && <PetProfileIndex isShown = {isShown} handleClick={handleClick} setIsShown={setIsShown}/>}
-                    {/* Removed previous code - see screenshot 10/17 @11:15am */}
+                    { isShown && 
+                    <PetProfileIndex isShown = {isShown} setIsShown={setIsShown} handleClick={handleClick} />}
+
                   </div>
                 </DropdownItem>
                 {/* Privacy */}
@@ -155,6 +161,8 @@ const NavbarComponent = (props) => {
               sessionToken={props.sessionToken}
               clearToken={props.clearToken}
               updateToken={props.updateToken}
+              setUserId={props.setUserId}
+              userId={props.userId}
             />
           </NavbarText>
         </Collapse>

@@ -1,15 +1,18 @@
 import React, {useState} from "react"; 
-import {React, Modal, ModalHeader, ModalBody, ModalFooter} from "reactstrap"
+import { Modal, ModalHeader, ModalBody, ModalFooter, Button} from "reactstrap"
+import PetProfileEdit from "./PetProfileEdit"
 
 const PetProfileModal = (props) => {
+// petAction = props.petAction
+  const [modal, setModal] = useState(false);
 
-
+  const toggle = () => setModal(!modal);
 
   return (
     <>
       <Modal
-        isOpen={modal}
-        toggle={toggleUserProfile}
+        isOpen={true}
+        toggle={toggle}
         size="xl"
         style={{
           width: "80%",
@@ -17,15 +20,15 @@ const PetProfileModal = (props) => {
           overflow: "scroll-y",
         }}
       >
-        <ModalHeader toggle={toggleUserProfile}>User Profile</ModalHeader>
+        <ModalHeader toggle={toggle}>User Profile</ModalHeader>
         <ModalBody id="user-profile-modal">
-          <Profile />
+         {/* {petAction} */}
         </ModalBody>
         <ModalFooter>
-          <Button color="primary" onClick={toggleUserProfile}>
+          <Button color="primary" onClick={toggle}>
             Submit
           </Button>{" "}
-          <Button color="secondary" onClick={toggleUserProfile}>
+          <Button color="secondary" onClick={toggle}>
             Cancel
           </Button>
         </ModalFooter>
