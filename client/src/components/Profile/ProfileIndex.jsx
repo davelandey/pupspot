@@ -1,37 +1,25 @@
 import { React } from "react";
-import { useState } from "react";
-import { RouteFetch } from "../Routes";
-import { Endpoints } from "../Routes/Endpoints";
-import ProfileView from "./ProfileView";
-import ProfileEdit from "./ProfileEdit";
+
+import ProfileView from "../Profile/ProfileView";
+import ProfileEdit from "../Profile/ProfileEdit";
 
 const ProfileIndex = (props) => {
-  
-  const [userProfile, setUserProfile] = useState();
-  const [modalProfile, setModalProfile] = useState(false);
-  const token = props.sessionToken;
-
-  const fetchUser = async (userId) => {
-    try {
-      RouteFetch.get(Endpoints.user.getById + userId, callback, token);
-      function callback(data) {
-        console.log("callback user works?", data);
-        setUserProfile(data.user);
-      }
-    } catch (error) {
-      console.error(error);
-    }
-  };
-  const toggleUserProfile = (userId) => {
-    fetchUser(userId);
-    setModalProfile(!modalProfile);
-  };
-console.log("below here is the console log")
-  console.log(userProfile);
+  const user = props.user;
+  const fetchUser = props.fetchUser;
+  const userId = props.userId;
+  console.log(userId);
 
   return (
     <>
-      <ProfileView />
+      <h1>PROFILE INDEX</h1>
+      {/* props.user._id ===  props.userId - passed from App.js & ProfileIndex */}
+
+      {props.user._id === props.userId ? (
+        <ProfileEdit user={user} UploadImage={props.UploadImage} />
+      ) : (
+        <ProfileView user={user} />
+      )}
+
     </>
   );
 };

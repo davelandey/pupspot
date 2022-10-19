@@ -24,6 +24,7 @@ import {
 } from "reactstrap";
 import { RouteFetch } from "../Routes";
 import { Endpoints } from "../Routes/Endpoints";
+// import IndividualLocation from "../Map/IndividualLocation";
 
 const ProfileView = (props) => {
   const user = props.user;
@@ -93,28 +94,11 @@ const ProfileView = (props) => {
             <Form>
               <Row>
                 <Col m="2">
-                  <FormGroup className="FormGroup">
-                    {/* <Label for="exampleEmail">First name:</Label>
-                    <Input
-                      id="userProfileFirstName"
-                      name="userProfileFirstName"
-                      placeholder="Add/Edit your first name"
-                      type="string"
-                    /> */}
-                    {/* -------------------WORKING ON PROPS */}
-                    {/* <h4>{profileData}</h4>
-                    <p>Name: {profileData.name}</p> */}
-                  </FormGroup>
+                  <FormGroup className="FormGroup"></FormGroup>
                   <FormGroup className="FormGroup">
                     <Label for="exampleEmail">
                       Name:{props.user?.firstName}
                     </Label>
-                    {/* <Input
-                      id="userProfileLastName"
-                      name="userProfileLastName"
-                      placeholder="Add/Edit your last name"
-                      type="string"
-                    /> */}
                   </FormGroup>
                   <FormGroup className="FormGroup">
                     <Label for="exampleEmail">
@@ -126,12 +110,6 @@ const ProfileView = (props) => {
                     <Label for="exampleEmail">
                       About:{props.user?.humanBio}
                     </Label>
-                    {/* <Input
-                      id="userProfileUserName"
-                      name="userProfileUserName"
-                      placeholder="Add/Edit your user name"
-                      type="string"
-                    /> */}
                   </FormGroup>
                 </Col>
                 <Col xs="4">
@@ -144,19 +122,13 @@ const ProfileView = (props) => {
                     <img alt="Sample" src={props.user?.profilePic} />
                     {/* add default image  */}
 
-                    {/* <CardBody>
-                      {<CardSubtitle className="mb-2 text-muted" tag="h6">
+                    <CardBody>
+                      <CardSubtitle className="mb-2 text-muted" tag="h6">
                         Card subtitle
-                      </CardSubtitle> 
-                       <CardText>PROFILE PICTURE</CardText>
-*/}
-                    {/* <Input
-                      type="file"
-                      name="file"
-                      placeholder="Upload image here"
-                      onChange={UploadImage}
-                    /> */}
-                    {/* </CardBody>  */}
+                      </CardSubtitle>
+
+                      <CardText>PROFILE PICTURE</CardText>
+                    </CardBody>
                   </Card>
                 </Col>
               </Row>
