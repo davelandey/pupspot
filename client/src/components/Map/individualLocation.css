@@ -1,0 +1,52 @@
+.header {
+    text-align: center;
+}
+
+.content-container {
+    width: 62vw;
+}
+
+.map-column {
+width: 100%;
+object-fit: cover;
+padding: 0 !important;
+margin: 0 !important;
+justify-content: center;
+}
+
+
+.map-container {
+height: 45vh;
+width: 40vw;
+padding: 0;
+margin: 0;
+}
+
+.location-info-box {
+    text-align: left;
+}
+
+/* ---Message Box Styles--- */
+.chat-box {
+    padding: 1em;
+    text-align: left;
+}
+
+/* Text styles for messages */
+.message-ul {
+    list-style-type: none;
+}
+
+.when {
+    font-style: italic;
+    color: blue;
+}
+
+.userName {
+    font-weight: bold;
+    color: red; 
+}
+
+
+
+/* Need to add a media querey to stack columns ontop of each other for smaller views - VERTICAL VIEW */

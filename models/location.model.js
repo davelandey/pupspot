@@ -1,18 +1,17 @@
 const mongoose = require("mongoose");
 
 const LocationSchema = new mongoose.Schema({
- 
   latitude: {
-    type: Number
+    type: Number,
   },
   longitude: {
-    type: Number
+    type: Number,
   },
   locationCategory: {
     type: String,
   },
   locationName: {
-    type: String, 
+    type: String,
   },
   streetAddress: {
     type: String,
@@ -24,7 +23,7 @@ const LocationSchema = new mongoose.Schema({
     type: String,
   },
   zipcode: {
-    type: Number,
+    type: String,
   },
   placeBio: {
     type: String,
@@ -39,6 +38,9 @@ const LocationSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
+  userId: {
+    type: String,
+  }
 });
 
 module.exports = mongoose.model("Location", LocationSchema);

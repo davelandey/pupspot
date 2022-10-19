@@ -1,0 +1,18 @@
+.footer {
+  padding: 1rem;
+  color: white;
+  background-color: #3a5a40;
+  /* position:fixed; */
+  bottom: 0;
+  width: 100%;
+  height: auto;
+}
+
+.signUpLink {
+  /* color: white;
+  text-decoration: none; */
+  font-weight: bold;
+}
+
+/* .copyright {
+} */

@@ -1,10 +1,15 @@
 const mongoose = require("mongoose");
 
+
+
 const MessageSchema = new mongoose.Schema({
- locationId:{
+  locationId:{
     type: String,
     required: true,
-    unique: true,
+  },
+  userId:{
+    type: String,
+    required: true,
   },
   userName: {
      type: String,
@@ -16,7 +21,7 @@ const MessageSchema = new mongoose.Schema({
     },
   //!Explore timestamp...
  timeStamp: {
-    type: Date,
+    type: String,
     default: Date.now(),
   },
  disable: {

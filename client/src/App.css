@@ -1,38 +1,51 @@
-.App {
-  text-align: center;
+/* ------UNIVERSAL STYLE SHEET------ */
+
+/* -----IMPORTS----- */
+
+@import url("https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,200;0,300;0,600;0,900;1,200;1,300;1,600&display=swap");
+
+/* -----PAGE SETUP----- */
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* -----HEADINGS----- */
+
+.pupSpot-text {
+  font-family: "Raleway", sans-serif;
+  font-weight: 900;
+  font-size: 60px;
+  margin: none;
+  padding: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+h1 {
+  font-family: "Raleway", sans-serif;
+  font-weight: 600;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+h2 {
+  font-family: "Raleway", sans-serif;
+  font-weight: 300;
 }
 
-.App-link {
-  color: #61dafb;
+h3 {
+  font-family: "Raleway", sans-serif;
+  font-weight: 200;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+
+
+/* -----COLOR THEME----- */
+/* https://www.freecodecamp.org/news/how-to-easily-create-themes-with-css-variables-2d0f4cfa5b9a/ */
+:root {  
+  /* colors */
+  --blue: #0077B6;  
+  --green: #3A5A40;  
+  --yellow: #FFB703;  
+  --gray: #DEE2E6;
 }
+

@@ -1,0 +1,19 @@
+.center-align-text{
+    text-align: center;
+}
+
+.map-column {
+    width: 100%;
+    object-fit: cover;
+    }
+
+.content-container {
+    /* background-color: aqua; */
+    width: 100%;
+    text-align: center;
+    
+}
+
+.row {
+justify-content: center;
+}

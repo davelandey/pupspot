@@ -1,0 +1,57 @@
+Container {
+  /* width: 100%; */
+}
+
+.profilePage {
+  width: 100% !important;
+  height: 50% !important;
+  align-content: center;
+  background-color: green;
+  padding: none;
+  margin: none;
+  margin-bottom: 10%;
+}
+Form {
+  height: 30%;
+}
+
+#Menu-item-1 {
+  align-content: center;
+  text-align: center;
+}
+
+.birthdate {
+  position: relative;
+  margin-top: 40%;
+}
+
+.buble {
+  position: absolute;
+}
+.radio-sex {
+  margin-top: 40%;
+}
+
+.petName {
+  margin-top: 10%;
+}
+
+
+#PetProfilePageCard{
+  text-align: center;
+  padding: 0.1rem;
+}
+
+#PetProfilePageCardText{
+  text-align: justify;
+}
+
+#PetprofileEditContainer{
+  width: 100% !important;
+  height: 50% !important;
+  align-content: center;
+  background-color: green;
+  padding: none;
+  margin: none;
+  margin-bottom: 10%;
+}
