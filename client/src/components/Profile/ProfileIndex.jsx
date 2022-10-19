@@ -2,15 +2,18 @@ import { React } from "react";
 import { useState } from "react";
 import { RouteFetch } from "../Routes";
 import { Endpoints } from "../Routes/Endpoints";
+import ProfileView from "./ProfileView";
+import ProfileEdit from "./ProfileEdit";
 
 const ProfileIndex = (props) => {
-  const [userProfileId, setuserProfileId] = useState("");
+  
   const [userProfile, setUserProfile] = useState();
   const [modalProfile, setModalProfile] = useState(false);
+  const token = props.sessionToken;
 
   const fetchUser = async (userId) => {
     try {
-      RouteFetch.get(Endpoints.user.getById + userId, callback);
+      RouteFetch.get(Endpoints.user.getById + userId, callback, token);
       function callback(data) {
         console.log("callback user works?", data);
         setUserProfile(data.user);
@@ -23,10 +26,12 @@ const ProfileIndex = (props) => {
     fetchUser(userId);
     setModalProfile(!modalProfile);
   };
+console.log("below here is the console log")
   console.log(userProfile);
+
   return (
     <>
-      <h1>PROFILE INDEX</h1>
+      <ProfileView />
     </>
   );
 };

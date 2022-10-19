@@ -25,7 +25,7 @@ import {
 import { RouteFetch } from "../Routes";
 import { Endpoints } from "../Routes/Endpoints";
 
-const ProfilePage = (props) => {
+const ProfileEdit = (props) => {
   const [modal, setModal] = useState(false);
   const toggle = () => setModal(!modal);
 
@@ -212,4 +212,4 @@ const ProfilePage = (props) => {
   );
 };
 
-export default ProfilePage;
+export default ProfileEdit;
