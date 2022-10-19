@@ -3,14 +3,18 @@ import { Col, Row, Container } from "reactstrap";
 import "./Signup.css";
 // import { NavLink } from "react-router-dom";
 import { Form, FormGroup, Input, Button, Label } from "reactstrap";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { RouteFetch } from "../../Routes";
 import { Endpoints } from "../../Routes/Endpoints";
+import { useNavigate } from "react-router";
+
+
 
 const Signup = (props) => {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
+const navigate = useNavigate ()
 
   // Signup Fetch
   async function handleSubmit(event){
@@ -28,6 +32,7 @@ const Signup = (props) => {
     try {
       await RouteFetch.post(Endpoints.user.signup, body, (data) =>
          props.updateToken(data.token)
+        //  navigate()
     
       );
      } catch (error) {

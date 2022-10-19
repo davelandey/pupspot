@@ -26,6 +26,7 @@ import { FiSettings } from "react-icons/fi";
 import PetProfileAdd from "../PetProfile/PetProfileAdd";
 import PetProfileIndex from "../PetProfile/PetProfileIndex";
 import PetProfileNestedModal from "../PetProfile/PetProfileNestedModal";
+import ProfileIndex from "../Profile/ProfileIndex";
 
 
 const NavbarComponent = (props) => {
