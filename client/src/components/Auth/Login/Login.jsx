@@ -24,9 +24,8 @@ const Login = (props) => {
 
   //Original code below
   // const toggle = () => setModal(!modal)
-  
-  console.log(props.sessionToken)
-  
+
+console.log(props.sessionToken)
 
   const toggle = () => {
     if (props.sessionToken) {
@@ -76,10 +75,9 @@ const Login = (props) => {
         Endpoints.user.login,
         body,
         
+        
  // From Daves code
  
-        (data) => props.updateToken(data.token) 
-        // setUserProfileId(data),
 
         (data) => {
           // ROB: add the data.user._id to the updateToken Param
@@ -95,7 +93,6 @@ const Login = (props) => {
       console.error(error);
     }
   }
-
 
   return (
     <>

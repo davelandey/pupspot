@@ -6,6 +6,7 @@ import IndividualLocation from "./IndividualLocation";
 
 import { IconContext } from "react-icons";
 import { HiInformationCircle } from "react-icons/hi";
+import { icon } from "leaflet";
 
 const Map = (props) => {
   const locations = props.locations;
@@ -21,16 +22,14 @@ const Map = (props) => {
     console.log(formattedCategory);
     return formattedCategory;
   }
-
-import { icon } from "leaflet";
-
   //PAW MARKER:
   const markerIcon = icon({
     // !change evo
-    iconUrl: `https://api.geoapify.com/v1/icon?size=xx-large&type=awesome&color=%233e9cfe&icon=paw&apiKey=${process.env.REACT_MY_APIKEYICON}`,
+    iconUrl: `${process.env.REACT_APP_APIKEYICON}`,
     iconSize: [31, 46], // size of the icon
     iconAnchor: [15.5, 42], // point of the icon which will correspond to marker's location
     popupAnchor: [0, -45], // point from which the popup should open relative to the iconAnchor
+
   });
 
 
@@ -54,6 +53,7 @@ import { icon } from "leaflet";
                   key={location.id}
                   position={[location.latitude, location.longitude]}
                   //MARKER ICON:
+                  debugger
                   icon={markerIcon}
                 >
                   <Popup>

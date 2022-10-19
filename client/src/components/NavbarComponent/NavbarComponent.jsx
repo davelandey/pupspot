@@ -117,10 +117,8 @@ const NavbarComponent = (props) => {
                       User Profile
                     </ModalHeader>
                     <ModalBody id="user-profile-modal">
-// dave -------------------------------------------------------------- LOOK AT THIS
-                      <ProfileIndex/>
-
-                      <ProfileEdit />
+                      {/* ADD PROPS HERE FOR IT TO WORK --------------------------------------------------------- */}
+                      <ProfileEdit userId={props.userId}/>
 
                     </ModalBody>
                     <ModalFooter>

@@ -48,7 +48,8 @@ const PetProfileNestedModal = (props) => {
 
     return ( 
     <>
-      <Modal isOpen={isShown} toggle={toggle}>
+    {/* CHANGED MODEL OPEN TO FALSE */}
+      <Modal isOpen={false} toggle={toggle}>
         <ModalHeader toggle={toggle}>Pet Profile</ModalHeader>
         <ModalBody>
         <PetProfileCard petData={petData}/>

@@ -166,7 +166,7 @@ function App() {
           />
           <Route
             path="/signup"
-            element={<Signup updateToken={updateToken} />}
+            element={<Signup setUserId={setUserId} updateToken={updateToken} />}
           />
 
           <Route

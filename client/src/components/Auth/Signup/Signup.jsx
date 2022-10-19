@@ -15,7 +15,7 @@ const Signup = (props) => {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
 const navigate = useNavigate ()
-
+const setUserId = props.setUserId;
   // Signup Fetch
   async function handleSubmit(event){
     event.preventDefault();
@@ -30,10 +30,11 @@ const navigate = useNavigate ()
     };
 
     try {
-      await RouteFetch.post(Endpoints.user.signup, body, (data) =>
-         props.updateToken(data.token)
+      await RouteFetch.post(Endpoints.user.signup, body, (data) => {
+         setUserId(data.user._id)
+         props.updateToken(data.token, data.user._id)
         //  navigate()
-    
+      }
       );
      } catch (error) {
        console.error(error);

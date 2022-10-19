@@ -3,7 +3,7 @@ import { Modal, ModalHeader, ModalBody, ModalFooter, Button} from "reactstrap"
 import PetProfileEdit from "./PetProfileEdit"
 
 const PetProfileModal = (props) => {
-petAction = props.petAction
+// petAction = props.petAction
   const [modal, setModal] = useState(false);
 
   const toggle = () => setModal(!modal);
@@ -22,7 +22,7 @@ petAction = props.petAction
       >
         <ModalHeader toggle={toggle}>User Profile</ModalHeader>
         <ModalBody id="user-profile-modal">
-         {petAction}
+         {/* {petAction} */}
         </ModalBody>
         <ModalFooter>
           <Button color="primary" onClick={toggle}>
