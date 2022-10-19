@@ -316,6 +316,7 @@ Phone:</span>
               </FormGroup>
             </Form>
           </Col>
+          <Row className="placeholder"></Row>
         </Row>
       </Container>
     </>
