@@ -22,10 +22,6 @@ import "./navbar.css";
 import Login from "../Auth/Login/Login";
 import PetProfile from "../PetProfile/PetProfileIndex";
 import { FiSettings } from "react-icons/fi";
-<<<<<<< HEAD
-import ProfileIndex from "../Profile/ProfileIndex"
-=======
->>>>>>> develop
 import PetProfileAdd from "../PetProfile/PetProfileAdd";
 import PetProfileIndex from "../PetProfile/PetProfileIndex";
 import PetProfileNestedModal from "../PetProfile/PetProfileNestedModal";
@@ -122,7 +118,7 @@ const NavbarComponent = (props) => {
                     </ModalHeader>
                     <ModalBody id="user-profile-modal">
                       {/* ADD PROPS HERE FOR IT TO WORK --------------------------------------------------------- */}
-                      <ProfileIndex/>
+                      <ProfileEdit userId={props.userId}/>
 
                     </ModalBody>
                     <ModalFooter>
