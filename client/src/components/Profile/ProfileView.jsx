@@ -91,6 +91,7 @@ const ProfileView = (props) => {
             xxl="4"
             style={{ overflow: "scroll-y", height: "50%" }}
           >
+            <h2>PROFILE VIEW</h2>
             <Form>
               <Row>
                 <Col m="2">

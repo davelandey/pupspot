@@ -22,14 +22,14 @@ function App() {
   //*----TOKEN----
   const [sessionToken, setSessionToken] = useState("");
   const [userId, setUserId] = useState("");
-
-  //ROB: CREATE A USESTATE FOR userId
   useEffect(() => {
     if (localStorage.getItem("token")) {
       setSessionToken(localStorage.getItem("token"));
     }
-    //!ROB: Have another IF STATEMENT for localstorage getItem("userId") if you have it
-    // then setUserId
+    //ROB: Have another IF STATEMENT for localstorage getItem("userId") if you have it
+    // then setUserId -
+
+    //USESTATE FOR userId
     if (localStorage.getItem("userId")) {
       setSessionToken(localStorage.getItem("userId"));
     }
