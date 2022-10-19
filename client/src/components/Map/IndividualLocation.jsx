@@ -3,6 +3,11 @@ import Map from "./Map";
 import { MapContainer, TileLayer, useMap, Marker, Popup } from "react-leaflet";
 import {
   Container,
+  Card,
+  CardBody,
+  CardTitle,
+  CardSubtitle,
+  CardText,
   Row,
   Col,
   Form,
@@ -19,13 +24,16 @@ import "./individualLocation.css";
 import { RouteFetch } from "../Routes";
 import { Endpoints } from "../Routes/Endpoints";
 import { useState, useEffect } from "react";
+import { icon } from "leaflet";
+// WORKING transition to ProfileIndex
 // import ProfileView from "../Profile/ProfileView";
 // import ProfileEdit from "../Profile/ProfileEdit";
+import ProfileIndex from "../Profile/ProfileIndex";
 
 const IndividualLocation = (props) => {
   // getting the URL params
   let { locationName } = useParams();
-
+  console.log(props);
   //getting props of location data
   let locations = props.locations;
   let token = props.sessionToken;
@@ -82,9 +90,14 @@ const IndividualLocation = (props) => {
     event.preventDefault();
     console.log("post message on individual page");
 
-         //Setting the date & time of submitted message
-         const date = new Date();
-         const time = date.toLocaleTimeString('en-us', { weekday:"long", year:"numeric", month:"short", day:"numeric"});
+    //Setting the date & time of submitted message
+    const date = new Date();
+    const time = date.toLocaleTimeString("en-us", {
+      weekday: "long",
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+    });
 
     let bodyObject = {
       message: {
@@ -110,36 +123,91 @@ const IndividualLocation = (props) => {
     }
 
     //resetting input field to be blank after submit
-    this.setBody(" ");
-    console.log(body);
+    // this.setBody(" ");
+    // console.log(body);
   }
 
   console.log(individualMessages);
   // console.log(individualMessages.message);
 
-
-
   // *-----------------------------USER MODAL
   const [modalProfile, setModalProfile] = useState(false);
 
-  // !FETCH BY ID - MOVING TO PROFILEINDEX
-  // const [userProfileId, setuserProfileId] = useState("");
-  // const [userProfile, setUserProfile] = useState();
-  // const fetchUser = async (userId) => {
-  //   try {
-  //     RouteFetch.get(Endpoints.user.getById + userId, callback);
-  //     function callback(data) {
-  //       console.log("callback user works?", data);
-  //       setUserProfile(data.user);
-  //     }
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // };
+  // !FETCH BY ID
+  const [userProfileId, setuserProfileId] = useState("");
+  const [userProfile, setUserProfile] = useState({});
+
+  const fetchUser = async (userId) => {
+    try {
+      RouteFetch.get(Endpoints.user.getById + userId, callback);
+      function callback(data) {
+        console.log("callback user works?", data);
+
+        setUserProfile(data.user);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
   const toggleUserProfile = (userId) => {
-    // fetchUser(userId);
+    fetchUser(userId);
     setModalProfile(!modalProfile);
   };
+  console.log(userProfile);
+
+  // USER PHOTO UPLOAD
+  const [loading, setLoading] = useState(false);
+  const [image, setImage] = useState("https://picsum.photos/300/200");
+
+  const updateUserProfile = async (data) => {
+    await RouteFetch.patch(
+      Endpoints.user.update + userProfile._id,
+      data,
+      () => fetchUser(userProfile?._id),
+      props.sessionToken
+    );
+  };
+  console.log(props.user?._id);
+
+  //!UPLOAD PHOTO
+  const UploadImage = async (e) => {
+    const files = e.target.files;
+    const data = new FormData();
+    data.append("file", files[0]);
+    data.append("upload_preset", "pupspot");
+    setLoading(true);
+    try {
+      const res = await fetch(
+        "https://api.cloudinary.com/v1_1/dimzsxbfc/image/upload",
+        {
+          method: "POST",
+          body: data,
+        }
+      );
+
+      const File = await res.json();
+      console.log(File.secure_url);
+
+      setImage(File.secure_url);
+      setLoading(false);
+      console.log(props.user);
+      updateUserProfile({ user: { profilePic: File.secure_url } });
+    } catch (err) {
+      //not the folllowing data:
+      console.warn(err);
+    }
+  };
+
+  useEffect(() => {}, [props.user]);
+
+  //PAW MARKER:
+  const markerIcon = icon({
+    // !change env?
+    iconUrl: `https://api.geoapify.com/v1/icon?size=xx-large&type=awesome&color=%233e9cfe&icon=paw&apiKey=032e6c0443c3405f87b605c4c5e314ab`,
+    iconSize: [31, 46], // size of the icon
+    iconAnchor: [15.5, 42], // point of the icon which will correspond to marker's location
+    popupAnchor: [0, -45], // point from which the popup should open relative to the iconAnchor
+  });
 
   return (
     <>
@@ -176,6 +244,8 @@ const IndividualLocation = (props) => {
               <Marker
                 key={thisLocation.id}
                 position={[thisLocation.latitude, thisLocation.longitude]}
+                //MARKER ICON:
+                icon={markerIcon}
               >
                 <Popup>
                   <h4>{thisLocation.locationName}</h4>
@@ -227,15 +297,46 @@ const IndividualLocation = (props) => {
                       overflow: "scroll-y",
                     }}
                   >
+                    {/* __________________________________________________________EMILY WORKING ABOVE */}
                     <ModalHeader toggle={toggleUserProfile}>
                       User Profile
                     </ModalHeader>
                     <ModalBody id="user-profile-modal">
-                      {/* <ProfileView
-                        user={userProfile}
-                        sessionToken={props.sessionToken}
-                        fetchUser={fetchUser}
-                      /> */}
+                      <Card
+                        style={{
+                          width: "18rem",
+                        }}
+                      >
+                        {/* <img alt="Sample" src={props.user?.profilePic} /> */}
+                        {/* add default image  */}
+
+                        <CardBody>
+                          {/* <CardSubtitle className="mb-2 text-muted" tag="h6">
+                          Card subtitle
+                        </CardSubtitle> */}
+
+                          {/* <CardText>PROFILE PICTURE</CardText> */}
+
+                          {/* ROB: Make a turnary if userProfile._id == props.userId then show the button. 
+                          DONT FORGET TO PASS THE userIdProps to the component from the App.jsx */}
+
+                          <Input
+                            type="file"
+                            name="file"
+                            placeholder="Upload image here"
+                            onChange={UploadImage}
+                          />
+                        </CardBody>
+                        {/* WORKING transition to ProfileIndex--------------------------------------- */}
+                        {/* <ProfileView user={userProfile} fetchUser={fetchUser} />
+                        <ProfileEdit user={userProfile} fetchUser={fetchUser} /> */}
+                        <ProfileIndex
+                          user={userProfile}
+                          fetchUser={fetchUser}
+                          userId={props.userId}
+                          UploadImage={UploadImage}
+                        />
+                      </Card>
                     </ModalBody>
                     <ModalFooter></ModalFooter>
                   </Modal>

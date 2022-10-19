@@ -3,19 +3,26 @@ import { Container, Row, Col } from "reactstrap";
 import { NavLink, Route, Routes } from "react-router-dom";
 import "./Map.css";
 import IndividualLocation from "./IndividualLocation";
+import { icon } from "leaflet";
 
 const Map = (props) => {
   const locations = props.locations;
-  const formatLocationCategory = props.formatLocationCategory
+  const formatLocationCategory = props.formatLocationCategory;
+
+  //PAW MARKER:
+  const markerIcon = icon({
+    // !change evo
+    iconUrl: `https://api.geoapify.com/v1/icon?size=xx-large&type=awesome&color=%233e9cfe&icon=paw&apiKey=${process.env.REACT_MY_APIKEYICON}`,
+    iconSize: [31, 46], // size of the icon
+    iconAnchor: [15.5, 42], // point of the icon which will correspond to marker's location
+    popupAnchor: [0, -45], // point from which the popup should open relative to the iconAnchor
+  });
 
   return (
     <>
       <Container>
-
         <Row className="map-row my-auto">
-
-          <Col className="map-col bg-light border" xs="auto" >
-           
+          <Col className="map-col bg-light border" xs="auto">
             <MapContainer
               center={[44.49080732835979, -73.18607660265336]}
               zoom={15}
@@ -30,6 +37,8 @@ const Map = (props) => {
                 <Marker
                   key={location.id}
                   position={[location.latitude, location.longitude]}
+                  //MARKER ICON:
+                  icon={markerIcon}
                 >
                   <Popup>
                     <h4>{location.locationName}</h4>
@@ -59,11 +68,8 @@ const Map = (props) => {
               ))}
             </MapContainer>
           </Col>
-
         </Row>
       </Container>
-
-
     </>
   );
 };
