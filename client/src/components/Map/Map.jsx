@@ -3,6 +3,10 @@ import { Container, Row, Col } from "reactstrap";
 import { NavLink, Route, Routes } from "react-router-dom";
 import "./Map.css";
 import IndividualLocation from "./IndividualLocation";
+<<<<<<< HEAD
+=======
+
+>>>>>>> 901d67ef655840939e5a323acf58e359e2ce4d10
 import { IconContext } from "react-icons";
 import { HiInformationCircle } from "react-icons/hi";
 import { icon } from "leaflet";
@@ -21,6 +25,12 @@ const Map = (props) => {
     console.log(formattedCategory);
     return formattedCategory;
   }
+<<<<<<< HEAD
+=======
+
+import { icon } from "leaflet";
+
+>>>>>>> 901d67ef655840939e5a323acf58e359e2ce4d10
   //PAW MARKER:
   const markerIcon = icon({
     // !change evo
@@ -29,6 +39,10 @@ const Map = (props) => {
     iconAnchor: [15.5, 42], // point of the icon which will correspond to marker's location
     popupAnchor: [0, -45], // point from which the popup should open relative to the iconAnchor
   });
+<<<<<<< HEAD
+=======
+
+>>>>>>> 901d67ef655840939e5a323acf58e359e2ce4d10
 
   return (
     <>
