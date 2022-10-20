@@ -21,12 +21,6 @@ const Map = (props) => {
     console.log(formattedCategory);
     return formattedCategory;
   }
-<<<<<<< HEAD
-=======
-
-
-
->>>>>>> develop
   //PAW MARKER:
   const markerIcon = icon({
     // !change evo
