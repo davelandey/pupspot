@@ -1,9 +1,6 @@
 import "./PetProfile.css";
 import React, { useState, useEffect } from "react";
 import { Container, Row, Col, Button } from "reactstrap";
-import PetProfileAdd from "./PetProfileAdd";
-import PetProfileCard from "./PetProfileCard";
-import PetProfileEdit from "./PetProfileEdit";
 import { Endpoints } from "../Routes/Endpoints";
 import { RouteFetch } from "../Routes";
 import PetProfileNestedModal from "./PetProfileNestedModal";
@@ -11,6 +8,7 @@ import PetProfileNestedModal from "./PetProfileNestedModal";
 function PetProfileIndex(props) {
   const token = props.sessionToken;
   const [petData, setPetData] = useState([]);
+
   const [updateActive, setUpdateActive] = useState(false);
   const [petToUpdate, setPetToUpdate] = useState({});
   const [modal, setModal] = useState(false);
@@ -26,6 +24,7 @@ function PetProfileIndex(props) {
     console.log(pet);
   };
 
+
   const updateOn = () => {
     setUpdateActive(true);
   };
@@ -33,7 +32,7 @@ function PetProfileIndex(props) {
   const updateOff = () => {
     setUpdateActive(false);
   };
-
+// metch pets will have to be passed as props to the PetAdd same with the edit
   const fetchPets = async () => {
     console.log("getall pets");
     try {
@@ -53,7 +52,7 @@ function PetProfileIndex(props) {
   console.log(petData);
 
   return (
-
+    <>
     <PetProfileNestedModal 
     handleClick={handleClick} 
     isShown = {isShown} 
@@ -62,8 +61,8 @@ function PetProfileIndex(props) {
     editUpdatePet={editUpdatePet}
     updateOn={updateOn}
     updateOff={updateOff}
-    />
-
+     />
+    </>
   );
 }
 

@@ -40,7 +40,7 @@ const NavbarComponent = (props) => {
   const [modalPet, setModalPet] = useState(false);
   const toggleUserPetProfile = () => setModalPet(!modalPet);
 
-  const [isShown, setIsShown] = useState(true);
+  const [isShown, setIsShown] = useState(false);
 
   const handleClick = event => {
     console.log("Pet Profile click is working")
@@ -94,6 +94,7 @@ const NavbarComponent = (props) => {
                 </DropdownItem>
               </DropdownMenu>
             </UncontrolledDropdown>
+{/*-------- ADD TERNARY HERE TO DISPLAY OR NOT TO DISPLAY DEPENDING ON TOKEN ------*/}
             <UncontrolledDropdown nav inNavbar>
               <DropdownToggle nav caret>
                 <FiSettings /> Settings
