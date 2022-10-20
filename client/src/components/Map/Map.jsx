@@ -3,7 +3,10 @@ import { Container, Row, Col } from "reactstrap";
 import { NavLink, Route, Routes } from "react-router-dom";
 import "./Map.css";
 import IndividualLocation from "./IndividualLocation";
+<<<<<<< HEAD
+=======
 
+>>>>>>> 901d67ef655840939e5a323acf58e359e2ce4d10
 import { IconContext } from "react-icons";
 import { HiInformationCircle } from "react-icons/hi";
 import { icon } from "leaflet";
@@ -22,6 +25,12 @@ const Map = (props) => {
     console.log(formattedCategory);
     return formattedCategory;
   }
+<<<<<<< HEAD
+=======
+
+import { icon } from "leaflet";
+
+>>>>>>> 901d67ef655840939e5a323acf58e359e2ce4d10
   //PAW MARKER:
   const markerIcon = icon({
     // !change evo
@@ -29,16 +38,22 @@ const Map = (props) => {
     iconSize: [31, 46], // size of the icon
     iconAnchor: [15.5, 42], // point of the icon which will correspond to marker's location
     popupAnchor: [0, -45], // point from which the popup should open relative to the iconAnchor
-
   });
+<<<<<<< HEAD
+=======
 
+>>>>>>> 901d67ef655840939e5a323acf58e359e2ce4d10
 
   return (
     <>
-      <Container>
-        <Row className="map-row my-auto">
-          <Col className="map-col bg-light border" xs="auto">
-            <MapContainer
+
+
+
+
+      {/* <Container className="container"> */}
+      {/* <Row className="map-row"> */}
+      <Col className="map-col bg-light border" xs="auto" id="map-container">
+            <MapContainer style={{ height: "100%", minHeight: "100%" }}
               center={[44.49080732835979, -73.18607660265336]}
               zoom={15}
               scrollWheelZoom={true}
@@ -47,16 +62,16 @@ const Map = (props) => {
                 attribution='<a href=\"https://www.jawg.io\" target=\"_blank\">&copy; Jawg</a> - <a href=\"https://www.openstreetmap.org\" target=\"_blank\">&copy; OpenStreetMap</a>&nbsp;contributors'
                 url={`https://{s}.tile.jawg.io/jawg-streets/{z}/{x}/{y}{r}.png?access-token=${process.env.REACT_APP_APIKEYMAP}`}
               />
-              {/* Mapping over location data to make all markers appear */}
-              {locations.map((location) => (
-                <Marker
-                  key={location.id}
-                  position={[location.latitude, location.longitude]}
-                  //MARKER ICON:
-                  debugger
+      {/* Mapping over location data to make all markers appear */}
+      {locations.map((location) => (
+      <Marker
+                   key={location.id}
+                   position={[location.latitude, location.longitude]}
+                //   //MARKER ICON:
+        
                   icon={markerIcon}
-                >
-                  <Popup>
+                 > 
+      <Popup>
                     <div className="popup-text-container">
                       <h4 className="popup-header">{location.locationName}</h4>
                       <span className="popup-section-title">Category: </span>
@@ -94,8 +109,8 @@ const Map = (props) => {
               ))}
             </MapContainer>
           </Col>
-        </Row>
-      </Container>
+      {/* </Row> */}
+      {/* </Container> */}
     </>
   );
 };

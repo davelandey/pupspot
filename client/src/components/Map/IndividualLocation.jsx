@@ -24,11 +24,9 @@ import "./individualLocation.css";
 import { RouteFetch } from "../Routes";
 import { Endpoints } from "../Routes/Endpoints";
 import { useState, useEffect } from "react";
-
 import {CgProfile} from "react-icons/cg"
 import {ImProfile} from "react-icons/im"
 import { IconContext } from "react-icons";
-
 
 import { icon } from "leaflet";
 // WORKING transition to ProfileIndex
@@ -215,6 +213,20 @@ const IndividualLocation = (props) => {
     iconAnchor: [15.5, 42], // point of the icon which will correspond to marker's location
     popupAnchor: [0, -45], // point from which the popup should open relative to the iconAnchor
   });
+
+
+  //Reformatting phone number
+  function formatPhoneNumber(phoneNumberString) {
+    var cleaned = ('' + phoneNumberString).replace(/\D/g, '');
+    var match = cleaned.match(/^(1|)?(\d{3})(\d{3})(\d{4})$/);
+    if (match) {
+      var intlCode = (match[1] ? ' ' : '');
+      return [intlCode, '(', match[2], ') ', match[3], '-', match[4]].join('');
+    }
+    return null;
+  }
+  formatPhoneNumber('+12345678900') // => "+1 (234) 567-8900"
+  formatPhoneNumber('2345678900')   // => "(234) 567-8900"
 
 
   //Reformatting phone number

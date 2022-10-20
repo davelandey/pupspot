@@ -16,3 +16,13 @@
 
 /* .copyright {
 } */
+
+
+@media (max-width: 428px) {
+
+.footer {
+  position:fixed;
+}
+
+
+}

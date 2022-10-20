@@ -100,7 +100,7 @@ const NavbarComponent = (props) => {
               </DropdownToggle>
               <DropdownMenu left>
                 <DropdownItem>
-                  <Button color="danger" onClick={toggleUserProfile}>
+                  <Button className="red-btn" color="danger" onClick={toggleUserProfile}>
                     User Profile
                   </Button>
                   <Modal
@@ -136,7 +136,8 @@ const NavbarComponent = (props) => {
 
                 <DropdownItem>
                   <div>
-                    <Button color="danger" onClick={handleClick}> Pet Profile</Button>
+                    <Button 
+                    className="red-btn"color="danger" onClick={handleClick}> Pet Profile</Button>
                     { isShown && 
                     <PetProfileIndex isShown = {isShown} setIsShown={setIsShown} handleClick={handleClick} />}
 
