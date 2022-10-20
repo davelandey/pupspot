@@ -93,11 +93,16 @@ const ProfileEdit = (props) => {
                       width: "18rem",
                     }}
                   >
-                    <img
-                      alt="Sample"
-                      src="https://rremiumb.sirv.com/depositphotos_137014128-stock-illustration-user-profile-icon.webp"
-                    />
+                    {!props.user?.profilePic ? (
+                      <img
+                        alt="Sample"
+                        src="https://rremiumb.sirv.com/depositphotos_137014128-stock-illustration-user-profile-icon.webp"
+                      />
+                    ) : (
+                      <img alt="Sample" src={props.user?.profilePic} />
+                    )}
                     {/* HARD CODE DUMMY */}
+
                     <FormGroup>
                       <Label for="exampleFile">Profile picture</Label>
                       <Input
