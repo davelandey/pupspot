@@ -69,9 +69,8 @@ const ProfileView = (props) => {
                       alt="Sample"
                       src={props.user?.profilePic}
                       onError={(ev) => {
-                        debugger;
                         ev.target.src =
-                          "https://kubalubra.is/wp-content/uploads/2017/11/default-thumbnail.jpg";
+                          "https://rremiumb.sirv.com/beautybyewa_1572008312234_original._CR0%2C0%2C734%2C734_._FMjpg_.jpg";
                       }}
                     />
 
