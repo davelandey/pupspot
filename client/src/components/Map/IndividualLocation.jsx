@@ -332,28 +332,7 @@ const IndividualLocation = (props) => {
                     3. button will be connected to onClick function to trigger a modal to display profile information */}
                   <span className="message-body">{`${message.body} `}</span>
                   {/* ----------------------------USER PROFILE FROM MESSAGE BUTTON---------------------------- */}
-                  <Modal
-                    isOpen={modalProfile}
-                    toggle={toggleUserProfile}
-                    size="xl"
-                    style={{
-                      width: "80%",
-                      height: "90%",
-                      overflow: "scroll-y",
-                    }}
-                  >
-                    <ModalHeader toggle={toggleUserProfile}>
-                      User Profile View
-                    </ModalHeader>
-                    <ModalBody id="user-profile-modal">
-                      <ProfileIndex
-                        user={userProfile}
-                        fetchUser={fetchUser}
-                        userId={props.userId}
-                        UploadImage={UploadImage}
-                      />
-                    </ModalBody>
-                  </Modal>
+      
                 </li>
               ))}
             </ul>
@@ -383,6 +362,28 @@ const IndividualLocation = (props) => {
           <Row className="placeholder"></Row>
         </Row>
       </Container>
+      {modalProfile?<Modal
+                    isOpen={modalProfile}
+                    toggle={toggleUserProfile}
+                    size="xl"
+                    style={{
+                      width: "80%",
+                      height: "90%",
+                      overflow: "scroll-y",
+                    }}
+                  >
+                    <ModalHeader toggle={toggleUserProfile}>
+                      User Profile View
+                    </ModalHeader>
+                    <ModalBody id="user-profile-modal">
+                      <ProfileIndex
+                        user={userProfile}
+                        fetchUser={fetchUser}
+                        userId={props.userId}
+                        UploadImage={UploadImage}
+                      />
+                    </ModalBody>
+                  </Modal>: null}
     </>
   );
 };

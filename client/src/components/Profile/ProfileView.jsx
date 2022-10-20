@@ -26,11 +26,11 @@ const ProfileView = (props) => {
     window.open(`mailto:${props.user?.email}`);
   }
 
-  useEffect(() => {}, [props.user]);
+  // useEffect(() => {}, [props.user]);
 
   return (
     <>
-      <Container className="profileView" style={{ width: "95%" }}>
+      {/* <Container className="profileView" style={{ width: "95%" }}> */}
         <Row>
           <Col
             className="bg-light border"
@@ -109,7 +109,7 @@ const ProfileView = (props) => {
             </Card>
           </Col>
         </Row>
-      </Container>
+      {/* </Container> */}
     </>
   );
 };
