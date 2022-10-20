@@ -81,15 +81,9 @@ const PetProfileAdd = (props) => {
                   </FormGroup>
                 </Col>
                 <Col m="4">
-                  <FormGroup className="FormGroup">
+                  <FormGroup className="breed">
                     <CustomListDropDown />
-                    {/* Leaving the below in case we want users to manually enter breed? */}
-                    {/* <Input
-                      id="petProfileBreed"
-                      name="petProfileBreed"
-                      placeholder="Add/Edit your pet's breed"
-                      type="string"
-                    /> */}
+                 
                   </FormGroup>
 
                   <FormGroup className="birthdate">
@@ -101,19 +95,20 @@ const PetProfileAdd = (props) => {
 
                 <Col xs="4">
                   <div>
-                  <img alt="Sample" src="https://picsum.photos/300/200" />
+                  <img alt="Sample" src="https://rremiumb.sirv.com/doggo%20profile.jpg?w=293" />
                   </div>
+                  <FormGroup>
+                <Label for="exampleFile">Pet Profile picture</Label>
+                <Input id="exampleFile" name="file" type="file" />
+                <FormText>Upload your pet's profile picture here.</FormText>
+              </FormGroup>
                 </Col>
               </Row>
               <FormGroup className="petBio">
                 <Label for="exampleText">Pet bio:</Label>
                 <Input id="exampleText" name="text" type="textarea" bsSize="large"/>
               </FormGroup>
-              <FormGroup>
-                <Label for="exampleFile">Pet Profile picture</Label>
-                <Input id="exampleFile" name="file" type="file" />
-                <FormText>Upload your pet's profile picture here.</FormText>
-              </FormGroup>
+        
             </Form>
           </Col>
         </Row>

@@ -22,18 +22,22 @@ Form {
 
 .birthdate {
   position: relative;
-  margin-top: 40%;
+  margin-top: 20%;
 }
 
 .buble {
   position: absolute;
 }
 .radio-sex {
-  margin-top: 40%;
+  margin-top: 20%;
 }
 
 .petName {
   margin-top: 10%;
+}
+
+.breed {
+  margin-top: 8%;
 }
 
 

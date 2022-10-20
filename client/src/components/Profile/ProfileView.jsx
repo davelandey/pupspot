@@ -37,7 +37,7 @@ const ProfileView = (props) => {
             xxl="4"
             style={{ overflow: "scroll-y", height: "50%" }}
           >
-            <h2>USER PROFILE VIEW</h2>
+            {/* <h2>USER PROFILE VIEW</h2> */}
             <Form>
               <Row>
                 <Col m="2">
@@ -75,11 +75,11 @@ const ProfileView = (props) => {
                     />
 
                     <CardBody>
-                      <CardSubtitle className="mb-2 text-muted" tag="h6">
+                      {/* <CardSubtitle className="mb-2 text-muted" tag="h6">
                         Card subtitle
-                      </CardSubtitle>
+                      </CardSubtitle> */}
 
-                      <CardText>PROFILE PICTURE</CardText>
+<Label for="exampleEmail">Name:{props.user?.firstName}</Label>
                     </CardBody>
                   </Card>
                 </Col>

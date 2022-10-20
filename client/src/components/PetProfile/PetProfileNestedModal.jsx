@@ -70,10 +70,10 @@ const PetProfileNestedModal = (props) => {
               {modalBody}</ModalBody>
             <ModalFooter>
               <Button color="primary" onClick={toggleNested}>
-                Done
+                Submit
               </Button>{' '}
               <Button color="secondary" onClick={toggleAll}>
-                All Done
+                Cancel
               </Button>
             </ModalFooter>
           </Modal>

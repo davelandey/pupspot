@@ -1,5 +1,5 @@
-// const APIURL = "https://pupspot-2022.herokuapp.com";
-const APIURL = "http://localhost:4000";
+const APIURL = "https://pupspot-2022.herokuapp.com";
+// const APIURL = "http://localhost:4000";
 
 export const Endpoints = {
   user: {

@@ -12,13 +12,13 @@ const PetProfileSchema = new mongoose.Schema({
   },
   breed: {
     type: String,
- 
   },
   age: {
     type: Number,
   },
   dogPic: {
     type: String,
+    default: "https://rremiumb.sirv.com/Lenny.jpg",
   },
 
   dogBio: {
