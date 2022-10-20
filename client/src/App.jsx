@@ -172,9 +172,9 @@ function App() {
             element={<ProfileIndex sessionToken={sessionToken} />}
           />
         </Routes>
-      </div>
 
       <Footer />
+      </div>
     </div>
   );
 }
