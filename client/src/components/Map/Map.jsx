@@ -21,9 +21,6 @@ const Map = (props) => {
     console.log(formattedCategory);
     return formattedCategory;
   }
-
-
-
   //PAW MARKER:
   const markerIcon = icon({
     // !change evo
@@ -40,7 +37,7 @@ const Map = (props) => {
 
 
       {/* <Container className="container"> */}
-      {/* <Row className="map-row"> */}
+      <Row className="map-row">
       <Col className="map-col bg-light border" xs="auto" id="map-container">
             <MapContainer style={{ height: "100%", minHeight: "100%" }}
               center={[44.49080732835979, -73.18607660265336]}
@@ -100,7 +97,7 @@ const Map = (props) => {
               ))}
             </MapContainer>
           </Col>
-      {/* </Row> */}
+      </Row>
       {/* </Container> */}
     </>
   );

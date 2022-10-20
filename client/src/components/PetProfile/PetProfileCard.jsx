@@ -34,8 +34,14 @@ const PetProfileCard = (props) => {
       return (
         <Card
           key={index}
-          style={{
+          // sm="3"
+                    style={{
             width: "12rem",
+
+            margin: "10px"
+            // padding: "25px"
+            
+
           }}
         >
           <img
@@ -70,12 +76,12 @@ const PetProfileCard = (props) => {
 
   return (
     <>
-      <Container fluid="auto">
+      <Container xl="12">
         <h3>Pet Profile</h3>
         <Row>
-          <Col xs="auto" className="bg-light border">
+          {/* <Col sm="6" className="bg-light border"> */}
             {petMapper()}
-          </Col>
+          {/* </Col> */}
         </Row>
       </Container>
     </>

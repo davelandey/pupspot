@@ -1,23 +1,22 @@
 import Map from "./Map";
 import { useParams } from "react-router-dom";
-import {Container, Row, Col} from "reactstrap"
-import "./category-location.css"
+import { Container, Row, Col } from "reactstrap";
+import "./category-location.css";
 
 const CategoryLocations = (props) => {
-let locations = props.locations
-let formatLocationCategory = props.formatLocationCategory
-console.log(locations)
+  let locations = props.locations;
+  let formatLocationCategory = props.formatLocationCategory;
+  console.log(locations);
 
   // getting the URL params
   let { locationCategory } = useParams();
 
-  console.log(locationCategory)
+  console.log(locationCategory);
 
   //reformatting URL params to same format as category name name in JSON data
   let splitName = locationCategory.split("-");
   let stringName = splitName.join(" ");
-  console.log(stringName)
-
+  console.log(stringName);
 
   //filtering the location data based on the params
   const filteredLocationtData = locations.filter(
@@ -28,26 +27,27 @@ console.log(locations)
 
   console.log(categoryLocations);
 
+  return (
+    <>
+      <Container className="content-container">
+        <Row>
+          <Col>
+            <h1 className="center-align-text category-header">
+              {formatLocationCategory(stringName)}
+            </h1>
+          </Col>
+        </Row>
+        <Row className="row">
+          <Col className="map-column">
+            <Map
+              formatLocationCategory={formatLocationCategory}
+              locations={categoryLocations}
+            />
+          </Col>
+        </Row>
+      </Container>
+    </>
+  );
+};
 
-    return ( <>
-    
-<h1 className="center-align-text">{formatLocationCategory(stringName)}</h1>
-
-<Container className="content-container">
-<Row className="row">
-  <Col className="map-column" >
-
-    <Map formatLocationCategory={formatLocationCategory} locations={categoryLocations}/>
-
-  </Col>
-</Row>
-
-</Container>
-
-
-
-    
-    </> );
-}
- 
 export default CategoryLocations;
