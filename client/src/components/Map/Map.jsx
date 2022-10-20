@@ -21,6 +21,12 @@ const Map = (props) => {
     console.log(formattedCategory);
     return formattedCategory;
   }
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> develop
   //PAW MARKER:
   const markerIcon = icon({
     // !change evo
@@ -48,13 +54,15 @@ const Map = (props) => {
                 attribution='<a href=\"https://www.jawg.io\" target=\"_blank\">&copy; Jawg</a> - <a href=\"https://www.openstreetmap.org\" target=\"_blank\">&copy; OpenStreetMap</a>&nbsp;contributors'
                 url={`https://{s}.tile.jawg.io/jawg-streets/{z}/{x}/{y}{r}.png?access-token=${process.env.REACT_APP_APIKEYMAP}`}
               />
-      {/* Mapping over location data to make all markers appear */}
-      {locations.map((location) => (
-      <Marker
-                   key={location.id}
-                   position={[location.latitude, location.longitude]}
-                //   //MARKER ICON:
-        
+
+              {/* Mapping over location data to make all markers appear */}
+              {locations.map((location) => (
+                <Marker
+                  key={location.id}
+                  position={[location.latitude, location.longitude]}
+                  //MARKER ICON:
+
+
                   icon={markerIcon}
                  > 
       <Popup>

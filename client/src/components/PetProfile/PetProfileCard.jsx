@@ -35,7 +35,8 @@ const PetProfileCard = (props) => {
         <Card
           key={index}
           style={{
-            width: "18rem",
+            width: "12rem",
+            
           }}
         >
           <img
@@ -62,9 +63,6 @@ const PetProfileCard = (props) => {
             </Row>
             <CardText>{pet.dogBio}</CardText>
           </CardBody>
-          <Button>
-            Edit button here?
-          </Button>
         </Card>
       );
     });

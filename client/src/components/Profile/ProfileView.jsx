@@ -11,90 +11,36 @@ import {
   FormText,
   FormGroup,
   Button,
-  // Toggle,
-  // Modal,
-  // ModalHeader,
-  // ModalBody,
-  // ModalFooter,
   Card,
   CardBody,
   CardTitle,
   CardSubtitle,
   CardText,
 } from "reactstrap";
-import { RouteFetch } from "../Routes";
-import { Endpoints } from "../Routes/Endpoints";
-// import IndividualLocation from "../Map/IndividualLocation";
 
 const ProfileView = (props) => {
   const user = props.user;
-
-  const [modal, setModal] = useState(false);
-  const toggle = () => setModal(!modal);
-  // PROFILE PIC UPLOAD
-  // const [loading, setLoading] = useState(false);
-  // const [image, setImage] = useState("https://picsum.photos/300/200");
 
   // -----------------_EMAIL ME
   function onEmailClick() {
     window.open(`mailto:${props.user?.email}`);
   }
-  // USER PHOTO UPLOAD
-  // const updateUserProfile = async (data) => {
-  //   await RouteFetch.patch(
-  //     Endpoints.user.update + props.user._id,
-  //     data,
-  //     () => props.fetchUser(props.user?._id),
-  //     props.sessionToken
-  //   );
-  // };
-
-  // const UploadImage = async (e) => {
-  //   const files = e.target.files;
-  //   const data = new FormData();
-  //   data.append("file", files[0]);
-  //   data.append("upload_preset", "pupspot");
-  //   setLoading(true);
-  //   try {
-  //     const res = await fetch(
-  //       "https://api.cloudinary.com/v1_1/dimzsxbfc/image/upload",
-  //       {
-  //         method: "POST",
-  //         body: data,
-  //       }
-  //     );
-
-  //     const File = await res.json();
-  //     console.log(File.secure_url);
-
-  //     setImage(File.secure_url);
-  //     setLoading(false);
-  //     updateUserProfile({ user: { profilePic: File.secure_url } });
-  //   } catch (err) {
-  //     console.warn(err);
-  //   }
-  // };
 
   useEffect(() => {}, [props.user]);
 
   return (
     <>
-      {/* <Button color="danger" onClick={toggle}>
-    <NavLink className="login-button" >User Profile</NavLink>
-      </Button> */}
       <Container className="profileView" style={{ width: "95%" }}>
-        {/* One row, across page */}
         <Row>
-          {/* Column one - will adjust to size, automatically*/}
           <Col
             className="bg-light border"
             xxl="4"
             style={{ overflow: "scroll-y", height: "50%" }}
           >
+            <h2>USER PROFILE VIEW</h2>
             <Form>
               <Row>
                 <Col m="2">
-                  <FormGroup className="FormGroup"></FormGroup>
                   <FormGroup className="FormGroup">
                     <Label for="exampleEmail">
                       Name:{props.user?.firstName}
@@ -119,8 +65,15 @@ const ProfileView = (props) => {
                       width: "18rem",
                     }}
                   >
-                    <img alt="Sample" src={props.user?.profilePic} />
-                    {/* add default image  */}
+                    <img
+                      alt="Sample"
+                      src={props.user?.profilePic}
+                      onError={(ev) => {
+                        debugger;
+                        ev.target.src =
+                          "https://kubalubra.is/wp-content/uploads/2017/11/default-thumbnail.jpg";
+                      }}
+                    />
 
                     <CardBody>
                       <CardSubtitle className="mb-2 text-muted" tag="h6">

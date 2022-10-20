@@ -19,15 +19,7 @@ const Footer = (props) => {
           <Col className="copyright"> PupSpot © {yearTxt}</Col>
           <Col className="mid"></Col>
 
-          <Col>
-            <NavLink
-              className="signUpLink"
-              to={"/signup"}
-              style={({ isActive }) => (isActive ? activeStyle : inActiveStyle)}
-            >
-              SIGNUP
-            </NavLink>
-          </Col>
+          <Col></Col>
         </Row>
       </Container>
     </div>
