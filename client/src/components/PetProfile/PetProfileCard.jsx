@@ -36,7 +36,6 @@ const PetProfileCard = (props) => {
           key={index}
           style={{
             width: "12rem",
-            
           }}
         >
           <img
@@ -44,7 +43,8 @@ const PetProfileCard = (props) => {
             src={pet?.dogPic}
             onError={({ currentTarget }) => {
               currentTarget.onerror = null; // prevents looping
-              currentTarget.src = "https://images.dog.ceo/breeds/african/n02116738_4834.jpg";
+              currentTarget.src = "https://rremiumb.sirv.com/Lenny.jpg";
+              // currentTarget.src = "https://images.dog.ceo/breeds/african/n02116738_4834.jpg";
             }}
           />
           <CardBody>
