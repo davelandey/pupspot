@@ -19,15 +19,15 @@ const PetProfileEdit = (props) => {
 
   // petData = props.pet
   // PET NAME:
-  const [editPetName, setEditPetName] = useState(props.petToUpdate.petName);
+  const [editPetName, setEditPetName] = useState(props.petToUpdate?.petName);
   // PET AGE:
-  const [editAge, setEditAge] = useState(props.petToUpdate.petAge);
+  const [editAge, setEditAge] = useState(props.petToUpdate?.petAge);
   //BREED
-  const [editBreed, setEditBreed] = useState(props.petToUpdate.breed);
+  const [editBreed, setEditBreed] = useState(props.petToUpdate?.breed);
   //BIO
-  const [editBio, setEditBio] = useState(props.petToUpdate.bio);
+  const [editBio, setEditBio] = useState(props.petToUpdate?.bio);
   //DOGPIC
-  const [editPetPic, setEditPetPic] = useState(props.petToUpdate.petPic);
+  const [editPetPic, setEditPetPic] = useState(props.petToUpdate?.petPic);
 
   const updateCurrent = (event) => {
     event.preventDefault();
@@ -35,7 +35,8 @@ const PetProfileEdit = (props) => {
 
   return (
     <div>
-      <Modal isOpen={modal} fade={false} toggle={toggle}>
+      <h2>Hello from edit</h2>
+      {/* <Modal isOpen={modal} fade={false} toggle={toggle}>
         <ModalHeader toggle={toggle}>Modal title</ModalHeader>
         <ModalBody>
           Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
@@ -62,7 +63,7 @@ const PetProfileEdit = (props) => {
               Delete
             </Button>
         </ModalFooter>
-      </Modal>
+      </Modal> */}
     </div>
   );
 }
