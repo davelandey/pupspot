@@ -29,7 +29,6 @@ import ProfileIndex from "../Profile/ProfileIndex";
 import ProfileView from "../Profile/ProfileView";
 import ProfileEdit from "../Profile/ProfileEdit";
 
-
 const NavbarComponent = (props) => {
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
@@ -42,10 +41,9 @@ const NavbarComponent = (props) => {
 
   const [isShown, setIsShown] = useState(true);
 
-  const handleClick = event => {
-    console.log("Pet Profile click is working")
-    setIsShown(current => !current);
-
+  const handleClick = (event) => {
+    console.log("Pet Profile click is working");
+    setIsShown((current) => !current);
   };
 
   return (
@@ -100,6 +98,8 @@ const NavbarComponent = (props) => {
               </DropdownToggle>
               <DropdownMenu left>
                 <DropdownItem>
+
+                  {/* ------------- USER Profile FROM NAVBAR---------------- */}
                   <Button className="red-btn" color="danger" onClick={toggleUserProfile}>
                     User Profile
                   </Button>
@@ -111,15 +111,15 @@ const NavbarComponent = (props) => {
                       width: "80%",
                       height: "90%",
                       overflow: "scroll-y",
+                      backdrop: false,
                     }}
                   >
                     <ModalHeader toggle={toggleUserProfile}>
                       User Profile
                     </ModalHeader>
                     <ModalBody id="user-profile-modal">
-                      {/* ADD PROPS HERE FOR IT TO WORK --------------------------------------------------------- */}
-                      <ProfileEdit userId={props.userId}/>
-
+                      {/* LEAVE THIS PROFILE EDIT-------------------------------------------- */}
+                      <ProfileEdit userId={props.userId} />
                     </ModalBody>
                     <ModalFooter>
                       <Button color="primary" onClick={toggleUserProfile}>
@@ -136,6 +136,7 @@ const NavbarComponent = (props) => {
 
                 <DropdownItem>
                   <div>
+
                     <Button 
                     className="red-btn"color="danger" onClick={handleClick}> Pet Profile</Button>
                     { isShown && 

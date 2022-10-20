@@ -24,15 +24,10 @@ import "./individualLocation.css";
 import { RouteFetch } from "../Routes";
 import { Endpoints } from "../Routes/Endpoints";
 import { useState, useEffect } from "react";
-import {CgProfile} from "react-icons/cg"
-import {ImProfile} from "react-icons/im"
+import { CgProfile } from "react-icons/cg";
+import { ImProfile } from "react-icons/im";
 import { IconContext } from "react-icons";
-
 import { icon } from "leaflet";
-// WORKING transition to ProfileIndex
-
-// import ProfileView from "../Profile/ProfileView";
-// import ProfileEdit from "../Profile/ProfileEdit";
 import ProfileIndex from "../Profile/ProfileIndex";
 
 const IndividualLocation = (props) => {
@@ -123,12 +118,11 @@ const IndividualLocation = (props) => {
         setMessageData(data);
         fetchMessages();
         //resetting input field to be blank after submit
-    setBody(" ");
-    console.log(body);
+        setBody(" ");
+        console.log(body);
       }
     } catch (error) {
       console.error(error);
-      
     }
   }
 
@@ -138,8 +132,8 @@ const IndividualLocation = (props) => {
   // *-----------------------------USER MODAL
   const [modalProfile, setModalProfile] = useState(false);
 
-  // !FETCH BY ID
-  const [userProfileId, setuserProfileId] = useState("");
+  // FETCH BY ID
+  // const [userProfileId, setuserProfileId] = useState("");
   const [userProfile, setUserProfile] = useState({});
 
   const fetchUser = async (userId) => {
@@ -214,19 +208,18 @@ const IndividualLocation = (props) => {
     popupAnchor: [0, -45], // point from which the popup should open relative to the iconAnchor
   });
 
-
   //Reformatting phone number
   function formatPhoneNumber(phoneNumberString) {
-    var cleaned = ('' + phoneNumberString).replace(/\D/g, '');
+    var cleaned = ("" + phoneNumberString).replace(/\D/g, "");
     var match = cleaned.match(/^(1|)?(\d{3})(\d{3})(\d{4})$/);
     if (match) {
-      var intlCode = (match[1] ? ' ' : '');
-      return [intlCode, '(', match[2], ') ', match[3], '-', match[4]].join('');
+      var intlCode = match[1] ? " " : "";
+      return [intlCode, "(", match[2], ") ", match[3], "-", match[4]].join("");
     }
     return null;
   }
-  formatPhoneNumber('+12345678900') // => "+1 (234) 567-8900"
-  formatPhoneNumber('2345678900')   // => "(234) 567-8900"
+  formatPhoneNumber("+12345678900"); // => "+1 (234) 567-8900"
+  formatPhoneNumber("2345678900"); // => "(234) 567-8900"
 
 
   //Reformatting phone number
@@ -244,36 +237,27 @@ const IndividualLocation = (props) => {
 
   return (
     <>
-
       <Container className="content-container">
         <Row className="top-row">
           <Col className="bg-light border col-top">
-
-
-          <div className="location-info-box">
-      <h1 className="header">{thisLocation.locationName}</h1>
-            <span className="location-info-category">
-
-            Category:</span> {formatLocationCategory(thisLocation.locationCategory)}
-<br />
-            <span className="location-info-category">
-
-Address:</span> 
-      <br />
-            {thisLocation.streetAddress}
-            <br />
-            {thisLocation.city}, VT {thisLocation.zipcode}
-            <br />
-            <span className="location-info-category">
-
-Phone:</span> 
-            {formatPhoneNumber(thisLocation.phone)}
-            <br />
-            <span className="website-span">
-            <a href={thisLocation.website}>Website</a>
+            <div className="location-info-box">
+              <h1 className="header">{thisLocation.locationName}</h1>
+              <span className="location-info-category">Category:</span>{" "}
+              {formatLocationCategory(thisLocation.locationCategory)}
+              <br />
+              <span className="location-info-category">Address:</span>
+              <br />
+              {thisLocation.streetAddress}
+              <br />
+              {thisLocation.city}, VT {thisLocation.zipcode}
+              <br />
+              <span className="location-info-category">Phone:</span>
+              {formatPhoneNumber(thisLocation.phone)}
+              <br />
+              <span className="website-span">
+                <a href={thisLocation.website}>Website</a>
               </span>
-     
-            </div>  
+            </div>
           </Col>
           {/*  xs="2" md="3" lg="4" */}
           <Col className="bg-light border map-column col-bottom">
@@ -293,26 +277,25 @@ Phone:</span>
                 //MARKER ICON:
                 icon={markerIcon}
               >
-
-
-<Popup>
-                    <div className="popup-text-container">
-                      <h4 className="popup-header">{thisLocation.locationName}</h4>
-                      <span className="popup-section-title">Category: </span>
-                      {formatLocationCategory(thisLocation.locationCategory)}
-                      <br />
-                      <span className="popup-section-title">Address: </span>
-                      <br />
-                      {thisLocation.streetAddress}
-                      <br />
-                      {thisLocation.city}, {thisLocation.state}
-                      <br></br>
-                      <span className="popup-website">
-                        <a href={thisLocation.website}>Website</a>
-                      </span>
-                    </div>
-              
-                  </Popup>
+                <Popup>
+                  <div className="popup-text-container">
+                    <h4 className="popup-header">
+                      {thisLocation.locationName}
+                    </h4>
+                    <span className="popup-section-title">Category: </span>
+                    {formatLocationCategory(thisLocation.locationCategory)}
+                    <br />
+                    <span className="popup-section-title">Address: </span>
+                    <br />
+                    {thisLocation.streetAddress}
+                    <br />
+                    {thisLocation.city}, {thisLocation.state}
+                    <br></br>
+                    <span className="popup-website">
+                      <a href={thisLocation.website}>Website</a>
+                    </span>
+                  </div>
+                </Popup>
               </Marker>
             </MapContainer>
           </Col>
@@ -323,22 +306,23 @@ Phone:</span>
             className="chat-box bg-light border"
             style={{ overflow: "scroll", height: "500px" }}
           >
-            <h4 className="message-header">Messages about {thisLocation.locationName}</h4>
+            <h4 className="message-header">
+              Messages about {thisLocation.locationName}
+            </h4>
             <ul className="message-ul">
               {individualMessages?.message?.map((message) => (
                 <li>
                   <span className="when">{`${message?.timeStamp} `}</span>
-                  <Button className="profile-btn"
+                  <Button
+                    className="profile-btn"
                     // outline
                     size="sm"
                     onClick={() => toggleUserProfile(message.userId)}
                   >
-                        <IconContext.Provider
-                      value={{ color: "gray", size: "16px",  }}
+                    <IconContext.Provider
+                      value={{ color: "gray", size: "16px" }}
                     >
-
-                  <CgProfile />
-
+                      <CgProfile />
                     </IconContext.Provider>
                   </Button>
                   <span className="userName">{`${message.userName} `}</span>
@@ -347,8 +331,7 @@ Phone:</span>
                     2. User info being fetched from profile index so we will need to figure out how to get the data HERE!
                     3. button will be connected to onClick function to trigger a modal to display profile information */}
                   <span className="message-body">{`${message.body} `}</span>
-
-                  {/* __________________________________________________________EMILY WORKING ON PROFILE MODAL */}
+                  {/* ----------------------------USER PROFILE FROM MESSAGE BUTTON---------------------------- */}
                   <Modal
                     isOpen={modalProfile}
                     toggle={toggleUserProfile}
@@ -359,51 +342,18 @@ Phone:</span>
                       overflow: "scroll-y",
                     }}
                   >
-                    {/* __________________________________________________________EMILY WORKING ABOVE */}
                     <ModalHeader toggle={toggleUserProfile}>
-                      User Profile
+                      User Profile View
                     </ModalHeader>
                     <ModalBody id="user-profile-modal">
-                      <Card
-                        style={{
-                          width: "18rem",
-                        }}
-                      >
-                        {/* <img alt="Sample" src={props.user?.profilePic} /> */}
-                        {/* add default image  */}
-
-                        <CardBody>
-                          {/* <CardSubtitle className="mb-2 text-muted" tag="h6">
-                          Card subtitle
-                        </CardSubtitle> */}
-
-                          {/* <CardText>PROFILE PICTURE</CardText> */}
-
-                          {/* ROB: Make a turnary if userProfile._id == props.userId then show the button. 
-                          DONT FORGET TO PASS THE userIdProps to the component from the App.jsx */}
-
-                          <Input
-                            type="file"
-                            name="file"
-                            placeholder="Upload image here"
-                            onChange={UploadImage}
-                          />
-                        </CardBody>
-                        {/* WORKING transition to ProfileIndex--------------------------------------- */}
-                        {/* <ProfileView user={userProfile} fetchUser={fetchUser} />
-                        <ProfileEdit user={userProfile} fetchUser={fetchUser} /> */}
-                        <ProfileIndex
-                          user={userProfile}
-                          fetchUser={fetchUser}
-                          userId={props.userId}
-                          UploadImage={UploadImage}
-                        />
-                      </Card>
+                      <ProfileIndex
+                        user={userProfile}
+                        fetchUser={fetchUser}
+                        userId={props.userId}
+                        UploadImage={UploadImage}
+                      />
                     </ModalBody>
-                    <ModalFooter></ModalFooter>
                   </Modal>
-
-                  {/* __________________________________________________________EMILY WORKING ABOVE */}
                 </li>
               ))}
             </ul>
