@@ -6,6 +6,7 @@
   bottom: 0;
   width: 100%;
   height: auto;
+  z-index: 5;
 }
 
 .signUpLink {
@@ -18,11 +19,11 @@
 } */
 
 
-@media (max-width: 428px) {
+/* @media (max-width: 428px) {
 
 .footer {
-  position:fixed;
+  position:sticky;
 }
 
 
-}
+} */
