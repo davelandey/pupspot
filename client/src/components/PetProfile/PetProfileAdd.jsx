@@ -40,13 +40,15 @@ const PetProfileAdd = (props) => {
   const toggle = () => setModal(!modal);
   // DATE:
   const [value, onChange] = useState(new Date());
+  const [petName, setPetName] = useState("");
+  const [sex, setSex] = useState("");
+  // CREATE A FUNCTION FOR HANDLE SUBMIT
+  // At the end of the fetch after a success you will need to refresh the petModal of dogs
 
   return (
     <>
-    <Modal isOpen={modal} toggle={toggle}>
-        <ModalHeader toggle={toggle}>Add your pet!</ModalHeader>
-        <ModalBody>
-      <Container className="petprofilePage" style={{ width: "95%" }}>
+
+      <Container className="petprofilePage">
         {/* One row, across page */}
         <Row>
           {/* Column one - will adjust to size, automatically*/}
@@ -65,6 +67,8 @@ const PetProfileAdd = (props) => {
                       name="petProfileFirstName"
                       placeholder="Add/Edit pet name"
                       type="string"
+                      value = {petName}
+                      onChange={((e)=> setPetName(e.target.value))}
                     />
                   </FormGroup>
                   <FormGroup className="radio-sex" check>
@@ -114,16 +118,6 @@ const PetProfileAdd = (props) => {
           </Col>
         </Row>
       </Container>
-        </ModalBody>
-        <ModalFooter>
-          <Button color="primary" onClick={toggle}>
-            Update!
-          </Button>{' '}
-          <Button color="secondary" onClick={toggle}>
-            Cancel
-          </Button>
-        </ModalFooter>
-      </Modal>
     </>
   );
 };

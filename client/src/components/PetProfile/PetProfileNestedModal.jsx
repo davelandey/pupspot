@@ -13,16 +13,19 @@ const PetProfileNestedModal = (props) => {
     const [nestedModal, setNestedModal] = useState(false);
     const [closeAll, setCloseAll] = useState(false);
     const [title, setTitle] = useState("")
-    const [modalBody, setModalBody] = useState({})
+    const [modalBody, setModalBody] = useState()
+    const [petEdit, setPetEdit] = useState(<PetProfileEdit/>)
     const handleClick = props.handleClick
     const setIsShown = props.setIsShown
     const isShown = props.isShown
     const petData =props.petData
     const modal = props.modal
     const setModal = props.setModal
+    const [petName, setPetName] = useState("");
+    const [sex, setSex] = useState("");
   
-    const toggle = () => setModal(!modal);
-
+    const toggle = () => setModal(!isShown);
+    const AddPetPresets= { sex, setSex, petName, setPetName}
     const toggleNested = () => {
       setNestedModal(!nestedModal);
       setCloseAll(false);
@@ -42,25 +45,29 @@ const PetProfileNestedModal = (props) => {
     const AddPet = () =>{
       toggleNested();
       setTitle("Add a pet");
-      setModalBody (<PetProfileAdd/>)
+      setModalBody (<PetProfileAdd />)
 };
-  
+
 
     return ( 
     <>
     {/* CHANGED MODEL OPEN TO FALSE */}
-      <Modal isOpen={false} toggle={toggle}>
+      <Modal size="xl" isOpen={isShown} toggle={toggle}>
         <ModalHeader toggle={toggle}>Pet Profile</ModalHeader>
         <ModalBody>
         <PetProfileCard petData={petData}/>
           <br />
           <Modal
+          size="xl"
             isOpen={nestedModal}
             toggle={toggleNested}
             onClosed={closeAll ? toggle : undefined}
+            fade="false"
           >
             <ModalHeader>{title}</ModalHeader>
-            <ModalBody>{modalBody}</ModalBody>
+            <ModalBody>
+              <h2>Adding Pet Now</h2>
+              {modalBody}</ModalBody>
             <ModalFooter>
               <Button color="primary" onClick={toggleNested}>
                 Done
