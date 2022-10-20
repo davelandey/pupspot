@@ -96,14 +96,15 @@ const ProfileView = (props) => {
                 width: "18rem",
               }}
             >
-              <img alt="Sample" src="https://picsum.photos/300/200" />
+              <img alt="Sample" src="https://rremiumb.sirv.com/DSC_0089.JPG" />
 
               <CardBody>
-                {/* figure out how to inport pet information and photo */}
-                <CardTitle tag="h5">[Pet Name]</CardTitle>
-                <CardSubtitle className="mb-2 text-muted" tag="h6">
-                  Card subtitle
-                </CardSubtitle>
+                <CardTitle tag="h5">Wody</CardTitle>
+                <CardSubtitle
+                  className="mb-2 text-muted"
+                  tag="h6"
+                ></CardSubtitle>
+                <p>The Goodest Boi!</p>
                 <CardText>PET PROFILE PICTURE</CardText>
               </CardBody>
             </Card>
