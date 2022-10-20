@@ -8,16 +8,14 @@ import { RouteFetch } from "../../Routes";
 import { Endpoints } from "../../Routes/Endpoints";
 import { useNavigate } from "react-router";
 
-
-
 const Signup = (props) => {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
-const navigate = useNavigate ()
-const setUserId = props.setUserId;
+  const navigate = useNavigate();
+  const setUserId = props.setUserId;
   // Signup Fetch
-  async function handleSubmit(event){
+  async function handleSubmit(event) {
     event.preventDefault();
     console.log("post signup");
 
@@ -31,76 +29,60 @@ const setUserId = props.setUserId;
 
     try {
       await RouteFetch.post(Endpoints.user.signup, body, (data) => {
-         setUserId(data.user._id)
-         props.updateToken(data.token, data.user._id)
+        setUserId(data.user._id);
+        props.updateToken(data.token, data.user._id);
         //  navigate()
-      }
-      );
-     } catch (error) {
-       console.error(error);
-     }
-
-
-
-
-
+      });
+    } catch (error) {
+      console.error(error);
+    }
   }
-
 
   return (
     <div className="signup">
       <Container>
-        <Row>
-          <Col className="left"></Col>
-          <Col className="signUpFormCol">
-            {" "}
-            <Form onSubmit={handleSubmit}>
-<div className="signup-header">
+        <Form onSubmit={handleSubmit}>
+          <div className="signup-header">
+            <h3>SIGN UP</h3>
+          </div>
 
-              <h3>SIGN UP</h3>
-</div>
-
-              <FormGroup>
-                <Input
-                onChange={(event) => {
-                  setUserName(event.target.value);
-                }}
-                  id="Username"
-                  name="Username"
-                  placeholder="Username"
-                  type="Username"
-                />
-              </FormGroup>
-              <FormGroup>
-          
-                <Input
-                   onChange={(event) => {
-                    setEmail(event.target.value);
-                  }}
-                  id="Email"
-                  name="email"
-                  placeholder="Email"
-                  type="email"
-                />
-              </FormGroup>
-              <FormGroup>
-           
-                <Input
-                  onChange={(event) => {
-                    setPassword(event.target.value);
-                  }}
-                  id="Password"
-                  name="password"
-                  placeholder="Password"
-                  type="password"
-                />
-              </FormGroup>
-              <Button onClick={handleSubmit}type="submit" className="submitButton">Submit</Button>
-            </Form>
-          </Col>
-
-          <Col className="right"></Col>
-        </Row>
+          <FormGroup>
+            <Input
+              onChange={(event) => {
+                setUserName(event.target.value);
+              }}
+              id="Username"
+              name="Username"
+              placeholder="Username"
+              type="Username"
+            />
+          </FormGroup>
+          <FormGroup>
+            <Input
+              onChange={(event) => {
+                setEmail(event.target.value);
+              }}
+              id="Email"
+              name="email"
+              placeholder="Email"
+              type="email"
+            />
+          </FormGroup>
+          <FormGroup>
+            <Input
+              onChange={(event) => {
+                setPassword(event.target.value);
+              }}
+              id="Password"
+              name="password"
+              placeholder="Password"
+              type="password"
+            />
+          </FormGroup>
+          <Button onClick={handleSubmit} type="submit" className="submitButton">
+            Submit
+          </Button>
+        </Form>
       </Container>
     </div>
   );

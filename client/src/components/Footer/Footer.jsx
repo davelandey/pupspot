@@ -6,7 +6,6 @@ import { NavLink } from "react-router-dom";
 const Footer = (props) => {
   let activeStyle = { textDecoration: "none", color: "white" };
 
-  //!WHAT COLOR?
   let inActiveStyle = { textDecoration: "none", color: "white" };
   //Current year for copywrite:
   const currentYear = new Date().getFullYear();
