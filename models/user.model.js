@@ -5,42 +5,44 @@ const UserSchema = new mongoose.Schema({
     required: true,
     default: false,
   },
-  firstName:{
+  firstName: {
     type: String,
   },
-  lastName:{
+  lastName: {
     type: String,
   },
-  userName:{
+  userName: {
     type: String,
     required: true,
     // unique: true,
   },
-  password:{
+  password: {
     type: String,
     required: true,
   },
-  privacySettings:{
+  privacySettings: {
     type: String,
     required: true,
     default: "public",
   },
   profilePic: {
     type: String,
+    default:
+      "https://rremiumb.sirv.com/beautybyewa_1572008312234_original._CR0%2C0%2C734%2C734_._FMjpg_.jpg",
   },
-  humanBio:{
+  humanBio: {
     type: String,
   },
-  zipcode:{
+  zipcode: {
     type: Number,
     required: true,
     default: 05404,
   },
-  email:{
+  email: {
     type: String,
     required: true,
   },
-  disable:{
+  disable: {
     type: Boolean,
     default: false,
   },
