@@ -37,7 +37,7 @@ const ProfileEdit = (props) => {
             xxl="4"
             style={{ overflow: "scroll-y", height: "50%" }}
           >
-            <h2>USER PROFILE EDIT</h2>
+         
             <Form>
               <Row>
                 <Col m="2">
