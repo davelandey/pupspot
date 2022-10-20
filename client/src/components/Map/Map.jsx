@@ -29,9 +29,7 @@ const Map = (props) => {
     iconSize: [31, 46], // size of the icon
     iconAnchor: [15.5, 42], // point of the icon which will correspond to marker's location
     popupAnchor: [0, -45], // point from which the popup should open relative to the iconAnchor
-
   });
-
 
   return (
     <>
@@ -53,7 +51,7 @@ const Map = (props) => {
                   key={location.id}
                   position={[location.latitude, location.longitude]}
                   //MARKER ICON:
-                  debugger
+
                   icon={markerIcon}
                 >
                   <Popup>

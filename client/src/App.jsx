@@ -31,14 +31,7 @@ function App() {
 
     //USESTATE FOR userId
     if (localStorage.getItem("userId")) {
-      setSessionToken(localStorage.getItem("userId"));
-    }
-  }, []);
-
-  // ID -----
-  useEffect(() => {
-    if (localStorage.getItem("id")) {
-      setUserId(localStorage.getItem("id"));
+      setUserId(localStorage.getItem("userId"));
     }
   }, []);
 

@@ -24,16 +24,10 @@ import "./individualLocation.css";
 import { RouteFetch } from "../Routes";
 import { Endpoints } from "../Routes/Endpoints";
 import { useState, useEffect } from "react";
-
 import { CgProfile } from "react-icons/cg";
 import { ImProfile } from "react-icons/im";
 import { IconContext } from "react-icons";
-
 import { icon } from "leaflet";
-// WORKING transition to ProfileIndex
-
-// import ProfileView from "../Profile/ProfileView";
-// import ProfileEdit from "../Profile/ProfileEdit";
 import ProfileIndex from "../Profile/ProfileIndex";
 
 const IndividualLocation = (props) => {
@@ -138,13 +132,12 @@ const IndividualLocation = (props) => {
   // *-----------------------------USER MODAL
   const [modalProfile, setModalProfile] = useState(false);
 
-  // !FETCH BY ID
-  const [userProfileId, setuserProfileId] = useState("");
+  // FETCH BY ID
+  // const [userProfileId, setuserProfileId] = useState("");
   const [userProfile, setUserProfile] = useState({});
 
   const fetchUser = async (userId) => {
     try {
-      debugger;
       RouteFetch.get(Endpoints.user.getById + userId, callback);
       function callback(data) {
         console.log("callback user works?", data);
@@ -324,8 +317,7 @@ const IndividualLocation = (props) => {
                     2. User info being fetched from profile index so we will need to figure out how to get the data HERE!
                     3. button will be connected to onClick function to trigger a modal to display profile information */}
                   <span className="message-body">{`${message.body} `}</span>
-
-                  {/* __________________________________________________________EMILY WORKING ON PROFILE MODAL */}
+                  {/* ----------------------------USER PROFILE FROM MESSAGE BUTTON---------------------------- */}
                   <Modal
                     isOpen={modalProfile}
                     toggle={toggleUserProfile}
@@ -336,51 +328,18 @@ const IndividualLocation = (props) => {
                       overflow: "scroll-y",
                     }}
                   >
-                    {/* __________________________________________________________EMILY WORKING ABOVE */}
                     <ModalHeader toggle={toggleUserProfile}>
-                      User Profile
+                      User Profile View
                     </ModalHeader>
                     <ModalBody id="user-profile-modal">
-                      <Card
-                        style={{
-                          width: "18rem",
-                        }}
-                      >
-                        {/* <img alt="Sample" src={props.user?.profilePic} /> */}
-                        {/* add default image  */}
-
-                        <CardBody>
-                          {/* <CardSubtitle className="mb-2 text-muted" tag="h6">
-                          Card subtitle
-                        </CardSubtitle> */}
-
-                          {/* <CardText>PROFILE PICTURE</CardText> */}
-
-                          {/* ROB: Make a turnary if userProfile._id == props.userId then show the button. 
-                          DONT FORGET TO PASS THE userIdProps to the component from the App.jsx */}
-
-                          <Input
-                            type="file"
-                            name="file"
-                            placeholder="Upload image here"
-                            onChange={UploadImage}
-                          />
-                        </CardBody>
-                        {/* WORKING transition to ProfileIndex--------------------------------------- */}
-                        {/* <ProfileView user={userProfile} fetchUser={fetchUser} />
-                        <ProfileEdit user={userProfile} fetchUser={fetchUser} /> */}
-                        <ProfileIndex
-                          user={userProfile}
-                          fetchUser={fetchUser}
-                          userId={props.userId}
-                          UploadImage={UploadImage}
-                        />
-                      </Card>
+                      <ProfileIndex
+                        user={userProfile}
+                        fetchUser={fetchUser}
+                        userId={props.userId}
+                        UploadImage={UploadImage}
+                      />
                     </ModalBody>
-                    <ModalFooter></ModalFooter>
                   </Modal>
-
-                  {/* __________________________________________________________EMILY WORKING ABOVE */}
                 </li>
               ))}
             </ul>

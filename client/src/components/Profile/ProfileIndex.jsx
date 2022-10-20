@@ -1,5 +1,4 @@
 import { React } from "react";
-
 import ProfileView from "../Profile/ProfileView";
 import ProfileEdit from "../Profile/ProfileEdit";
 
@@ -11,11 +10,7 @@ const ProfileIndex = (props) => {
 
   return (
     <>
-      <h1>PROFILE INDEX</h1>
-
-      {/* TERINARY - props.user._id ===  props.userId - passed from App.js & ProfileIndex */}
-
-      {props.user._id === props.userId ? (
+      {props?.user?._id === props?.userId ? (
         <ProfileEdit user={user} UploadImage={props.UploadImage} />
       ) : (
         <ProfileView user={user} UploadImage={props.UploadImage} />
