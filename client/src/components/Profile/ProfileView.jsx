@@ -43,18 +43,18 @@ const ProfileView = (props) => {
                 <Col m="2">
                   <FormGroup className="FormGroup">
                     <Label for="exampleEmail">
-                      Name:{props.user?.firstName}
+                      Name: {props.user?.firstName}
                     </Label>
                   </FormGroup>
                   <FormGroup className="FormGroup">
                     <Label for="exampleEmail">
-                      Username:{props.user?.userName}
+                      Username: {props.user?.userName}
                     </Label>
                   </FormGroup>
 
                   <FormGroup className="FormGroup">
                     <Label for="exampleEmail">
-                      About:{props.user?.humanBio}
+                      About: {props.user?.humanBio}
                     </Label>
                   </FormGroup>
                 </Col>
@@ -104,7 +104,7 @@ const ProfileView = (props) => {
                   tag="h6"
                 ></CardSubtitle>
                 <p>The Goodest Boi!</p>
-                <CardText>PET PROFILE PICTURE</CardText>
+                {/* <CardText></CardText> */}
               </CardBody>
             </Card>
           </Col>
