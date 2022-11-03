@@ -83,6 +83,8 @@ router.patch("/delete", validateSession, async (req, res) => {
   });
 });
 
+
+
 router.get("/:id", async (req, res) => {
   console.log("USERID", req.params.id);
   try {
